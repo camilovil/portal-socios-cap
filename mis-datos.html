@@ -92,17 +92,37 @@
   .add-member { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; border: 1.5px dashed #ddd; border-radius: 12px; color: var(--brown); font-size: 13px; cursor: pointer; margin-top: 4px; }
   .add-member:hover { border-color: var(--gold); background: var(--cream); }
 
-  /* Carnet tab — tarjeta 3D con glossy shine + trama de tentáculos dorada (carnet 9b) */
+  /* Carnet tab — tarjeta 3D giratoria: frente (glossy + trama dorada) y dorso (QR de acceso) */
   :root { --brown-darkest: #1c1108; }
   .socio-card-wrap { display: flex; justify-content: center; padding: 20px 0 8px; perspective: 1400px; }
   .socio-card { width: 100%; max-width: 440px; aspect-ratio: 440 / 270; perspective: 1400px; }
-  .socio-card__inner { width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .15s ease-out; cursor: pointer; }
+  .socio-card__inner {
+    position: relative; width: 100%; height: 100%; transform-style: preserve-3d;
+    transition: transform .6s cubic-bezier(.4,.1,.2,1); cursor: pointer;
+  }
+  .socio-card__side { position: absolute; inset: 0; backface-visibility: hidden; }
+  .socio-card__side--back { transform: rotateY(180deg); }
   .socio-card__face {
     position: relative; width: 100%; height: 100%; border-radius: 24px; overflow: hidden;
     background: linear-gradient(155deg, var(--brown) 0%, var(--brown-dark) 60%, var(--brown-darkest) 100%);
     color: #efe2cf;
     box-shadow: 0 30px 60px -14px rgba(0,0,0,.5), 0 4px 12px rgba(0,0,0,.3), inset 0 1px 1px rgba(255,255,255,.15);
   }
+  .socio-card__back-header { position: absolute; top: 11%; left: 7%; display: flex; align-items: center; gap: 12px; }
+  .socio-card__back-header img { height: 34px; }
+  .socio-card__back-header .club-name { margin: 0; font: 700 13px 'Gotham', sans-serif; }
+  .socio-card__back-header .club-sub { margin: 2px 0 0; font: 500 11px 'Gotham', sans-serif; opacity: .65; }
+  .socio-card__qr-col {
+    position: absolute; top: 0; bottom: 0; right: 0; width: 42%;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  }
+  .socio-card__qr-box { background: #fff; border-radius: 14px; padding: 10px; box-shadow: 0 6px 18px rgba(0,0,0,.35); }
+  .socio-card__qr-box img { display: block; width: 84px; height: 84px; }
+  .socio-card__qr-caption { margin: 0; font: 600 10px 'Gotham', sans-serif; letter-spacing: .06em; opacity: .75; text-align: center; }
+  .socio-card__back-info { position: absolute; left: 7%; bottom: 10%; display: flex; flex-direction: column; gap: 10px; }
+  .socio-card__back-info .label { margin: 0; font: 600 10px 'Gotham', sans-serif; letter-spacing: .08em; opacity: .55; }
+  .socio-card__back-info .value { margin: 2px 0 0; font: 700 17px/1 ui-monospace, 'SFMono-Regular', Consolas, monospace; letter-spacing: .02em; }
+  .socio-card-hint { text-align: center; font-size: 11.5px; color: var(--gray-text); margin-top: 10px; }
   .socio-card__emboss {
     position: absolute; inset: 0;
     background: linear-gradient(115deg, rgba(255,255,255,.10), transparent 42%), radial-gradient(120% 90% at 15% 0%, rgba(255,255,255,.10), transparent 60%);
@@ -339,25 +359,49 @@
     <div class="socio-card-wrap">
         <div class="socio-card">
           <div class="socio-card__inner" id="socioCardInner">
-            <div class="socio-card__face">
-              <div class="socio-card__trama"><div class="tentaculos"></div></div>
-              <div class="socio-card__emboss"></div>
-              <img class="socio-card__logo" src="assets/img/carnet/logo-clasico.webp" alt="Escudo clásico Club Atlético Platense">
-              <div class="socio-card__pill">ACTIVO</div>
-              <div class="socio-card__foot">
-                <div>
-                  <p class="socio-card__socio-line">Socio N° 4521 · Categoría Activo</p>
-                  <h3 class="socio-card__name">Camilo Villanueva</h3>
+            <div class="socio-card__side">
+              <div class="socio-card__face">
+                <div class="socio-card__trama"><div class="tentaculos"></div></div>
+                <div class="socio-card__emboss"></div>
+                <img class="socio-card__logo" src="assets/img/carnet/logo-clasico.webp" alt="Escudo clásico Club Atlético Platense">
+                <div class="socio-card__pill">ACTIVO</div>
+                <div class="socio-card__foot">
+                  <div>
+                    <p class="socio-card__socio-line">Socio N° 4521 · Categoría Activo</p>
+                    <h3 class="socio-card__name">Camilo Villanueva</h3>
+                  </div>
+                  <a class="socio-card__wallet-link" href="#">+ Añadir a Wallet</a>
                 </div>
-                <a class="socio-card__wallet-link" href="#">+ Añadir a Wallet</a>
+                <div class="socio-card__shine"></div>
+                <div class="socio-card__sweep"></div>
               </div>
-              <div class="socio-card__shine" id="socioCardShine"></div>
-              <div class="socio-card__sweep"></div>
+            </div>
+            <div class="socio-card__side socio-card__side--back">
+              <div class="socio-card__face">
+                <div class="socio-card__trama" style="opacity:.22"><div class="tentaculos" style="right:auto; left:-11px; transform:none"></div></div>
+                <div class="socio-card__emboss"></div>
+                <div class="socio-card__back-header">
+                  <img src="assets/img/carnet/logo-clasico.webp" alt="Escudo">
+                  <div>
+                    <p class="club-name">Club Atlético Platense</p>
+                    <p class="club-sub">Carnet de socio digital</p>
+                  </div>
+                </div>
+                <div class="socio-card__qr-col">
+                  <div class="socio-card__qr-box"><img src="assets/img/carnet/qr-code.png" alt="Código QR de acceso"></div>
+                  <p class="socio-card__qr-caption">PRESENTALO EN<br>EL ACCESO</p>
+                </div>
+                <div class="socio-card__back-info">
+                  <div><p class="label">SOCIO N°</p><p class="value">4521</p></div>
+                  <div><p class="label">VÁLIDO HASTA</p><p class="value">12 / 2026</p></div>
+                </div>
+                <div class="socio-card__shine"></div>
+              </div>
             </div>
           </div>
         </div>
     </div>
-    <p class="socio-card-caption">Socio desde 12 de marzo de 2015</p>
+    <p class="socio-card-hint">Tocá la tarjeta para girarla · Socio desde 12 de marzo de 2015</p>
     <div class="carnet-actions">
       <button class="primary">Descargar carnet digital</button>
       <button class="ghost">+ Añadir a Wallet</button>
@@ -472,21 +516,30 @@ document.addEventListener('click', function () {
 <script>
 (function () {
   var card = document.getElementById('socioCardInner');
-  var shine = document.getElementById('socioCardShine');
   if (!card) return;
+  var shines = card.querySelectorAll('.socio-card__shine');
+  var flipped = false;
 
+  function handleClick() {
+    flipped = !flipped;
+    card.style.transform = 'rotateY(' + (flipped ? 180 : 0) + 'deg)';
+  }
   function handleMove(e) {
     var rect = card.getBoundingClientRect();
     var px = (e.clientX - rect.left) / rect.width;
     var py = (e.clientY - rect.top) / rect.height;
-    card.style.transform = 'rotateX(' + ((0.5 - py) * 14) + 'deg) rotateY(' + ((px - 0.5) * 18) + 'deg) scale(1.02)';
-    shine.style.background = 'radial-gradient(circle at ' + (px * 100) + '% ' + (py * 100) + '%, rgba(255,255,255,.35), transparent 55%)';
+    var base = flipped ? 180 : 0;
+    card.style.transform = 'rotateY(' + (base + (px - 0.5) * 14) + 'deg) rotateX(' + ((0.5 - py) * 10) + 'deg) scale(1.02)';
+    shines.forEach(function (s) {
+      s.style.background = 'radial-gradient(circle at ' + (px * 100) + '% ' + (py * 100) + '%, rgba(255,255,255,.35), transparent 55%)';
+    });
   }
   function handleLeave() {
-    card.style.transform = '';
-    shine.style.background = '';
+    card.style.transform = 'rotateY(' + (flipped ? 180 : 0) + 'deg)';
+    shines.forEach(function (s) { s.style.background = ''; });
   }
 
+  card.addEventListener('click', handleClick);
   card.addEventListener('mousemove', handleMove);
   card.addEventListener('mouseleave', handleLeave);
 })();
