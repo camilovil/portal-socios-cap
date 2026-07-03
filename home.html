@@ -89,7 +89,7 @@
   .btn-fill { background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 55%, #8f7a44 100%); color: var(--brown-dark); box-shadow: 0 8px 20px rgba(190,161,94,0.4); }
   .btn-fill:hover { filter: brightness(1.05); box-shadow: 0 10px 26px rgba(190,161,94,0.5); }
 
-  .member-card-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 18px; }
+  .member-card-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 18px; width: 440px; max-width: 100%; }
   .wallet-link { font-size: 14px; color: rgba(255,255,255,0.8); display: inline-flex; align-items: center; gap: 6px; }
 
   /* Tarjeta de socio 3D giratoria (frente glossy + dorso con QR) — mismo componente que mis-datos.html */
@@ -277,6 +277,8 @@
   @media (max-width: 420px) {
     .hero h1 { font-size: 32px; }
     .socio-card { max-width: 300px; }
+    .socio-card__foot { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .socio-card__name { font-size: 18px; }
   }
 
 
