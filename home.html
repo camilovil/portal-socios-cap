@@ -113,10 +113,9 @@
   }
   .socio-card__trama { position: absolute; inset: 0; opacity: .34; filter: brightness(1.05) sepia(1) saturate(2.6) hue-rotate(-12deg); }
   .socio-card__trama .tentaculos {
-    position: absolute; top: -31px; bottom: -20px; right: -11px; width: 68%; height: 112%;
+    position: absolute; inset: -12% -8%;
     background-image: url('assets/img/carnet/tentaculos-lateral.png');
-    background-size: auto 140%; background-repeat: no-repeat; background-position: left center;
-    transform: scaleX(-1);
+    background-size: 640px auto; background-repeat: no-repeat; background-position: -20px -20px;
   }
   .socio-card__logo { position: absolute; top: 5%; left: 6%; height: 31%; width: auto; filter: drop-shadow(0 3px 6px rgba(0,0,0,.5)); }
   .socio-card__pill {
@@ -468,7 +467,7 @@
             </div>
             <div class="socio-card__side socio-card__side--back">
               <div class="socio-card__face">
-                <div class="socio-card__trama" style="opacity:.22"><div class="tentaculos" style="right:auto; left:-11px; transform:none"></div></div>
+                <div class="socio-card__trama" style="opacity:.22"><div class="tentaculos"></div></div>
                 <div class="socio-card__emboss"></div>
                 <div class="socio-card__back-header">
                   <img src="assets/img/carnet/logo-clasico.webp" alt="Escudo">
