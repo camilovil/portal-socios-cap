@@ -124,6 +124,34 @@
     .footer-top { flex-direction: column; align-items: flex-start; gap: 16px; }
     .footer-bottom-row { flex-direction: column; align-items: flex-start; }
   }
+
+  /* Mobile nav drawer */
+  .hamburger-btn { display:none; background:none; border:none; cursor:pointer; color:var(--brown); padding:4px; }
+  .hamburger-btn svg { width:22px; height:22px; }
+  .nav-backdrop { position:fixed; inset:0; background:rgba(0,0,0,0.45); z-index:60; opacity:0; pointer-events:none; transition:opacity .2s; }
+  .nav-backdrop.open { opacity:1; pointer-events:auto; }
+  .nav-drawer { position:fixed; top:0; right:0; bottom:0; width:82%; max-width:340px; background:var(--white); z-index:61;
+    transform:translateX(100%); transition:transform .25s ease; display:flex; flex-direction:column; overflow-y:auto; }
+  .nav-drawer.open { transform:translateX(0); }
+  .drawer-head { display:flex; align-items:center; gap:12px; padding:20px; border-bottom:1px solid #eee; }
+  .drawer-head img { height:40px; }
+  .drawer-head .who { font-size:14px; font-weight:700; color:var(--brown); flex:1; }
+  .drawer-head .close-drawer { background:none; border:none; color:var(--gray-text); font-size:18px; cursor:pointer; }
+  .drawer-section { padding:10px 8px; border-bottom:1px solid #eee; }
+  .drawer-section a { display:flex; align-items:center; gap:12px; padding:13px 12px; font-size:14px; color:var(--ink); border-radius:8px; }
+  .drawer-section a:hover { background:var(--cream); }
+  .drawer-section a svg { width:18px; height:18px; color:var(--brown); flex-shrink:0; }
+  .drawer-section a .chev { margin-left:auto; width:14px; height:14px; color:var(--gray-text); }
+  .drawer-foot { margin-top:auto; background:var(--brown-dark); color:rgba(255,255,255,0.85); padding:14px 20px; font-size:12px; display:flex; align-items:center; justify-content:space-between; }
+
+  @media (max-width: 760px) {
+    .utility-bar .site-link { display:none; }
+    .utility-bar .right .icon-label,
+    .utility-bar .right > a:not(.hamburger-btn) { display:none; }
+    .hamburger-btn { display:flex; }
+    nav.section-nav { display:none; }
+    .hero-help { display:none; }
+  }
 </style>
 </head>
 <body>
@@ -136,8 +164,40 @@
   <img class="escudo-mini" src="assets/img/escudo-cap-oficial.png" alt="Club Atlético Platense">
   <div class="right">
     <a href="#">¿Necesitás ayuda?</a>
+    <button class="hamburger-btn" onclick="toggleNav(true)" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
   </div>
 </div>
+
+
+<div class="nav-backdrop" id="navBackdrop" onclick="toggleNav(false)"></div>
+<nav class="nav-drawer" id="navDrawer">
+  <div class="drawer-head">
+    <img src="assets/img/escudo-cap-oficial.png" alt="Escudo">
+    <span class="who">Villanueva Camilo</span>
+    <button class="close-drawer" onclick="toggleNav(false)">✕</button>
+  </div>
+  <div class="drawer-section">
+    <a href="home.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12 12 3l9 9"/><path d="M5 10v10h14V10"/></svg>Inicio</a>
+    <a href="mis-datos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>Mis Datos<svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></a>
+    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>Notificaciones</a>
+  </div>
+  <div class="drawer-section">
+    <a href="mis-datos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>Mis Datos</a>
+    <a href="pagos-pendientes.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/></svg>Mis Pagos Pendientes</a>
+    <a href="inscripciones.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Inscripciones / Alta débito automático</a>
+    <a href="turnos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Mis Turnos</a>
+    <a href="pagos-realizados.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l3 3v15H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Mis Pagos Realizados</a>
+    <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4 8.5 8.5 0 0 1-4-.9L3 20l1-5.5A8.4 8.4 0 1 1 21 11.5Z"/></svg>Mis Sugerencias</a>
+  </div>
+  <div class="drawer-section">
+    <a href="login.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>Salir</a>
+  </div>
+  <div class="drawer-foot">
+    <span>Powered by <b>CleverSoft®</b></span>
+  </div>
+</nav>
 
 <section class="hero">
   <div class="hero-help">
@@ -210,5 +270,12 @@
   </div>
 </footer>
 
+
+<script>
+function toggleNav(open) {
+  document.getElementById('navDrawer').classList.toggle('open', open);
+  document.getElementById('navBackdrop').classList.toggle('open', open);
+}
+</script>
 </body>
 </html>
