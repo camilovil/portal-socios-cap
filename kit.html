@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<title>Kit de Marca — Club Atlético Platense (ingeniería inversa 2026)</title>
+<style>
+  @font-face {
+    font-family: 'Gotham';
+    src: url('assets/fonts/gotham_light.otf') format('opentype');
+    font-weight: 300;
+  }
+  @font-face {
+    font-family: 'Gotham';
+    src: url('assets/fonts/gotham_medium.otf') format('opentype');
+    font-weight: 400;
+  }
+  @font-face {
+    font-family: 'Gotham';
+    src: url('assets/fonts/gotham_black.otf') format('opentype');
+    font-weight: 700;
+  }
+  @font-face {
+    font-family: 'Calamar';
+    src: url('assets/fonts/AwesomeSerifItalic-MediumTall.otf') format('opentype');
+    font-style: italic;
+  }
+
+  :root {
+    --brown-primary: #4a2e15;
+    --brown-secondary: #342011;
+    --brown-svg: #42280e;
+    --gold: #bea15e;
+    --gold-svg: #b49a61;
+    --cream: #f5f2ec;
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Gotham', sans-serif;
+    font-weight: 300;
+    background: var(--cream);
+    color: var(--brown-secondary);
+  }
+  header {
+    background: var(--brown-primary);
+    color: var(--white);
+    padding: 48px 64px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  header img { width: 90px; }
+  header h1 {
+    font-family: 'Gotham', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    margin: 0 0 6px 0;
+    letter-spacing: 0.5px;
+  }
+  header p {
+    margin: 0;
+    font-weight: 300;
+    opacity: 0.85;
+    font-size: 14px;
+  }
+  main { max-width: 1080px; margin: 0 auto; padding: 48px 32px 96px; }
+  section { margin-bottom: 72px; }
+  section h2 {
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--brown-primary);
+    border-bottom: 2px solid var(--gold);
+    padding-bottom: 10px;
+    margin-bottom: 28px;
+  }
+  .note {
+    background: var(--white);
+    border-left: 4px solid var(--gold);
+    padding: 14px 18px;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--brown-secondary);
+    margin-bottom: 24px;
+  }
+  .note b { color: var(--brown-primary); }
+
+  /* Colors */
+  .swatch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .swatch {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    background: var(--white);
+  }
+  .swatch-color { height: 90px; }
+  .swatch-info { padding: 12px 14px; font-size: 12px; }
+  .swatch-info .name { font-weight: 700; font-size: 13px; color: var(--brown-primary); display: block; margin-bottom: 4px; }
+  .swatch-info .hex { font-family: monospace; opacity: 0.75; }
+  .swatch-info .src { display: block; margin-top: 6px; font-size: 10px; opacity: 0.55; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* Typography */
+  .type-sample { background: var(--white); border-radius: 8px; padding: 24px 28px; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+  .type-sample .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.6; margin-bottom: 10px; }
+  .gotham-light { font-weight: 300; font-size: 34px; }
+  .gotham-medium { font-weight: 400; font-size: 34px; }
+  .gotham-black { font-weight: 700; font-size: 34px; }
+  .calamar { font-family: 'Calamar', serif; font-style: italic; font-size: 42px; color: var(--gold); }
+
+  /* Logo */
+  .logo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+  .logo-card { border-radius: 8px; padding: 32px; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.15); }
+  .logo-card img { width: 100px; }
+  .bg-brown { background: var(--brown-primary); }
+  .bg-white { background: var(--white); border: 1px solid #ddd; }
+  .bg-cream { background: var(--cream); border: 1px solid #ddd; }
+
+  /* Rules */
+  .rules { background: var(--white); border-radius: 8px; padding: 24px 28px; font-size: 14px; line-height: 1.8; }
+  .rules ul { margin: 0; padding-left: 20px; }
+
+  footer {
+    text-align: center;
+    font-size: 11px;
+    opacity: 0.5;
+    padding: 32px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="assets/img/escudo-cap-oficial.png" alt="Escudo Club Atlético Platense">
+  <div>
+    <h1>KIT DE MARCA — CLUB ATLÉTICO PLATENSE</h1>
+    <p>Reconstruido por ingeniería inversa a partir de cap.org.ar (2026) + Manual de Marca para Anunciantes (2013) + vector oficial (2025)</p>
+  </div>
+</header>
+
+<main>
+
+  <section>
+    <h2>Cómo se armó este kit</h2>
+    <div class="note">
+      El manual de marca oficial que existe (<b>PLA-Marca-.pdf, 2013</b>) sigue siendo válido como estructura y como reglas de uso,
+      pero el escudo, la tipografía real y los colores exactos cambiaron con la web nueva. Este kit toma la <b>estructura del manual 2013</b>
+      y reemplaza los assets por los que están corriendo hoy en <b>cap.org.ar</b>: el escudo vectorial con estrella, la tipografía Gotham real
+      (el manual la llamaba "Ghotam", probablemente un error de tipeo) y la fuente Calamar como itálica de destaque.
+    </div>
+  </section>
+
+  <section>
+    <h2>Escudo oficial (CAP + estrella)</h2>
+    <div class="logo-grid">
+      <div class="logo-card bg-white"><img src="assets/img/escudo-cap-oficial.png" alt="Escudo oficial sobre blanco" style="width:120px;"></div>
+      <div class="logo-card bg-brown"><img src="assets/img/escudo-cap-oficial.png" alt="Escudo oficial sobre marrón" style="width:120px;"></div>
+      <div class="logo-card bg-cream"><img src="assets/img/escudo-cap-oficial.png" alt="Escudo oficial sobre crema" style="width:120px;"></div>
+    </div>
+    <div class="note" style="margin-top:20px;">
+      Fuente: vector original en Adobe Illustrator (<code>platense.eps</code>, creado 6/2/25). Este es el escudo institucional completo —
+      con las letras "CAP" y la estrella — pensado para uso como marca principal (indumentaria, papelería, UI).
+    </div>
+  </section>
+
+  <section>
+    <h2>Escudo — variante forma/fondo</h2>
+    <div class="logo-grid">
+      <div class="logo-card bg-white"><img src="assets/img/escudo.svg" alt="Variante escudo sobre blanco"></div>
+      <div class="logo-card bg-brown"><img src="assets/img/escudo.svg" alt="Variante escudo sobre marrón"></div>
+    </div>
+    <div class="note" style="margin-top:20px;">
+      Fuente: <code>cap.org.ar/wp-content/uploads/2026/05/escudo.svg</code> — es solo la silueta/forma del escudo (sin las letras "CAP"),
+      usada como elemento decorativo o de fondo en el sitio. También hay una versión animada (Lottie) en <code>escudo-cap.json</code> para el header.
+      <b>No reemplaza al escudo oficial de arriba</b> — son usos distintos.
+    </div>
+  </section>
+
+  <section>
+    <h2>Logotipo (escudo + texto)</h2>
+    <div class="logo-grid">
+      <div class="logo-card bg-white" style="flex-direction:column; gap:14px;">
+        <img src="assets/img/escudo.svg" alt="Escudo" style="width:70px;">
+        <img src="assets/img/cap-wordmark.svg" alt="Logotipo Platense" style="width:170px;">
+      </div>
+      <div class="logo-card bg-brown" style="flex-direction:column; gap:14px;">
+        <img src="assets/img/escudo.svg" alt="Escudo" style="width:70px;">
+        <img src="assets/img/cap-wordmark.svg" alt="Logotipo Platense" style="width:170px; filter: brightness(0) invert(1);">
+      </div>
+    </div>
+    <div class="note" style="margin-top:20px;">
+      Fuente: <code>cap.org.ar/wp-content/uploads/2026/05/cap.svg</code> — usado junto al escudo en el footer del sitio ("titulo-club").
+      Es el reemplazo directo del "logotipo" del manual 2013 (que antes era el texto "Club Atlético Platense" en Gotham).
+    </div>
+  </section>
+
+  <section>
+    <h2>Íconos y favicon</h2>
+    <div class="logo-grid">
+      <div class="logo-card bg-cream"><img src="assets/img/favicon-192.png" alt="Ícono app/favicon" style="width:64px; border-radius:14px;"></div>
+    </div>
+    <div class="note" style="margin-top:20px;">
+      Versión recortada del escudo para favicon / ícono de app (192×192, también existen 32×32, 180×180 y 270×270 en la misma ruta con el sufijo cambiado).
+    </div>
+  </section>
+
+  <section>
+    <h2>Espacio mínimo y tamaño</h2>
+    <div class="note">
+      El manual 2013 fija <b>7 cm de alto</b> como medida mínima del escudo en indumentaria, y <b>2,5 cm de alto</b> para el logotipo completo (escudo + texto) en aplicaciones impresas.
+      En digital, el sitio actual usa el escudo a <b>195×205 px</b> en el header — tomalo como referencia de tamaño mínimo legible en pantalla (no bajar de ~80px de alto en UI).
+    </div>
+  </section>
+
+  <section>
+    <h2>Uso indebido (vigente desde 2013, verificado sobre el escudo actual)</h2>
+    <div class="logo-grid">
+      <div class="logo-card bg-white"><img src="assets/img/escudo-cap-oficial.png" alt="Mal uso: otro color" style="width:100px; filter: hue-rotate(180deg) saturate(3);"></div>
+      <div class="logo-card bg-white"><img src="assets/img/escudo-cap-oficial.png" alt="Mal uso: distorsión" style="width:100px; transform: scaleX(0.5);"></div>
+      <div class="logo-card bg-cream"><img src="assets/img/escudo-cap-oficial.png" alt="Mal uso: bajo contraste" style="width:100px; opacity:0.25;"></div>
+    </div>
+    <div class="note" style="margin-top:20px;">
+      Ejemplos ilustrativos generados para este kit (no son gráficas oficiales del club): otro color, distorsión del contorno y bajo contraste sobre fondo claro — los tres casos a evitar según las reglas de abajo.
+    </div>
+  </section>
+
+  <section>
+    <h2>Colores corporativos</h2>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#4a2e15"></div>
+        <div class="swatch-info"><span class="name">Marrón institucional</span><span class="hex">#4a2e15</span><span class="src">CSS cap.org.ar — primary</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#342011"></div>
+        <div class="swatch-info"><span class="name">Marrón oscuro</span><span class="hex">#342011</span><span class="src">CSS cap.org.ar — secondary</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#bea15e"></div>
+        <div class="swatch-info"><span class="name">Dorado / destaque</span><span class="hex">#bea15e</span><span class="src">CSS cap.org.ar — success (color de la estrella)</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#42280e"></div>
+        <div class="swatch-info"><span class="name">Marrón (vector escudo)</span><span class="hex">#42280e</span><span class="src">escudo.svg</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#b49a61"></div>
+        <div class="swatch-info"><span class="name">Dorado (vector escudo)</span><span class="hex">#b49a61</span><span class="src">escudo.svg — estrella</span></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#ffffff; border:1px solid #ddd"></div>
+        <div class="swatch-info"><span class="name">Blanco</span><span class="hex">#ffffff</span><span class="src">Base para contraste</span></div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:20px;">
+      Referencia histórica (manual 2013): marrón institucional Pantone 161C — CMYK 44/69/95/50, RGB 99/59/27 (≈ #633b1b).
+      Los tonos reales de la web nueva son levemente distintos pero mantienen la misma familia marrón/dorado.
+    </div>
+  </section>
+
+  <section>
+    <h2>Tipografía</h2>
+    <div class="type-sample">
+      <div class="label">Gotham Light — texto corrido</div>
+      <div class="gotham-light">Club Atlético Platense</div>
+    </div>
+    <div class="type-sample">
+      <div class="label">Gotham Medium — subtítulos</div>
+      <div class="gotham-medium">Club Atlético Platense</div>
+    </div>
+    <div class="type-sample">
+      <div class="label">Gotham Black — títulos destacados</div>
+      <div class="gotham-black">CLUB ATLÉTICO PLATENSE</div>
+    </div>
+    <div class="type-sample">
+      <div class="label">Calamar Italic — frases de impacto / claim</div>
+      <div class="calamar">Fiel a tu pasión</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Reglas de uso (vigentes desde el manual 2013)</h2>
+    <div class="rules">
+      <ul>
+        <li>No añadir elementos dentro del contorno del escudo.</li>
+        <li>No distorsionar el escudo ni el texto.</li>
+        <li>No engrosar el trazado del escudo.</li>
+        <li>No utilizar otra tipografía fuera de Gotham / Calamar.</li>
+        <li>No utilizar otros colores fuera de la paleta marrón/dorado/blanco.</li>
+        <li>No ocultar el escudo superponiéndole elementos.</li>
+        <li>Medida mínima del escudo en indumentaria: 7 cm de alto.</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer>Kit generado por ingeniería inversa — E:/CAP/reverse-engineering — no es material oficial del Departamento de Marketing de CAP.</footer>
+
+</body>
+</html>

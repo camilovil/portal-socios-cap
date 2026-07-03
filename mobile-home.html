@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Área Calamar (mobile) — Club Atlético Platense</title>
+<style>
+  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_light.otf') format('opentype'); font-weight: 300; }
+  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_medium.otf') format('opentype'); font-weight: 400; }
+  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_black.otf') format('opentype'); font-weight: 700; }
+  @font-face { font-family: 'Calamar'; src: url('assets/fonts/AwesomeSerifItalic-MediumTall.otf') format('opentype'); font-style: italic; }
+
+  :root {
+    --brown: #4a2e15;
+    --brown-dark: #2a1a0d;
+    --gold: #bea15e;
+    --gold-light: #d9c58f;
+    --cream: #f5f2ec;
+    --gray-fill: #eceae5;
+    --white: #ffffff;
+    --gray-text: #8a8378;
+    --ink: #2a1a0d;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    font-family: 'Gotham', sans-serif; font-weight: 300;
+    background: #1c1c1c; /* backdrop simulating a device tray, like the reference screenshots */
+    display: flex; justify-content: center; padding: 24px 0;
+  }
+  a { color: inherit; text-decoration: none; }
+
+  .device {
+    width: 400px; max-width: 100vw;
+    background: var(--white);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    position: relative;
+    color: var(--ink);
+  }
+
+  header.m-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 18px; border-bottom: 1px solid #eee;
+  }
+  header.m-header .left { display: flex; align-items: center; gap: 10px; }
+  header.m-header img { height: 30px; }
+  header.m-header .wordmark { font-weight: 700; font-size: 16px; color: var(--brown); }
+  header.m-header .hamburger { background: none; border: none; font-size: 20px; color: var(--brown); cursor: pointer; padding: 6px; }
+
+  .m-hero {
+    background: radial-gradient(rgba(190,161,94,0.35) 1px, transparent 1px), linear-gradient(160deg, var(--brown) 0%, var(--brown-dark) 100%);
+    background-size: 14px 14px, cover;
+    color: var(--white);
+    padding: 20px 20px 34px;
+  }
+  .m-hero .top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+  .m-hero .greeting { font-size: 13px; color: rgba(255,255,255,0.65); }
+  .m-hero .icons { display: flex; gap: 14px; font-size: 14px; opacity: 0.8; }
+  .m-hero h1 { font-weight: 700; font-size: 30px; line-height: 1.1; margin: 0 0 22px; letter-spacing: -0.5px; }
+
+  .m-actions { display: flex; flex-direction: column; gap: 12px; margin-bottom: 26px; }
+  .btn-pill { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; border-radius: 999px; font-family: 'Gotham', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.3px; cursor: pointer; border: none; }
+  .btn-outline { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.4); }
+  .btn-fill { background: linear-gradient(135deg, var(--gold), #8f7a44); color: var(--brown-dark); }
+
+  .m-member-card {
+    background: radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px), linear-gradient(135deg, rgba(190,161,94,0.5), rgba(190,161,94,0.12));
+    background-size: 10px 10px, cover;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 16px;
+    padding: 22px 20px;
+    min-height: 140px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .m-member-card img { height: 32px; }
+  .m-member-card .since-label { font-size: 11px; color: rgba(255,255,255,0.6); margin-bottom: 4px; }
+  .m-member-card .since-date { font-size: 16px; font-weight: 700; }
+  .wallet-link { display: block; text-align: center; font-size: 12px; color: rgba(255,255,255,0.8); margin-top: 16px; }
+
+  .m-content { padding: 22px 18px 8px; background: var(--cream); }
+  .content-card { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 8px 24px rgba(42,26,13,0.08); margin-bottom: 20px; }
+  .content-card .thumb { height: 140px; background: linear-gradient(135deg, var(--brown), var(--gold)); }
+  .content-card .body { padding: 16px 18px 18px; }
+  .content-card .eyebrow-sm { font-size: 11px; color: var(--gray-text); text-transform: uppercase; letter-spacing: 0.5px; }
+  .content-card h3 { margin: 4px 0 12px; font-size: 18px; font-weight: 700; color: var(--ink); }
+  .content-card .cta-full { width: 100%; padding: 13px; border-radius: 999px; border: none; background: var(--brown); color: var(--white); font-weight: 700; font-size: 13px; letter-spacing: 0.3px; cursor: pointer; }
+
+  footer.m-footer { background: var(--white); padding: 24px 20px 30px; text-align: center; border-top: 1px solid #eee; }
+  footer.m-footer img { height: 26px; margin-bottom: 8px; }
+  footer.m-footer .copy { font-size: 10px; color: var(--gray-text); margin-bottom: 16px; }
+  footer.m-footer .social { display: flex; justify-content: center; gap: 16px; margin-bottom: 16px; font-size: 15px; color: var(--brown); }
+  footer.m-footer .legal { font-size: 10px; color: var(--gray-text); display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+
+  /* Slide-out menu */
+  .menu-backdrop {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+    opacity: 0; pointer-events: none; transition: opacity .2s; z-index: 10;
+  }
+  .menu-backdrop.open { opacity: 1; pointer-events: auto; }
+  .menu-panel {
+    position: absolute; top: 0; right: 0; bottom: 0; width: 78%;
+    background: var(--white); z-index: 11;
+    transform: translateX(100%); transition: transform .25s ease;
+    padding: 20px 22px; display: flex; flex-direction: column;
+  }
+  .menu-panel.open { transform: translateX(0); }
+  .menu-panel .top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .menu-panel .top .hello { font-size: 12px; color: var(--gray-text); }
+  .menu-panel .close-btn { background: none; border: none; font-size: 18px; color: var(--ink); cursor: pointer; }
+  .menu-panel .primary-links { display: flex; gap: 18px; font-size: 13px; font-weight: 700; color: var(--brown); margin-bottom: 16px; }
+  .menu-panel hr { border: none; border-top: 1px solid #eee; margin: 14px 0; }
+  .menu-panel .item { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; font-size: 14px; color: var(--ink); }
+  .menu-panel .upsell { width: 100%; padding: 13px; border-radius: 999px; border: none; background: linear-gradient(135deg, var(--gold), #8f7a44); color: var(--brown-dark); font-weight: 700; font-size: 13px; margin: 6px 0 8px; cursor: pointer; }
+  .menu-panel .footer-link { font-size: 12px; color: var(--gray-text); margin-top: auto; }
+</style>
+</head>
+<body>
+
+<div class="device">
+
+  <header class="m-header">
+    <div class="left">
+      <img src="assets/img/escudo-cap-oficial.png" alt="Escudo">
+      <span class="wordmark">Socios CAP</span>
+    </div>
+    <button class="hamburger" onclick="toggleMenu(true)">☰</button>
+  </header>
+
+  <section class="m-hero">
+    <div class="top-row">
+      <span class="greeting">Hola, Camilo</span>
+      <div class="icons">
+        <a href="mailto:socioweb@cap.org.ar">✉</a>
+        <a href="tel:+5491136917156">📞</a>
+      </div>
+    </div>
+    <h1>Esta es tu Área Calamar</h1>
+
+    <div class="m-actions">
+      <button class="btn-pill btn-outline" onclick="location.href='mis-datos.html'">⚙ Tu perfil</button>
+      <button class="btn-pill btn-fill">🏆 Pagar cuota</button>
+    </div>
+
+    <div class="m-member-card">
+      <img src="assets/img/escudo-cap-oficial.png" alt="Escudo">
+      <div>
+        <div class="since-label">Socio N° 4521 · desde</div>
+        <div class="since-date">12 de marzo de 2015</div>
+      </div>
+    </div>
+    <a class="wallet-link" href="mis-datos.html">+ Añadir carnet a tu Wallet</a>
+  </section>
+
+  <section class="m-content">
+    <div class="content-card">
+      <div class="thumb"></div>
+      <div class="body">
+        <span class="eyebrow-sm">Fútbol infantil</span>
+        <h3>Escuela de fútbol</h3>
+        <button class="cta-full" onclick="location.href='mis-datos.html'">Reservar turno</button>
+      </div>
+    </div>
+  </section>
+
+  <footer class="m-footer">
+    <img src="assets/img/escudo-cap-oficial.png" alt="Escudo">
+    <div class="copy">Club Atlético Platense © 2026. Todos los derechos reservados.</div>
+    <div class="social">
+      <a href="#">f</a><a href="#">𝕏</a><a href="#">◎</a><a href="#">▶</a>
+    </div>
+    <div class="legal">
+      <a href="#">Aviso legal</a> · <a href="#">Política de privacidad</a> · <a href="#">cap.org.ar</a>
+    </div>
+  </footer>
+
+  <div class="menu-backdrop" id="backdrop" onclick="toggleMenu(false)"></div>
+  <nav class="menu-panel" id="menu">
+    <div class="top">
+      <span class="hello">Hola, Camilo</span>
+      <button class="close-btn" onclick="toggleMenu(false)">✕</button>
+    </div>
+    <div class="primary-links">
+      <a href="mis-datos.html">Tu perfil</a>
+      <a href="login.html">Cerrar sesión</a>
+    </div>
+    <hr>
+    <div class="item">Beneficios <span>›</span></div>
+    <div class="item">Mis turnos <span>›</span></div>
+    <div class="item">Mis pagos <span>›</span></div>
+    <button class="upsell">🏆 Hacete Socio Pleno</button>
+    <hr>
+    <a class="footer-link" href="#">↻ cap.org.ar</a>
+  </nav>
+
+</div>
+
+<script>
+function toggleMenu(open) {
+  document.getElementById('menu').classList.toggle('open', open);
+  document.getElementById('backdrop').classList.toggle('open', open);
+}
+</script>
+
+</body>
+</html>
