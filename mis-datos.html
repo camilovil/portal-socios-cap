@@ -92,23 +92,52 @@
   .add-member { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px; border: 1.5px dashed #ddd; border-radius: 12px; color: var(--brown); font-size: 13px; cursor: pointer; margin-top: 4px; }
   .add-member:hover { border-color: var(--gold); background: var(--cream); }
 
-  /* Carnet tab */
-  .carnet-hero {
-    background: radial-gradient(rgba(190,161,94,0.35) 1px, transparent 1px), linear-gradient(135deg, var(--brown) 0%, var(--brown-dark) 100%);
-    background-size: 16px 16px, cover;
-    border-radius: 18px;
-    padding: 30px 32px;
-    color: var(--white);
-    display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+  /* Carnet tab — tarjeta 3D con glossy shine + trama de tentáculos dorada (carnet 9b) */
+  :root { --brown-darkest: #1c1108; }
+  .socio-card-wrap { display: flex; justify-content: center; padding: 20px 0 8px; perspective: 1400px; }
+  .socio-card { width: 100%; max-width: 440px; aspect-ratio: 440 / 270; perspective: 1400px; }
+  .socio-card__inner { width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .15s ease-out; cursor: pointer; }
+  .socio-card__face {
+    position: relative; width: 100%; height: 100%; border-radius: 24px; overflow: hidden;
+    background: linear-gradient(155deg, var(--brown) 0%, var(--brown-dark) 60%, var(--brown-darkest) 100%);
+    color: #efe2cf;
+    box-shadow: 0 30px 60px -14px rgba(0,0,0,.5), 0 4px 12px rgba(0,0,0,.3), inset 0 1px 1px rgba(255,255,255,.15);
   }
-  .carnet-hero .who .full-name { font-size: 22px; font-weight: 700; display: block; }
-  .carnet-hero .who .socio-num { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 4px; display: block; }
-  .carnet-hero .cat-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; background: var(--gold); color: var(--brown-dark); padding: 4px 10px; border-radius: 20px; margin-top: 10px; display: inline-block; }
-  .carnet-hero .photo { width: 68px; height: 68px; border-radius: 14px; background: rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 22px; }
-  .carnet-hero .left-row { display: flex; align-items: center; gap: 18px; }
-  .carnet-hero .right-col { text-align: right; }
-  .carnet-hero .right-col img { height: 44px; margin-bottom: 10px; }
-  .carnet-actions { display: flex; gap: 12px; margin-top: 20px; }
+  .socio-card__emboss {
+    position: absolute; inset: 0;
+    background: linear-gradient(115deg, rgba(255,255,255,.10), transparent 42%), radial-gradient(120% 90% at 15% 0%, rgba(255,255,255,.10), transparent 60%);
+  }
+  .socio-card__trama { position: absolute; inset: 0; opacity: .34; filter: brightness(1.05) sepia(1) saturate(2.6) hue-rotate(-12deg); }
+  .socio-card__trama .tentaculos {
+    position: absolute; top: -31px; bottom: -20px; right: -11px; width: 68%; height: 112%;
+    background-image: url('assets/img/carnet/tentaculos-lateral.png');
+    background-size: auto 140%; background-repeat: no-repeat; background-position: left center;
+    transform: scaleX(-1);
+  }
+  .socio-card__logo { position: absolute; top: 5%; left: 6%; height: 31%; width: auto; filter: drop-shadow(0 3px 6px rgba(0,0,0,.5)); }
+  .socio-card__pill {
+    position: absolute; top: 12%; right: 7%;
+    font: 700 11px 'Gotham', sans-serif; letter-spacing: .04em; padding: 7px 14px; border-radius: 999px; white-space: nowrap;
+    background: rgba(239,226,207,.16); color: #efe2cf; border: 1px solid rgba(239,226,207,.35);
+  }
+  .socio-card__foot { position: absolute; left: 7%; right: 7%; bottom: 9%; display: flex; align-items: flex-end; justify-content: space-between; }
+  .socio-card__socio-line { font: 500 12.5px 'Gotham', sans-serif; letter-spacing: .01em; opacity: .75; margin: 0 0 6px; }
+  .socio-card__name { font: 700 24px/1.1 'Gotham', sans-serif; margin: 0; letter-spacing: -.01em; }
+  .socio-card__wallet-link { font: 700 12px 'Gotham', sans-serif; text-decoration: none; color: #efe2cf; opacity: .85; display: flex; align-items: center; gap: 6px; }
+  .socio-card__shine { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay; }
+  .socio-card__sweep {
+    position: absolute; top: -50%; left: -60%; width: 40%; height: 200%;
+    background: linear-gradient(75deg, transparent 30%, rgba(255,255,255,.28) 48%, transparent 66%);
+    transform: rotate(8deg); animation: socioCardSweep 4.5s ease-in-out infinite; pointer-events: none;
+  }
+  @keyframes socioCardSweep { 0% { left: -60%; } 55% { left: 130%; } 100% { left: 130%; } }
+  @media (prefers-reduced-motion: reduce) {
+    .socio-card__sweep { animation: none; }
+    .socio-card__inner { transition: none; }
+  }
+  .socio-card-caption { text-align: center; font-size: 12px; color: var(--gray-text); margin-top: 12px; }
+
+  .carnet-actions { display: flex; gap: 12px; margin-top: 20px; justify-content: center; }
   .carnet-actions button { font-family: 'Gotham', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 13px 22px; border-radius: 14px; cursor: pointer; border: none; }
   .carnet-actions .primary { background: var(--gold); color: var(--brown-dark); }
   .carnet-actions .ghost { background: transparent; color: var(--brown); border: 1.5px solid #ddd; }
@@ -134,8 +163,7 @@
     h1.page-title { font-size: 26px; }
     .tabs { gap: 20px; }
     .field-grid { grid-template-columns: 1fr; }
-    .carnet-hero { flex-direction: column; align-items: flex-start; }
-    .carnet-hero .right-col { text-align: left; }
+    .socio-card { max-width: 340px; }
     .footer-top { flex-direction: column; align-items: flex-start; gap: 16px; }
     .footer-bottom-row { flex-direction: column; align-items: flex-start; }
   }
@@ -308,20 +336,28 @@
   </div>
 
   <div id="carnet" class="tab-panel">
-    <div class="carnet-hero">
-      <div class="left-row">
-        <div class="photo">CV</div>
-        <div class="who">
-          <span class="full-name">Camilo Villanueva</span>
-          <span class="socio-num">Socio N° 4521</span>
-          <span class="cat-badge">Activo</span>
+    <div class="socio-card-wrap">
+        <div class="socio-card">
+          <div class="socio-card__inner" id="socioCardInner">
+            <div class="socio-card__face">
+              <div class="socio-card__trama"><div class="tentaculos"></div></div>
+              <div class="socio-card__emboss"></div>
+              <img class="socio-card__logo" src="assets/img/carnet/logo-clasico.webp" alt="Escudo clásico Club Atlético Platense">
+              <div class="socio-card__pill">ACTIVO</div>
+              <div class="socio-card__foot">
+                <div>
+                  <p class="socio-card__socio-line">Socio N° 4521 · Categoría Activo</p>
+                  <h3 class="socio-card__name">Camilo Villanueva</h3>
+                </div>
+                <a class="socio-card__wallet-link" href="#">+ Añadir a Wallet</a>
+              </div>
+              <div class="socio-card__shine" id="socioCardShine"></div>
+              <div class="socio-card__sweep"></div>
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="right-col">
-        <img src="assets/img/escudo-cap-oficial.png" alt="Escudo">
-        <div style="font-size:12px; color:rgba(255,255,255,0.6);">Socio desde 12 de marzo de 2015</div>
-      </div>
     </div>
+    <p class="socio-card-caption">Socio desde 12 de marzo de 2015</p>
     <div class="carnet-actions">
       <button class="primary">Descargar carnet digital</button>
       <button class="ghost">+ Añadir a Wallet</button>
@@ -431,6 +467,29 @@ document.addEventListener('click', function () {
   var dd = document.getElementById('profileDropdown');
   if (dd) dd.classList.remove('open');
 });
+</script>
+
+<script>
+(function () {
+  var card = document.getElementById('socioCardInner');
+  var shine = document.getElementById('socioCardShine');
+  if (!card) return;
+
+  function handleMove(e) {
+    var rect = card.getBoundingClientRect();
+    var px = (e.clientX - rect.left) / rect.width;
+    var py = (e.clientY - rect.top) / rect.height;
+    card.style.transform = 'rotateX(' + ((0.5 - py) * 14) + 'deg) rotateY(' + ((px - 0.5) * 18) + 'deg) scale(1.02)';
+    shine.style.background = 'radial-gradient(circle at ' + (px * 100) + '% ' + (py * 100) + '%, rgba(255,255,255,.35), transparent 55%)';
+  }
+  function handleLeave() {
+    card.style.transform = '';
+    shine.style.background = '';
+  }
+
+  card.addEventListener('mousemove', handleMove);
+  card.addEventListener('mouseleave', handleLeave);
+})();
 </script>
 </body>
 </html>
