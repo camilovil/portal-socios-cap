@@ -4,3 +4,4 @@ reverse-engineering/
 node_modules/
 
 .vercel
+.claude/launch.json
