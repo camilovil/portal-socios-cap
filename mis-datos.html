@@ -34,7 +34,12 @@
   .utility-bar img.escudo-mini { height: 48px; justify-self: center; }
   .utility-bar .right { justify-self: end; display: flex; gap: 22px; align-items: center; }
 
-  nav.section-nav { display: flex; align-items: center; gap: 44px; padding: 26px 32px; border-bottom: 1px solid #eee; }
+  nav.section-nav { border-bottom: 1px solid #eee; }
+  .section-nav-inner {
+    display: flex; align-items: center; gap: 44px;
+    max-width: 900px; margin: 0 auto; box-sizing: border-box;
+    padding: 26px 32px;
+  }
   nav.section-nav .brand { font-weight: 700; font-size: 30px; color: var(--brown); letter-spacing: 0.2px; }
   nav.section-nav .links { display: flex; gap: 34px; font-size: 18px; color: var(--gray-text); }
   nav.section-nav .links a.active { color: var(--brown); font-weight: 700; }
@@ -123,7 +128,7 @@
   .footer-bottom-row .dot { opacity: 0.5; }
 
   @media (max-width: 720px) {
-    nav.section-nav { flex-wrap: wrap; gap: 16px 24px; padding: 16px 20px; }
+    .section-nav-inner { flex-wrap: wrap; gap: 16px 24px; padding: 16px 20px; }
     .utility-bar { padding: 10px 20px; }
     main { padding: 28px 20px 60px; }
     h1.page-title { font-size: 26px; }
@@ -260,11 +265,13 @@
   </a>
 </nav>
 <nav class="section-nav">
+  <div class="section-nav-inner">
   <span class="brand">Socios</span>
   <div class="links">
     <a href="home.html">Inicio</a>
     <a href="mis-datos.html" class="active">Mi perfil</a>
     <a href="#">Beneficios</a>
+  </div>
   </div>
 </nav>
 

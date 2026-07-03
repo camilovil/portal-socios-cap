@@ -25,7 +25,12 @@
   .icon-label { display: inline-flex; align-items: center; gap: 6px; }
   .icon-label svg, .site-link svg { width: 15px; height: 15px; flex-shrink: 0; }
 
-  nav.section-nav { display: flex; align-items: center; gap: 44px; padding: 26px 32px; border-bottom: 1px solid #eee; }
+  nav.section-nav { border-bottom: 1px solid #eee; }
+  .section-nav-inner {
+    display: flex; align-items: center; gap: 44px;
+    max-width: 1000px; margin: 0 auto; box-sizing: border-box;
+    padding: 26px 32px;
+  }
   nav.section-nav .brand { font-weight: 700; font-size: 30px; color: var(--brown); letter-spacing: 0.2px; }
   nav.section-nav .links { display: flex; gap: 34px; font-size: 18px; color: var(--gray-text); }
   nav.section-nav .links a.active { color: var(--brown); font-weight: 700; }
@@ -73,7 +78,7 @@
   .footer-bottom-row .dot { opacity: 0.5; }
 
   @media (max-width: 720px) {
-    nav.section-nav { flex-wrap: wrap; gap: 16px 24px; padding: 16px 20px; }
+    .section-nav-inner { flex-wrap: wrap; gap: 16px 24px; padding: 16px 20px; }
     .utility-bar { padding: 10px 20px; }
     main { padding: 24px 16px 60px; }
     table { display: block; overflow-x: auto; }
@@ -209,11 +214,13 @@
   </a>
 </nav>
 <nav class="section-nav">
+  <div class="section-nav-inner">
   <span class="brand">Socios</span>
   <div class="links">
     <a href="home.html">Inicio</a>
     <a href="mis-datos.html">Mi perfil</a>
     <a href="#">Beneficios</a>
+  </div>
   </div>
 </nav>
 

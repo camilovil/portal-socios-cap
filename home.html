@@ -36,9 +36,11 @@
   .icon-label { display: inline-flex; align-items: center; gap: 6px; }
   .icon-label svg, .site-link svg { width: 15px; height: 15px; flex-shrink: 0; }
 
-  nav.section-nav {
+  nav.section-nav { border-bottom: 1px solid #eee; }
+  .section-nav-inner {
     display: flex; align-items: center; gap: 44px;
-    padding: 26px 32px; border-bottom: 1px solid #eee;
+    max-width: 1180px; margin: 0 auto; box-sizing: border-box;
+    padding: 26px 32px;
   }
   nav.section-nav .brand { font-weight: 700; font-size: 30px; color: var(--brown); letter-spacing: 0.2px; }
   nav.section-nav .links { display: flex; gap: 34px; font-size: 18px; color: var(--gray-text); }
@@ -57,10 +59,10 @@
       radial-gradient(rgba(190,161,94,0.35) 1.2px, transparent 1.2px),
       linear-gradient(135deg, var(--brown) 0%, var(--brown-dark) 100%);
     background-size: 18px 18px, cover;
-    padding: 36px 32px 90px;
+    padding: 36px 0 90px;
     color: var(--white);
   }
-  .hero-inner { max-width: 1180px; margin: 0 auto; }
+  .hero-inner { max-width: 1180px; margin: 0 auto; padding: 0 32px; box-sizing: border-box; }
   .hero .row {
     display: flex;
     align-items: center;
@@ -198,9 +200,10 @@
 
   /* Responsive — esta pantalla está pensada para desktop; en mobile real usar mobile-home.html */
   @media (max-width: 900px) {
-    nav.section-nav { flex-wrap: wrap; gap: 20px 28px; padding: 18px 20px; }
+    .section-nav-inner { flex-wrap: wrap; gap: 20px 28px; padding: 18px 20px; }
     .utility-bar { padding: 10px 20px; }
-    .hero { padding: 24px 20px 60px; }
+    .hero { padding: 24px 0 60px; }
+    .hero-inner { padding: 0 20px; }
     .hero .row { flex-direction: column; align-items: stretch; text-align: left; }
     .hero .copy { max-width: 100%; }
     .hero h1 { font-size: 40px; letter-spacing: -0.8px; }
@@ -360,11 +363,13 @@
   </a>
 </nav>
 <nav class="section-nav">
+  <div class="section-nav-inner">
   <span class="brand">Socios</span>
   <div class="links">
     <a href="home.html" class="active">Inicio</a>
     <a href="mis-datos.html">Mi perfil</a>
     <a href="#">Beneficios</a>
+  </div>
   </div>
 </nav>
 
