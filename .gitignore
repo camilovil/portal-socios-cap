@@ -2,3 +2,5 @@
 reverse-engineering/
 .vercel/
 node_modules/
+
+.vercel
