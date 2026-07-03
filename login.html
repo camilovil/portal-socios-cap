@@ -131,7 +131,59 @@
   .footer-bottom-row .legal-links a:hover { color: var(--brown); }
   .footer-bottom-row .dot { opacity: 0.5; }
 
+  /* Bot Calamar */
+  .bot-fab {
+    position: fixed; right: 26px; bottom: 26px; z-index: 50;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--brown), var(--brown-dark));
+    border: none; cursor: pointer;
+    box-shadow: 0 10px 30px rgba(42,26,13,0.35);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .bot-fab img { width: 30px; }
+  .bot-fab .ping { position: absolute; top: -2px; right: -2px; width: 12px; height: 12px; border-radius: 50%; background: var(--gold); border: 2px solid var(--white); }
+
+  .bot-panel {
+    position: fixed; right: 26px; bottom: 96px; z-index: 50;
+    width: 340px; max-width: calc(100vw - 40px);
+    background: var(--white); border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(42,26,13,0.3);
+    display: none; flex-direction: column; overflow: hidden;
+    height: 460px;
+  }
+  .bot-panel.open { display: flex; }
+  .bot-panel .bot-head {
+    background: radial-gradient(rgba(190,161,94,0.35) 1px, transparent 1px), linear-gradient(135deg, var(--brown), var(--brown-dark));
+    background-size: 12px 12px, cover;
+    padding: 16px 18px; display: flex; align-items: center; gap: 12px; color: var(--white);
+  }
+  .bot-panel .bot-head img { width: 30px; }
+  .bot-panel .bot-head .name { font-weight: 700; font-size: 14px; }
+  .bot-panel .bot-head .status { font-size: 11px; color: rgba(255,255,255,0.6); }
+  .bot-panel .bot-head .close-bot { margin-left: auto; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 16px; cursor: pointer; }
+
+  .bot-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; background: var(--cream); }
+  .bot-msg { max-width: 82%; padding: 10px 13px; border-radius: 12px; font-size: 13px; line-height: 1.45; }
+  .bot-msg.bot { background: var(--white); color: var(--ink); align-self: flex-start; border-bottom-left-radius: 3px; }
+  .bot-msg.user { background: var(--brown); color: var(--white); align-self: flex-end; border-bottom-right-radius: 3px; }
+
+  .bot-quick { display: flex; flex-wrap: wrap; gap: 8px; padding: 0 16px 12px; background: var(--cream); }
+  .bot-quick button {
+    font-size: 11.5px; padding: 8px 12px; border-radius: 999px; border: 1px solid #e6e0d4;
+    background: var(--white); color: var(--brown); cursor: pointer;
+  }
+  .bot-quick button:hover { border-color: var(--gold); }
+
+  .bot-input-row { display: flex; gap: 8px; padding: 12px; border-top: 1px solid #eee; }
+  .bot-input-row input {
+    flex: 1; border: none; background: var(--gray-fill); border-radius: 999px;
+    padding: 10px 14px; font-family: 'Gotham', sans-serif; font-size: 13px; outline: none;
+  }
+  .bot-input-row button { width: 38px; height: 38px; border-radius: 50%; border: none; background: var(--gold); color: var(--brown-dark); font-weight: 700; cursor: pointer; }
+
   @media (max-width: 640px) {
+    .bot-panel { right: 12px; left: 12px; width: auto; bottom: 88px; }
+    .bot-fab { right: 16px; bottom: 16px; }
     .utility-bar { padding: 10px 20px; }
     .hero { padding: 20px 20px 100px; }
     .hero-help { justify-content: flex-start; flex-wrap: wrap; gap: 10px 18px; }
@@ -291,6 +343,34 @@
   </div>
 </footer>
 
+<button class="bot-fab" onclick="toggleBot()">
+  <img src="assets/img/calamar-icon.png" alt="Bot Calamar">
+  <span class="ping"></span>
+</button>
+
+<div class="bot-panel" id="botPanel">
+  <div class="bot-head">
+    <img src="assets/img/calamar-icon.png" alt="Bot Calamar">
+    <div>
+      <div class="name">Bot Calamar</div>
+      <div class="status">● En línea</div>
+    </div>
+    <button class="close-bot" onclick="toggleBot()">✕</button>
+  </div>
+  <div class="bot-messages" id="botMessages">
+    <div class="bot-msg bot">¡Hola! Soy el Bot Calamar 🦑 ¿Ya sos socio o querés asociarte? Puedo ayudarte a ingresar o guiarte para registrarte.</div>
+  </div>
+  <div class="bot-quick" id="botQuick">
+    <button onclick="botAsk('¿Cómo me registro?')">¿Cómo me registro?</button>
+    <button onclick="botAsk('Olvidé mi contraseña')">Olvidé mi contraseña</button>
+    <button onclick="botAsk('¿Cuáles son las categorías de socio?')">Categorías de socio</button>
+    <button onclick="botAsk('Hablar con un socio de atención')">Hablar con atención al socio</button>
+  </div>
+  <div class="bot-input-row">
+    <input id="botInput" type="text" placeholder="Escribí tu consulta..." onkeydown="if(event.key==='Enter') botSend()">
+    <button onclick="botSend()">➤</button>
+  </div>
+</div>
 
 <script>
 function toggleNav(open) {
@@ -312,6 +392,53 @@ function doLogin(e) {
     error.classList.add('show');
   }
   return false;
+}
+
+function toggleBot() {
+  document.getElementById('botPanel').classList.toggle('open');
+}
+function botReply(text) {
+  const box = document.getElementById('botMessages');
+  const msg = document.createElement('div');
+  msg.className = 'bot-msg bot';
+  msg.textContent = text;
+  box.appendChild(msg);
+  box.scrollTop = box.scrollHeight;
+}
+function botUserMsg(text) {
+  const box = document.getElementById('botMessages');
+  const msg = document.createElement('div');
+  msg.className = 'bot-msg user';
+  msg.textContent = text;
+  box.appendChild(msg);
+  box.scrollTop = box.scrollHeight;
+}
+function botAnswerFor(text) {
+  const t = text.toLowerCase();
+  if (t.includes('registr') || t.includes('asociar') || t.includes('socio nuevo') || t.includes('quiero ser socio')) {
+    return 'Para registrarte tocá "Quiero ser socio" abajo del botón dorado. Vas a necesitar tu DNI y un email válido — el alta se aprueba en 24-48hs y te llega la confirmación por correo.';
+  }
+  if (t.includes('olvid') || t.includes('recuper') || t.includes('contraseña')) {
+    return 'Tocá "Ya soy socio, activar mi cuenta" debajo del formulario, o "Recuperar contraseña" — te enviamos un link a tu email registrado para reestablecerla.';
+  }
+  if (t.includes('categor')) {
+    return 'Las categorías principales son Activo Pleno, Familiar y Menor. Cada una tiene distinto valor de cuota y beneficios — te lo detallamos apenas completes el registro.';
+  }
+  if (t.includes('atención') || t.includes('atencion') || t.includes('humano') || t.includes('hablar')) {
+    return 'Te paso el contacto directo: WhatsApp +54 9 11 3691-7156 o socioweb@cap.org.ar. Un socio de atención te responde en breve.';
+  }
+  return 'Buena pregunta — todavía estoy aprendiendo esa respuesta. Mientras tanto, escribinos a socioweb@cap.org.ar y te ayudamos directamente.';
+}
+function botAsk(text) {
+  botUserMsg(text);
+  setTimeout(() => botReply(botAnswerFor(text)), 400);
+}
+function botSend() {
+  const input = document.getElementById('botInput');
+  const text = input.value.trim();
+  if (!text) return;
+  botAsk(text);
+  input.value = '';
 }
 </script>
 </body>
