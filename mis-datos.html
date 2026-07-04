@@ -629,9 +629,30 @@ document.addEventListener('click', function () {
   var elSocioNum = document.getElementById('carnetModalSocioNum');
   var elStatus = document.getElementById('carnetModalStatus');
   var lastFocused = null;
+  var inertedSiblings = [];
 
   function handleKeydown(e) {
     if (e.key === 'Escape') closeCarnetModal();
+  }
+
+  function setBackgroundInert(on) {
+    if (on) {
+      inertedSiblings = Array.prototype.filter.call(document.body.children, function (el) {
+        return el !== overlay && el.tagName !== 'SCRIPT';
+      });
+      inertedSiblings.forEach(function (el) {
+        el.setAttribute('inert', '');
+        el.setAttribute('aria-hidden', 'true');
+      });
+      document.body.style.overflow = 'hidden';
+    } else {
+      inertedSiblings.forEach(function (el) {
+        el.removeAttribute('inert');
+        el.removeAttribute('aria-hidden');
+      });
+      inertedSiblings = [];
+      document.body.style.overflow = '';
+    }
   }
 
   window.openCarnetModal = function (memberKey) {
@@ -644,12 +665,14 @@ document.addEventListener('click', function () {
     if (modalInner.resetFlip) modalInner.resetFlip();
     lastFocused = document.activeElement;
     overlay.hidden = false;
+    setBackgroundInert(true);
     closeBtn.focus();
     document.addEventListener('keydown', handleKeydown);
   };
 
   function closeCarnetModal() {
     overlay.hidden = true;
+    setBackgroundInert(false);
     document.removeEventListener('keydown', handleKeydown);
     if (lastFocused) lastFocused.focus();
   }
