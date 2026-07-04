@@ -39,10 +39,18 @@
 
   .hero {
     position: relative;
+    /* Foto de fondo intercambiable: cambiá solo esta url() para usar otra imagen de /images.
+       Opciones disponibles: HGdK1NGXAAAuD5C.jpg (fuegos artificiales, actual), HFjetLsW0AAxfkS.jpg
+       (plantel festejando), HHPvaIVXAAEgwFf.jpg (tribuna + pantalla), HHvqIlxXoAE4i6s.jpg
+       ("BIENVENIDOS" en el marcador — ideal para login), HFjetMIWIAAThJa.jpg (bandera hinchada). */
+    --hero-photo: url('images/HGdK1NGXAAAuD5C.jpg');
     background:
       radial-gradient(rgba(190,161,94,0.35) 1px, transparent 1px),
-      linear-gradient(135deg, var(--brown) 0%, var(--brown-dark) 100%);
-    background-size: 16px 16px, cover;
+      linear-gradient(135deg, rgba(74,46,21,0.72) 0%, rgba(28,17,8,0.82) 100%),
+      var(--hero-photo);
+    background-size: 16px 16px, cover, cover;
+    background-position: center, center, center 30%;
+    background-repeat: repeat, no-repeat, no-repeat;
     padding: 24px 32px 130px;
     text-align: center;
     color: var(--white);
