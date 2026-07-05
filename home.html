@@ -287,6 +287,14 @@
     .socio-card { max-width: 300px; }
     .socio-card__foot { flex-direction: column; align-items: flex-start; gap: 6px; }
     .socio-card__name { font-size: 18px; }
+    .socio-card__qr-col { width: 38%; gap: 6px; }
+    .socio-card__qr-box { padding: 6px; }
+    .socio-card__qr-box img { width: 52px; height: 52px; }
+    .socio-card__qr-caption { font-size: 8px; }
+    .socio-card__back-header img { height: 24px; }
+    .socio-card__back-header .club-name { font-size: 11px; }
+    .socio-card__back-header .club-sub { font-size: 9px; }
+    .socio-card__back-info .value { font-size: 14px; }
   }
 
 
@@ -405,6 +413,7 @@
     <a href="inscripciones.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Inscripciones / Débito automático</a>
     <a href="turnos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Mis Turnos</a>
     <a href="pagos-realizados.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l3 3v15H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Mis Pagos Realizados</a>
+    <a href="beneficios.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12V8H6a2 2 0 0 1 0-4h12v4"/><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>Beneficios</a>
     <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4 8.5 8.5 0 0 1-4-.9L3 20l1-5.5A8.4 8.4 0 1 1 21 11.5Z"/></svg>Mis Sugerencias</a>
   </div>
   <button class="drawer-cta">
@@ -422,7 +431,7 @@
   <div class="links">
     <a href="home.html" class="active">Inicio</a>
     <a href="mis-datos.html">Mi perfil</a>
-    <a href="#">Beneficios</a>
+    <a href="beneficios.html">Beneficios</a>
   </div>
   </div>
 </nav>
@@ -466,7 +475,7 @@
                 <div class="socio-card__pill">ACTIVO</div>
                 <div class="socio-card__foot">
                   <div>
-                    <p class="socio-card__socio-line">Socio N° 4521 · Calamar desde</p>
+                    <p class="socio-card__socio-line">Socio N° 955 · Calamar desde</p>
                     <h3 class="socio-card__name">12 de marzo de 2015</h3>
                   </div>
                   <a class="socio-card__wallet-link" href="mis-datos.html">+ Wallet</a>
@@ -491,7 +500,7 @@
                   <p class="socio-card__qr-caption">PRESENTALO EN<br>EL ACCESO</p>
                 </div>
                 <div class="socio-card__back-info">
-                  <div><p class="label">SOCIO N°</p><p class="value">4521</p></div>
+                  <div><p class="label">SOCIO N°</p><p class="value">955</p></div>
                   <div><p class="label">VÁLIDO HASTA</p><p class="value">12 / 2026</p></div>
                 </div>
                 <div class="socio-card__shine"></div>
@@ -591,6 +600,10 @@
     <button onclick="botAsk('¿Cómo pago mi cuota?')">¿Cómo pago mi cuota?</button>
     <button onclick="botAsk('Medios de pago')">Medios de pago</button>
     <button onclick="botAsk('¿Cómo descargo mi carnet?')">¿Cómo descargo mi carnet?</button>
+    <button onclick="botAsk('Quiero ser socio')">Quiero ser socio</button>
+    <button onclick="botAsk('¿Dónde queda el estadio?')">Ubicación del estadio</button>
+    <button onclick="botAsk('¿Dónde compro entradas para los partidos?')">Entradas para partidos</button>
+    <button onclick="botAsk('¿Cuál es el horario de la oficina de socios?')">Horario de atención</button>
     <button onclick="botAsk('Hablar con un socio de atención')">Hablar con atención al socio</button>
   </div>
   <div class="bot-input-row">
@@ -632,6 +645,18 @@ function botAnswerFor(text) {
   }
   if (t.includes('turno')) {
     return 'Reservá tus espacios deportivos desde "Mis Turnos" en el home. Te muestra disponibilidad en tiempo real.';
+  }
+  if (t.includes('ser socio') || t.includes('hacerme socio') || t.includes('hago socio') || t.includes('nuevo socio') || t.includes('asociarme') || t.includes('me asocio')) {
+    return 'Para asociarte al Club Atlético Platense, entrá a la campaña de socios "Del barrio al continente": https://delbarrioalcontinente.cap.org.ar/';
+  }
+  if (t.includes('estadio') || t.includes('cancha') || t.includes('ubicación') || t.includes('ubicacion')) {
+    return 'El estadio (Ciudad de Vicente López) está en Zufriategui 2021, Florida, Vicente López. Ubicación en el mapa: https://maps.app.goo.gl/Z7EGvJhKnhSGpB9BA';
+  }
+  if (t.includes('entrada') || t.includes('tickets') || t.includes('partido')) {
+    return 'Entradas para Liga Profesional: https://www.tuentrada.com/platense-lpf. Para Copa Libertadores: https://www.tuentrada.com/platense-libertadores';
+  }
+  if (t.includes('horario') || t.includes('oficina')) {
+    return 'La oficina de socios, en la sede social de Vicente López, atiende de lunes a viernes de 10:00 a 20:00 hs y sábados de 10:00 a 13:00 hs.';
   }
   if (t.includes('atención') || t.includes('atencion') || t.includes('humano') || t.includes('hablar')) {
     return 'Te paso el contacto directo: WhatsApp +54 9 11 3691-7156 o socioweb@cap.org.ar. Un socio de atención te responde en breve.';

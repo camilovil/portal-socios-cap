@@ -199,6 +199,18 @@
     .footer-bottom-row { flex-direction: column; align-items: flex-start; }
   }
 
+  @media (max-width: 420px) {
+    .socio-card { max-width: 300px; }
+    .socio-card__qr-col { width: 38%; gap: 6px; }
+    .socio-card__qr-box { padding: 6px; }
+    .socio-card__qr-box img { width: 52px; height: 52px; }
+    .socio-card__qr-caption { font-size: 8px; }
+    .socio-card__back-header img { height: 24px; }
+    .socio-card__back-header .club-name { font-size: 11px; }
+    .socio-card__back-header .club-sub { font-size: 9px; }
+    .socio-card__back-info .value { font-size: 14px; }
+  }
+
 
   /* Profile dropdown (desktop) */
   .utility-bar .right { position: relative; }
@@ -312,6 +324,7 @@
     <a href="inscripciones.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>Inscripciones / Débito automático</a>
     <a href="turnos.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Mis Turnos</a>
     <a href="pagos-realizados.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3h9l3 3v15H6z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Mis Pagos Realizados</a>
+    <a href="beneficios.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12V8H6a2 2 0 0 1 0-4h12v4"/><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>Beneficios</a>
     <a href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.4 8.4 0 0 1-8.4 8.4 8.5 8.5 0 0 1-4-.9L3 20l1-5.5A8.4 8.4 0 1 1 21 11.5Z"/></svg>Mis Sugerencias</a>
   </div>
   <button class="drawer-cta">
@@ -329,7 +342,7 @@
   <div class="links">
     <a href="home.html">Inicio</a>
     <a href="mis-datos.html" class="active">Mi perfil</a>
-    <a href="#">Beneficios</a>
+    <a href="beneficios.html">Beneficios</a>
   </div>
   </div>
 </nav>
@@ -378,7 +391,7 @@
                 <div class="socio-card__pill">ACTIVO</div>
                 <div class="socio-card__foot">
                   <div>
-                    <p class="socio-card__socio-line">Socio N° 4521 · Categoría Activo</p>
+                    <p class="socio-card__socio-line">Socio N° 955 · Categoría Activo</p>
                     <h3 class="socio-card__name">Camilo Villanueva</h3>
                   </div>
                   <a class="socio-card__wallet-link" href="#">+ Añadir a Wallet</a>
@@ -403,7 +416,7 @@
                   <p class="socio-card__qr-caption">PRESENTALO EN<br>EL ACCESO</p>
                 </div>
                 <div class="socio-card__back-info">
-                  <div><p class="label">SOCIO N°</p><p class="value">4521</p></div>
+                  <div><p class="label">SOCIO N°</p><p class="value">955</p></div>
                   <div><p class="label">VÁLIDO HASTA</p><p class="value">12 / 2026</p></div>
                 </div>
                 <div class="socio-card__shine"></div>
@@ -429,7 +442,7 @@
             <div class="who-info">
               <span class="name">VILLANUEVA CAMILO</span>
               <span class="rel">Titular</span>
-              <span class="meta">Nro Socio 7885 · 1001 - PLENO</span>
+              <span class="meta">Nro Socio 955 · 1001 - PLENO</span>
               <span class="meta">Última cuota paga: 30/06/2026</span>
             </div>
           </div>
@@ -616,7 +629,7 @@ document.addEventListener('click', function () {
 <script>
 (function () {
   var members = {
-    titular: { name: 'Camilo Villanueva', socioNum: '7885', categoria: 'Pleno', status: 'ACTIVO' },
+    titular: { name: 'Camilo Villanueva', socioNum: '955', categoria: 'Pleno', status: 'ACTIVO' },
     conyuge: { name: 'María Villanueva', socioNum: '7886', categoria: 'Familiar', status: 'ACTIVO' },
     hijo:    { name: 'Juan Villanueva', socioNum: '7887', categoria: 'Menor', status: 'ACTIVO' }
   };
