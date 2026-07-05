@@ -161,6 +161,18 @@
   .carnet-actions .primary { background: var(--gold); color: var(--brown-dark); }
   .carnet-actions .ghost { background: transparent; color: var(--brown); border: 1.5px solid #ddd; }
 
+  /* Modal "Ver credencial" — Grupo familiar */
+  .carnet-modal-overlay { position: fixed; inset: 0; background: rgba(28,17,8,0.6); display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 90; }
+  .carnet-modal-overlay[hidden] { display: none; }
+  .carnet-modal { position: relative; width: 100%; max-width: 480px; }
+  .carnet-modal .socio-card-hint { color: rgba(255,255,255,0.75); }
+  .carnet-modal-close {
+    position: absolute; top: -46px; right: 0; width: 36px; height: 36px; border-radius: 50%;
+    border: none; background: rgba(255,255,255,0.15); color: #fff; font-size: 16px; line-height: 1; cursor: pointer;
+  }
+  .carnet-modal-close:hover { background: rgba(255,255,255,0.3); }
+  .carnet-modal-close:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
   footer.bottom { background: var(--white); color: var(--gray-text); padding: 36px 32px 28px; margin-top: 40px; border-top: 1px solid #eee; }
   .footer-top { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding-bottom: 26px; }
   .footer-top img { height: 46px; }
@@ -313,7 +325,7 @@
 </nav>
 <nav class="section-nav">
   <div class="section-nav-inner">
-  <span class="brand">Socios</span>
+  <span class="brand">Socios CAP</span>
   <div class="links">
     <a href="home.html">Inicio</a>
     <a href="mis-datos.html" class="active">Mi perfil</a>
@@ -423,7 +435,7 @@
           </div>
           <div class="family-actions">
             <button class="btn-mini outline">Modificar datos</button>
-            <button class="btn-mini fill" onclick="location.href='mis-datos.html#carnet'">Ver credencial</button>
+            <button class="btn-mini fill" onclick="openCarnetModal('titular')">Ver credencial</button>
           </div>
         </div>
         <div class="family-row">
@@ -438,7 +450,7 @@
           </div>
           <div class="family-actions">
             <button class="btn-mini outline">Modificar datos</button>
-            <button class="btn-mini fill">Ver credencial</button>
+            <button class="btn-mini fill" onclick="openCarnetModal('conyuge')">Ver credencial</button>
           </div>
         </div>
         <div class="family-row">
@@ -453,7 +465,7 @@
           </div>
           <div class="family-actions">
             <button class="btn-mini outline">Modificar datos</button>
-            <button class="btn-mini fill">Ver credencial</button>
+            <button class="btn-mini fill" onclick="openCarnetModal('hijo')">Ver credencial</button>
           </div>
         </div>
         <div class="add-member">+ Agregar integrante al grupo familiar</div>
@@ -461,6 +473,58 @@
     </div>
   </div>
 </main>
+
+<div class="carnet-modal-overlay" id="carnetModalOverlay" hidden>
+  <div class="carnet-modal" role="dialog" aria-modal="true" aria-labelledby="carnetModalName">
+    <button class="carnet-modal-close" id="carnetModalClose" aria-label="Cerrar credencial">✕</button>
+    <div class="socio-card-wrap">
+      <div class="socio-card">
+        <div class="socio-card__inner">
+          <div class="socio-card__side">
+            <div class="socio-card__face">
+              <div class="socio-card__trama"><div class="tentaculos"></div></div>
+              <div class="socio-card__emboss"></div>
+              <img class="socio-card__logo" src="assets/img/carnet/logo-clasico.webp" alt="Escudo clásico Club Atlético Platense">
+              <div class="socio-card__pill" id="carnetModalStatus">ACTIVO</div>
+              <div class="socio-card__foot">
+                <div>
+                  <p class="socio-card__socio-line" id="carnetModalSocioLine">Socio N° — · Categoría —</p>
+                  <h3 class="socio-card__name" id="carnetModalName">—</h3>
+                </div>
+                <a class="socio-card__wallet-link" href="#">+ Añadir a Wallet</a>
+              </div>
+              <div class="socio-card__shine"></div>
+              <div class="socio-card__sweep"></div>
+            </div>
+          </div>
+          <div class="socio-card__side socio-card__side--back">
+            <div class="socio-card__face">
+              <div class="socio-card__trama" style="opacity:.22"><div class="tentaculos"></div></div>
+              <div class="socio-card__emboss"></div>
+              <div class="socio-card__back-header">
+                <img src="assets/img/carnet/logo-clasico.webp" alt="Escudo">
+                <div>
+                  <p class="club-name">Club Atlético Platense</p>
+                  <p class="club-sub">Carnet de socio digital</p>
+                </div>
+              </div>
+              <div class="socio-card__qr-col">
+                <div class="socio-card__qr-box"><img src="assets/img/carnet/qr-code.png" alt="Código QR de acceso"></div>
+                <p class="socio-card__qr-caption">PRESENTALO EN<br>EL ACCESO</p>
+              </div>
+              <div class="socio-card__back-info">
+                <div><p class="label">SOCIO N°</p><p class="value" id="carnetModalSocioNum">—</p></div>
+                <div><p class="label">VÁLIDO HASTA</p><p class="value">12 / 2026</p></div>
+              </div>
+              <div class="socio-card__shine"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="socio-card-hint">Tocá la tarjeta para girarla</p>
+  </div>
+</div>
 
 <footer class="bottom">
   <div class="footer-top">
@@ -514,33 +578,109 @@ document.addEventListener('click', function () {
 
 <script>
 (function () {
-  var card = document.getElementById('socioCardInner');
-  if (!card) return;
-  var shines = card.querySelectorAll('.socio-card__shine');
-  var flipped = false;
+  document.querySelectorAll('.socio-card__inner').forEach(function (card) {
+    var shines = card.querySelectorAll('.socio-card__shine');
+    var flipped = false;
 
-  function handleClick() {
-    flipped = !flipped;
-    card.style.transform = 'rotateY(' + (flipped ? 180 : 0) + 'deg)';
-  }
-  function handleMove(e) {
-    var rect = card.getBoundingClientRect();
-    var px = (e.clientX - rect.left) / rect.width;
-    var py = (e.clientY - rect.top) / rect.height;
-    var base = flipped ? 180 : 0;
-    card.style.transform = 'rotateY(' + (base + (px - 0.5) * 14) + 'deg) rotateX(' + ((0.5 - py) * 10) + 'deg) scale(1.02)';
-    shines.forEach(function (s) {
-      s.style.background = 'radial-gradient(circle at ' + (px * 100) + '% ' + (py * 100) + '%, rgba(255,255,255,.35), transparent 55%)';
-    });
-  }
-  function handleLeave() {
-    card.style.transform = 'rotateY(' + (flipped ? 180 : 0) + 'deg)';
-    shines.forEach(function (s) { s.style.background = ''; });
+    function handleClick() {
+      flipped = !flipped;
+      card.style.transform = 'rotateY(' + (flipped ? 180 : 0) + 'deg)';
+    }
+    function handleMove(e) {
+      var rect = card.getBoundingClientRect();
+      var px = (e.clientX - rect.left) / rect.width;
+      var py = (e.clientY - rect.top) / rect.height;
+      var base = flipped ? 180 : 0;
+      card.style.transform = 'rotateY(' + (base + (px - 0.5) * 14) + 'deg) rotateX(' + ((0.5 - py) * 10) + 'deg) scale(1.02)';
+      shines.forEach(function (s) {
+        s.style.background = 'radial-gradient(circle at ' + (px * 100) + '% ' + (py * 100) + '%, rgba(255,255,255,.35), transparent 55%)';
+      });
+    }
+    function handleLeave() {
+      card.style.transform = 'rotateY(' + (flipped ? 180 : 0) + 'deg)';
+      shines.forEach(function (s) { s.style.background = ''; });
+    }
+
+    card.resetFlip = function () {
+      flipped = false;
+      card.style.transform = 'rotateY(0deg)';
+    };
+
+    card.addEventListener('click', handleClick);
+    card.addEventListener('mousemove', handleMove);
+    card.addEventListener('mouseleave', handleLeave);
+  });
+})();
+</script>
+
+<script>
+(function () {
+  var members = {
+    titular: { name: 'Camilo Villanueva', socioNum: '7885', categoria: 'Pleno', status: 'ACTIVO' },
+    conyuge: { name: 'María Villanueva', socioNum: '7886', categoria: 'Familiar', status: 'ACTIVO' },
+    hijo:    { name: 'Juan Villanueva', socioNum: '7887', categoria: 'Menor', status: 'ACTIVO' }
+  };
+
+  var overlay = document.getElementById('carnetModalOverlay');
+  var closeBtn = document.getElementById('carnetModalClose');
+  var modalInner = overlay.querySelector('.socio-card__inner');
+  var elName = document.getElementById('carnetModalName');
+  var elSocioLine = document.getElementById('carnetModalSocioLine');
+  var elSocioNum = document.getElementById('carnetModalSocioNum');
+  var elStatus = document.getElementById('carnetModalStatus');
+  var lastFocused = null;
+  var inertedSiblings = [];
+
+  function handleKeydown(e) {
+    if (e.key === 'Escape') closeCarnetModal();
   }
 
-  card.addEventListener('click', handleClick);
-  card.addEventListener('mousemove', handleMove);
-  card.addEventListener('mouseleave', handleLeave);
+  function setBackgroundInert(on) {
+    if (on) {
+      inertedSiblings = Array.prototype.filter.call(document.body.children, function (el) {
+        return el !== overlay && el.tagName !== 'SCRIPT';
+      });
+      inertedSiblings.forEach(function (el) {
+        el.setAttribute('inert', '');
+        el.setAttribute('aria-hidden', 'true');
+      });
+      document.body.style.overflow = 'hidden';
+    } else {
+      inertedSiblings.forEach(function (el) {
+        el.removeAttribute('inert');
+        el.removeAttribute('aria-hidden');
+      });
+      inertedSiblings = [];
+      document.body.style.overflow = '';
+    }
+  }
+
+  window.openCarnetModal = function (memberKey) {
+    var m = members[memberKey];
+    if (!m) return;
+    elName.textContent = m.name;
+    elSocioLine.textContent = 'Socio N° ' + m.socioNum + ' · Categoría ' + m.categoria;
+    elSocioNum.textContent = m.socioNum;
+    elStatus.textContent = m.status;
+    if (modalInner.resetFlip) modalInner.resetFlip();
+    lastFocused = document.activeElement;
+    overlay.hidden = false;
+    setBackgroundInert(true);
+    closeBtn.focus();
+    document.addEventListener('keydown', handleKeydown);
+  };
+
+  function closeCarnetModal() {
+    overlay.hidden = true;
+    setBackgroundInert(false);
+    document.removeEventListener('keydown', handleKeydown);
+    if (lastFocused) lastFocused.focus();
+  }
+
+  closeBtn.addEventListener('click', closeCarnetModal);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeCarnetModal();
+  });
 })();
 </script>
 </body>
