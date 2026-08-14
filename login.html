@@ -101,23 +101,14 @@
   .field input:focus { box-shadow: 0 0 0 2px var(--gold); }
   .field .toggle-eye { position: absolute; right: 14px; top: 41px; cursor: pointer; opacity: 0.45; font-size: 13px; }
 
-  .captcha-field { margin-bottom: 18px; }
-  .captcha-field__row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .captcha-field__image {
-    width: 160px; height: 52px; flex-shrink: 0; border: 1px solid #ddd; border-radius: 10px;
-    background: var(--gray-fill); object-fit: cover;
+  .captcha-check {
+    display: flex; align-items: center; gap: 12px;
+    border: 1px solid #ddd; border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; background: var(--gray-fill);
   }
-  .captcha-field__reload {
-    width: 46px; height: 46px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
-    border: 1px solid #ddd; border-radius: 10px; background: var(--white); color: var(--gray-text);
-    cursor: pointer; transition: color 0.2s ease, border-color 0.2s ease;
-  }
-  .captcha-field__reload:hover { color: var(--brown); border-color: var(--gold); }
-  .captcha-field__reload:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--gold); }
-  .captcha-field__reload svg { width: 18px; height: 18px; }
-  .captcha-field__input { width: 100%; margin-bottom: 8px; }
-  .captcha-field__hint { font-size: 11px; color: var(--gray-text); line-height: 1.5; margin: 0; }
-  .captcha-field__hint a { color: var(--brown); font-weight: 400; }
+  .captcha-check input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--gold); cursor: pointer; }
+  .captcha-check .check-label { flex: 1; font-size: 13px; color: var(--ink); text-transform: none; letter-spacing: 0; font-weight: 300; margin: 0; }
+  .captcha-check .captcha-badge { width: 30px; height: 30px; color: var(--gray-text); opacity: 0.6; }
+  .captcha-check .captcha-badge svg { width: 100%; height: 100%; }
 
   .terms { font-size: 11px; color: var(--gray-text); line-height: 1.5; margin: 4px 0 20px; }
   .terms a { color: var(--brown); font-weight: 400; }
@@ -336,19 +327,15 @@
         <span class="toggle-eye">👁</span>
       </div>
 
-      <!-- Captcha de CleverSoft: mismos ids que login.php (captchaImg / frm_captcha / btnReloadCatpcha).
-           En producción la imagen llega por $.post("", {action: "getCaptcha"}) y se valida en el servidor;
-           acá se dibuja en canvas solo para que el prototipo sea navegable. -->
-      <div class="field captcha-field">
-        <label for="frm_captcha">Código de seguridad</label>
-        <div class="captcha-field__row">
-          <img id="captchaImg" class="captcha-field__image" alt="Imagen con el código de seguridad">
-          <button type="button" id="btnReloadCatpcha" class="captcha-field__reload" aria-label="Generar otro código de seguridad">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/></svg>
-          </button>
+      <!-- En CleverSoft el captcha es de imagen: la sirve $.post("", {action: "getCaptcha"})
+           sobre #captchaImg / #frm_captcha / #btnReloadCatpcha y se valida en el servidor.
+           Al integrar, este bloque se reemplaza por esos tres elementos. -->
+      <div class="captcha-check">
+        <input type="checkbox" id="not-robot">
+        <label for="not-robot" class="check-label">No soy un robot</label>
+        <div class="captcha-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
         </div>
-        <input id="frm_captcha" name="frm_captcha" type="text" class="captcha-field__input" placeholder="Ingresá el código" autocomplete="off" maxlength="6" aria-describedby="captchaHint">
-        <p class="captcha-field__hint" id="captchaHint">¿No se lee bien? Generá otro código o escribinos a <a href="mailto:sociosweb@cap.org.ar">sociosweb@cap.org.ar</a>.</p>
       </div>
 
       <p class="terms">Al ingresar aceptás los <a href="#">términos y condiciones</a> de navegación.</p>
@@ -421,45 +408,6 @@ function toggleNav(open) {
 const DEMO_EMAIL = 'camilo@cap.org.ar';
 const DEMO_PASS = 'calamar2026';
 
-const CAPTCHA_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-let captchaCode = '';
-
-function drawCaptcha() {
-  const size = 5;
-  captchaCode = Array.from({ length: size }, () => CAPTCHA_CHARS[Math.floor(Math.random() * CAPTCHA_CHARS.length)]).join('');
-
-  const canvas = document.createElement('canvas');
-  canvas.width = 320;
-  canvas.height = 104;
-  const ctx = canvas.getContext('2d');
-
-  ctx.fillStyle = '#eceae5';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  ctx.strokeStyle = 'rgba(190,161,94,0.6)';
-  ctx.lineWidth = 2;
-  for (let i = 0; i < 6; i++) {
-    ctx.beginPath();
-    ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
-    ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
-    ctx.stroke();
-  }
-
-  ctx.textBaseline = 'middle';
-  captchaCode.split('').forEach((char, i) => {
-    ctx.save();
-    ctx.translate(36 + i * 58, 52 + (Math.random() * 14 - 7));
-    ctx.rotate(Math.random() * 0.5 - 0.25);
-    ctx.font = `700 ${40 + Math.random() * 8}px 'Gotham', sans-serif`;
-    ctx.fillStyle = i % 2 ? '#4a2e15' : '#2a1a0d';
-    ctx.fillText(char, 0, 0);
-    ctx.restore();
-  });
-
-  document.getElementById('captchaImg').src = canvas.toDataURL();
-  document.getElementById('frm_captcha').value = '';
-}
-
 function showLoginError(message) {
   const error = document.getElementById('loginError');
   error.textContent = message;
@@ -470,12 +418,11 @@ function doLogin(e) {
   e.preventDefault();
   const email = document.getElementById('loginEmail').value.trim().toLowerCase();
   const pass = document.getElementById('loginPass').value;
-  const captcha = document.getElementById('frm_captcha').value.trim().toUpperCase();
+  const noSoyRobot = document.getElementById('not-robot');
 
-  if (captcha !== captchaCode) {
-    showLoginError('El código de seguridad no coincide. Generamos uno nuevo, probá otra vez.');
-    drawCaptcha();
-    document.getElementById('frm_captcha').focus();
+  if (!noSoyRobot.checked) {
+    showLoginError('Marcá "No soy un robot" para continuar.');
+    noSoyRobot.focus();
     return false;
   }
 
@@ -483,13 +430,9 @@ function doLogin(e) {
     location.href = 'home.html';
   } else {
     showLoginError('Email o contraseña incorrectos. Revisá los datos e intentá de nuevo.');
-    drawCaptcha();
   }
   return false;
 }
-
-document.getElementById('btnReloadCatpcha').addEventListener('click', drawCaptcha);
-drawCaptcha();
 </script>
 <script src="assets/js/bot-calamar.js"></script>
 </body>
