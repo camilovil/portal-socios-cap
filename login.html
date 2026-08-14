@@ -101,14 +101,23 @@
   .field input:focus { box-shadow: 0 0 0 2px var(--gold); }
   .field .toggle-eye { position: absolute; right: 14px; top: 41px; cursor: pointer; opacity: 0.45; font-size: 13px; }
 
-  .captcha-check {
-    display: flex; align-items: center; gap: 12px;
-    border: 1px solid #ddd; border-radius: 10px; padding: 14px 16px; margin-bottom: 18px; background: var(--gray-fill);
+  .captcha-field { margin-bottom: 18px; }
+  .captcha-field__row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .captcha-field__image {
+    width: 160px; height: 52px; flex-shrink: 0; border: 1px solid #ddd; border-radius: 10px;
+    background: var(--gray-fill); object-fit: cover;
   }
-  .captcha-check input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--gold); cursor: pointer; }
-  .captcha-check .check-label { flex: 1; font-size: 13px; color: var(--ink); text-transform: none; letter-spacing: 0; font-weight: 300; margin: 0; }
-  .captcha-check .captcha-badge { width: 30px; height: 30px; color: var(--gray-text); opacity: 0.6; }
-  .captcha-check .captcha-badge svg { width: 100%; height: 100%; }
+  .captcha-field__reload {
+    width: 46px; height: 46px; flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid #ddd; border-radius: 10px; background: var(--white); color: var(--gray-text);
+    cursor: pointer; transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .captcha-field__reload:hover { color: var(--brown); border-color: var(--gold); }
+  .captcha-field__reload:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--gold); }
+  .captcha-field__reload svg { width: 18px; height: 18px; }
+  .captcha-field__input { width: 100%; margin-bottom: 8px; }
+  .captcha-field__hint { font-size: 11px; color: var(--gray-text); line-height: 1.5; margin: 0; }
+  .captcha-field__hint a { color: var(--brown); font-weight: 400; }
 
   .terms { font-size: 11px; color: var(--gray-text); line-height: 1.5; margin: 4px 0 20px; }
   .terms a { color: var(--brown); font-weight: 400; }
@@ -170,8 +179,20 @@
   .bot-panel .bot-head .status { font-size: 11px; color: rgba(255,255,255,0.6); }
   .bot-panel .bot-head .close-bot { margin-left: auto; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 16px; cursor: pointer; }
 
-  .bot-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; background: var(--cream); }
-  .bot-msg { max-width: 82%; padding: 10px 13px; border-radius: 12px; font-size: 13px; line-height: 1.45; }
+  .bot-messages {
+    flex: 1; overflow-y: auto; overflow-x: hidden; padding: 16px;
+    display: flex; flex-direction: column; gap: 10px; background: var(--cream);
+    scrollbar-width: thin; scrollbar-color: rgba(190,161,94,0.55) transparent;
+  }
+  .bot-messages::-webkit-scrollbar { width: 6px; }
+  .bot-messages::-webkit-scrollbar-track { background: transparent; }
+  .bot-messages::-webkit-scrollbar-thumb { background: rgba(190,161,94,0.55); border-radius: 999px; }
+  .bot-msg {
+    max-width: 82%; padding: 10px 13px; border-radius: 12px; font-size: 13px; line-height: 1.45;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .bot-msg a { color: var(--brown); font-weight: 400; text-decoration: underline; }
+  .bot-msg.user a { color: var(--gold-light); }
   .bot-msg.bot { background: var(--white); color: var(--ink); align-self: flex-start; border-bottom-left-radius: 3px; }
   .bot-msg.user { background: var(--brown); color: var(--white); align-self: flex-end; border-bottom-right-radius: 3px; }
 
@@ -287,9 +308,9 @@
   <div class="hero-content">
     <div class="hero-help">
       <span>¿Necesitás ayuda?</span>
-      <a class="icon-label" href="mailto:socioweb@cap.org.ar">
+      <a class="icon-label" href="mailto:sociosweb@cap.org.ar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
-        socioweb@cap.org.ar
+        sociosweb@cap.org.ar
       </a>
       <a class="icon-label" href="tel:+5491136917156">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -319,16 +340,23 @@
         <span class="toggle-eye">👁</span>
       </div>
 
-      <div class="captcha-check">
-        <input type="checkbox" id="not-robot">
-        <label for="not-robot" class="check-label">No soy un robot</label>
-        <div class="captcha-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>
+      <!-- Captcha de CleverSoft: mismos ids que login.php (captchaImg / frm_captcha / btnReloadCatpcha).
+           En producción la imagen llega por $.post("", {action: "getCaptcha"}) y se valida en el servidor;
+           acá se dibuja en canvas solo para que el prototipo sea navegable. -->
+      <div class="field captcha-field">
+        <label for="frm_captcha">Código de seguridad</label>
+        <div class="captcha-field__row">
+          <img id="captchaImg" class="captcha-field__image" alt="Imagen con el código de seguridad">
+          <button type="button" id="btnReloadCatpcha" class="captcha-field__reload" aria-label="Generar otro código de seguridad">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36"/><polyline points="21 3 21 9 15 9"/></svg>
+          </button>
         </div>
+        <input id="frm_captcha" name="frm_captcha" type="text" class="captcha-field__input" placeholder="Ingresá el código" autocomplete="off" maxlength="6" aria-describedby="captchaHint">
+        <p class="captcha-field__hint" id="captchaHint">¿No se lee bien? Generá otro código o escribinos a <a href="mailto:sociosweb@cap.org.ar">sociosweb@cap.org.ar</a>.</p>
       </div>
 
       <p class="terms">Al ingresar aceptás los <a href="#">términos y condiciones</a> de navegación.</p>
-      <p class="login-error" id="loginError">Email o contraseña incorrectos — probá con la cuenta de prueba de arriba.</p>
+      <p class="login-error" id="loginError" role="alert">Email o contraseña incorrectos — probá con la cuenta de prueba de arriba.</p>
 
       <button class="btn btn-primary">Ingresá</button>
       <button class="btn btn-secondary" type="button">Quiero ser socio</button>
@@ -353,7 +381,7 @@
     <div class="legal-links">
       <a href="#">Aviso legal</a><span class="dot">·</span>
       <a href="#">Política de privacidad</a><span class="dot">·</span>
-      <a href="mailto:socioweb@cap.org.ar">socioweb@cap.org.ar</a><span class="dot">·</span>
+      <a href="mailto:sociosweb@cap.org.ar">sociosweb@cap.org.ar</a><span class="dot">·</span>
       <a href="https://cap.org.ar">cap.org.ar</a>
     </div>
   </div>
@@ -397,65 +425,76 @@ function toggleNav(open) {
 const DEMO_EMAIL = 'camilo@cap.org.ar';
 const DEMO_PASS = 'calamar2026';
 
+const CAPTCHA_CHARS = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+let captchaCode = '';
+
+function drawCaptcha() {
+  const size = 5;
+  captchaCode = Array.from({ length: size }, () => CAPTCHA_CHARS[Math.floor(Math.random() * CAPTCHA_CHARS.length)]).join('');
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 320;
+  canvas.height = 104;
+  const ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = '#eceae5';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.strokeStyle = 'rgba(190,161,94,0.6)';
+  ctx.lineWidth = 2;
+  for (let i = 0; i < 6; i++) {
+    ctx.beginPath();
+    ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+    ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+    ctx.stroke();
+  }
+
+  ctx.textBaseline = 'middle';
+  captchaCode.split('').forEach((char, i) => {
+    ctx.save();
+    ctx.translate(36 + i * 58, 52 + (Math.random() * 14 - 7));
+    ctx.rotate(Math.random() * 0.5 - 0.25);
+    ctx.font = `700 ${40 + Math.random() * 8}px 'Gotham', sans-serif`;
+    ctx.fillStyle = i % 2 ? '#4a2e15' : '#2a1a0d';
+    ctx.fillText(char, 0, 0);
+    ctx.restore();
+  });
+
+  document.getElementById('captchaImg').src = canvas.toDataURL();
+  document.getElementById('frm_captcha').value = '';
+}
+
+function showLoginError(message) {
+  const error = document.getElementById('loginError');
+  error.textContent = message;
+  error.classList.add('show');
+}
+
 function doLogin(e) {
   e.preventDefault();
   const email = document.getElementById('loginEmail').value.trim().toLowerCase();
   const pass = document.getElementById('loginPass').value;
-  const error = document.getElementById('loginError');
+  const captcha = document.getElementById('frm_captcha').value.trim().toUpperCase();
+
+  if (captcha !== captchaCode) {
+    showLoginError('El código de seguridad no coincide. Generamos uno nuevo, probá otra vez.');
+    drawCaptcha();
+    document.getElementById('frm_captcha').focus();
+    return false;
+  }
+
   if (email === DEMO_EMAIL && pass === DEMO_PASS) {
     location.href = 'home.html';
   } else {
-    error.classList.add('show');
+    showLoginError('Email o contraseña incorrectos — probá con la cuenta de prueba de arriba.');
+    drawCaptcha();
   }
   return false;
 }
 
-function toggleBot() {
-  document.getElementById('botPanel').classList.toggle('open');
-}
-function botReply(text) {
-  const box = document.getElementById('botMessages');
-  const msg = document.createElement('div');
-  msg.className = 'bot-msg bot';
-  msg.textContent = text;
-  box.appendChild(msg);
-  box.scrollTop = box.scrollHeight;
-}
-function botUserMsg(text) {
-  const box = document.getElementById('botMessages');
-  const msg = document.createElement('div');
-  msg.className = 'bot-msg user';
-  msg.textContent = text;
-  box.appendChild(msg);
-  box.scrollTop = box.scrollHeight;
-}
-function botAnswerFor(text) {
-  const t = text.toLowerCase();
-  if (t.includes('registr') || t.includes('asociar') || t.includes('socio nuevo') || t.includes('quiero ser socio')) {
-    return 'Para registrarte tocá "Quiero ser socio" abajo del botón dorado. Vas a necesitar tu DNI y un email válido — el alta se aprueba en 24-48hs y te llega la confirmación por correo.';
-  }
-  if (t.includes('olvid') || t.includes('recuper') || t.includes('contraseña')) {
-    return 'Tocá "Ya soy socio, activar mi cuenta" debajo del formulario, o "Recuperar contraseña" — te enviamos un link a tu email registrado para reestablecerla.';
-  }
-  if (t.includes('categor')) {
-    return 'Las categorías principales son Activo Pleno, Familiar y Menor. Cada una tiene distinto valor de cuota y beneficios — te lo detallamos apenas completes el registro.';
-  }
-  if (t.includes('atención') || t.includes('atencion') || t.includes('humano') || t.includes('hablar')) {
-    return 'Te paso el contacto directo: WhatsApp +54 9 11 3691-7156 o socioweb@cap.org.ar. Un socio de atención te responde en breve.';
-  }
-  return 'Buena pregunta — todavía estoy aprendiendo esa respuesta. Mientras tanto, escribinos a socioweb@cap.org.ar y te ayudamos directamente.';
-}
-function botAsk(text) {
-  botUserMsg(text);
-  setTimeout(() => botReply(botAnswerFor(text)), 400);
-}
-function botSend() {
-  const input = document.getElementById('botInput');
-  const text = input.value.trim();
-  if (!text) return;
-  botAsk(text);
-  input.value = '';
-}
+document.getElementById('btnReloadCatpcha').addEventListener('click', drawCaptcha);
+drawCaptcha();
 </script>
+<script src="assets/js/bot-calamar.js"></script>
 </body>
 </html>
