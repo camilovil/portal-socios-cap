@@ -122,7 +122,6 @@
   .terms { font-size: 11px; color: var(--gray-text); line-height: 1.5; margin: 4px 0 20px; }
   .terms a { color: var(--brown); font-weight: 400; }
 
-  .demo-hint { background: var(--cream); border: 1px dashed #ddd; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: var(--brown); margin-bottom: 20px; text-align: center; }
   .login-error { display: none; background: #fdecea; color: #b3261e; font-size: 12px; border-radius: 8px; padding: 10px 14px; margin: -6px 0 16px; }
   .login-error.show { display: block; }
 
@@ -329,9 +328,6 @@
       <button class="active">Usuario y contraseña</button>
       <button>Ingresar con email</button>
     </div>
-    <div class="demo-hint">
-      Cuenta de prueba: <b>camilo@cap.org.ar</b> / <b>calamar2026</b>
-    </div>
     <form id="loginForm" onsubmit="return doLogin(event)">
       <div class="field"><label>Correo electrónico</label><input id="loginEmail" type="email" placeholder="Ingresá tu correo"></div>
       <div class="field">
@@ -356,7 +352,7 @@
       </div>
 
       <p class="terms">Al ingresar aceptás los <a href="#">términos y condiciones</a> de navegación.</p>
-      <p class="login-error" id="loginError" role="alert">Email o contraseña incorrectos — probá con la cuenta de prueba de arriba.</p>
+      <p class="login-error" id="loginError" role="alert">Email o contraseña incorrectos. Revisá los datos e intentá de nuevo.</p>
 
       <button class="btn btn-primary">Ingresá</button>
       <button class="btn btn-secondary" type="button">Quiero ser socio</button>
@@ -486,7 +482,7 @@ function doLogin(e) {
   if (email === DEMO_EMAIL && pass === DEMO_PASS) {
     location.href = 'home.html';
   } else {
-    showLoginError('Email o contraseña incorrectos — probá con la cuenta de prueba de arriba.');
+    showLoginError('Email o contraseña incorrectos. Revisá los datos e intentá de nuevo.');
     drawCaptcha();
   }
   return false;
