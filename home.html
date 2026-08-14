@@ -220,8 +220,20 @@
   .bot-panel .bot-head .status { font-size: 11px; color: rgba(255,255,255,0.6); }
   .bot-panel .bot-head .close-bot { margin-left: auto; background: none; border: none; color: rgba(255,255,255,0.7); font-size: 16px; cursor: pointer; }
 
-  .bot-messages { flex: 1; overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 10px; background: var(--cream); }
-  .bot-msg { max-width: 82%; padding: 10px 13px; border-radius: 12px; font-size: 13px; line-height: 1.45; }
+  .bot-messages {
+    flex: 1; overflow-y: auto; overflow-x: hidden; padding: 16px;
+    display: flex; flex-direction: column; gap: 10px; background: var(--cream);
+    scrollbar-width: thin; scrollbar-color: rgba(190,161,94,0.55) transparent;
+  }
+  .bot-messages::-webkit-scrollbar { width: 6px; }
+  .bot-messages::-webkit-scrollbar-track { background: transparent; }
+  .bot-messages::-webkit-scrollbar-thumb { background: rgba(190,161,94,0.55); border-radius: 999px; }
+  .bot-msg {
+    max-width: 82%; padding: 10px 13px; border-radius: 12px; font-size: 13px; line-height: 1.45;
+    overflow-wrap: anywhere; word-break: break-word;
+  }
+  .bot-msg a { color: var(--brown); font-weight: 400; text-decoration: underline; }
+  .bot-msg.user a { color: var(--gold-light); }
   .bot-msg.bot { background: var(--white); color: var(--ink); align-self: flex-start; border-bottom-left-radius: 3px; }
   .bot-msg.user { background: var(--brown); color: var(--white); align-self: flex-end; border-bottom-right-radius: 3px; }
 
@@ -440,9 +452,9 @@
   <div class="hero-inner">
     <div class="hero-help">
       <span>¿Necesitás ayuda?</span>
-      <a class="icon-label" href="mailto:socioweb@cap.org.ar">
+      <a class="icon-label" href="mailto:sociosweb@cap.org.ar">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
-        socioweb@cap.org.ar
+        sociosweb@cap.org.ar
       </a>
       <a class="icon-label" href="tel:+5491136917156">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -573,7 +585,7 @@
     <div class="legal-links">
       <a href="#">Aviso legal</a><span class="dot">·</span>
       <a href="#">Política de privacidad</a><span class="dot">·</span>
-      <a href="mailto:socioweb@cap.org.ar">socioweb@cap.org.ar</a><span class="dot">·</span>
+      <a href="mailto:sociosweb@cap.org.ar">sociosweb@cap.org.ar</a><span class="dot">·</span>
       <a href="https://cap.org.ar">cap.org.ar</a>
     </div>
   </div>
@@ -612,69 +624,7 @@
   </div>
 </div>
 
-<script>
-function toggleBot() {
-  document.getElementById('botPanel').classList.toggle('open');
-}
-function botReply(text) {
-  const box = document.getElementById('botMessages');
-  const msg = document.createElement('div');
-  msg.className = 'bot-msg bot';
-  msg.textContent = text;
-  box.appendChild(msg);
-  box.scrollTop = box.scrollHeight;
-}
-function botUserMsg(text) {
-  const box = document.getElementById('botMessages');
-  const msg = document.createElement('div');
-  msg.className = 'bot-msg user';
-  msg.textContent = text;
-  box.appendChild(msg);
-  box.scrollTop = box.scrollHeight;
-}
-function botAnswerFor(text) {
-  const t = text.toLowerCase();
-  if (t.includes('pago') && t.includes('cuota') || t.includes('cómo pago') || t.includes('como pago')) {
-    return 'Podés pagar tu cuota desde "Mis Pagos Pendientes" en el home, o activando el débito automático en "Inscripciones / Débito automático". ¿Querés que te lleve para allá?';
-  }
-  if (t.includes('medio') || t.includes('tarjeta') || t.includes('efectivo')) {
-    return 'Aceptamos débito automático, tarjeta de crédito/débito y transferencia bancaria. El pago en efectivo solo está disponible en la sede del club.';
-  }
-  if (t.includes('carnet')) {
-    return 'Tu carnet digital está en "Tu perfil" → pestaña "Mi carnet". Desde ahí lo podés descargar o añadir a tu Wallet.';
-  }
-  if (t.includes('turno')) {
-    return 'Reservá tus espacios deportivos desde "Mis Turnos" en el home. Te muestra disponibilidad en tiempo real.';
-  }
-  if (t.includes('ser socio') || t.includes('hacerme socio') || t.includes('hago socio') || t.includes('nuevo socio') || t.includes('asociarme') || t.includes('me asocio')) {
-    return 'Para asociarte al Club Atlético Platense, entrá a la campaña de socios "Del barrio al continente": https://delbarrioalcontinente.cap.org.ar/';
-  }
-  if (t.includes('estadio') || t.includes('cancha') || t.includes('ubicación') || t.includes('ubicacion')) {
-    return 'El estadio (Ciudad de Vicente López) está en Zufriategui 2021, Florida, Vicente López. Ubicación en el mapa: https://maps.app.goo.gl/Z7EGvJhKnhSGpB9BA';
-  }
-  if (t.includes('entrada') || t.includes('tickets') || t.includes('partido')) {
-    return 'Entradas para Liga Profesional: https://www.tuentrada.com/platense-lpf. Para Copa Libertadores: https://www.tuentrada.com/platense-libertadores';
-  }
-  if (t.includes('horario') || t.includes('oficina')) {
-    return 'La oficina de socios, en la sede social de Vicente López, atiende de lunes a viernes de 10:00 a 20:00 hs y sábados de 10:00 a 13:00 hs.';
-  }
-  if (t.includes('atención') || t.includes('atencion') || t.includes('humano') || t.includes('hablar')) {
-    return 'Te paso el contacto directo: WhatsApp +54 9 11 3691-7156 o socioweb@cap.org.ar. Un socio de atención te responde en breve.';
-  }
-  return 'Buena pregunta — todavía estoy aprendiendo esa respuesta. Mientras tanto, escribinos a socioweb@cap.org.ar y te ayudamos directamente.';
-}
-function botAsk(text) {
-  botUserMsg(text);
-  setTimeout(() => botReply(botAnswerFor(text)), 400);
-}
-function botSend() {
-  const input = document.getElementById('botInput');
-  const text = input.value.trim();
-  if (!text) return;
-  botAsk(text);
-  input.value = '';
-}
-</script>
+<script src="assets/js/bot-calamar.js"></script>
 
 
 <script>
