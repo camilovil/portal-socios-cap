@@ -4,11 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tu perfil — Portal de Socios CAP</title>
+<link rel="stylesheet" href="assets/css/tipografias.css">
 <style>
-  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_light.otf') format('opentype'); font-weight: 300; }
-  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_medium.otf') format('opentype'); font-weight: 400; }
-  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_black.otf') format('opentype'); font-weight: 700; }
-  @font-face { font-family: 'Calamar'; src: url('assets/fonts/AwesomeSerifItalic-MediumTall.otf') format('opentype'); font-style: italic; }
 
   :root {
     --brown: #4a2e15;
@@ -23,7 +20,7 @@
   }
   * { box-sizing: border-box; min-width: 0; }
   html, body { max-width: 100%; overflow-x: hidden; }
-  body { margin: 0; font-family: 'Gotham', sans-serif; font-weight: 300; background: var(--white); color: var(--ink); }
+  body { margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 300; background: var(--white); color: var(--ink); }
   a { color: inherit; text-decoration: none; }
 
   .utility-bar {
@@ -51,7 +48,7 @@
   h1.page-title { font-weight: 700; font-size: 32px; color: var(--ink); margin: 0; letter-spacing: -0.4px; }
 
   .tabs { display: flex; gap: 30px; border-bottom: 1px solid #eee; margin: 28px 0 32px; }
-  .tabs button { border: none; background: none; padding: 0 0 14px; font-family: 'Gotham', sans-serif; font-weight: 400; font-size: 14px; color: var(--gray-text); cursor: pointer; border-bottom: 2px solid transparent; }
+  .tabs button { border: none; background: none; padding: 0 0 14px; font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 14px; color: var(--gray-text); cursor: pointer; border-bottom: 2px solid transparent; }
   .tabs button.active { color: var(--brown); font-weight: 700; border-bottom-color: var(--gold); }
 
   .tab-panel { display: none; }
@@ -64,11 +61,11 @@
   .field { display: flex; flex-direction: column; gap: 8px; }
   .field.full { grid-column: 1 / -1; }
   label { font-size: 11px; font-weight: 400; color: var(--gray-text); text-transform: uppercase; letter-spacing: 0.5px; }
-  input, select { padding: 13px 15px; border: none; border-radius: 10px; font-family: 'Gotham', sans-serif; font-weight: 300; font-size: 14px; color: var(--ink); background: var(--gray-fill); outline: none; }
+  input, select { padding: 13px 15px; border: none; border-radius: 10px; font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 14px; color: var(--ink); background: var(--gray-fill); outline: none; }
   input:focus, select:focus { box-shadow: 0 0 0 2px var(--gold); }
   input:disabled { opacity: 0.5; }
 
-  .btn { padding: 14px 30px; border-radius: 14px; border: none; font-family: 'Gotham', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.8px; text-transform: uppercase; cursor: pointer; }
+  .btn { padding: 14px 30px; border-radius: 14px; border: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.8px; text-transform: uppercase; cursor: pointer; }
   .btn-primary { background: var(--gold); color: var(--brown-dark); margin-top: 8px; }
   .btn-primary:hover { background: var(--gold-light); }
 
@@ -110,17 +107,17 @@
   }
   .socio-card__back-header { position: absolute; top: 11%; left: 7%; display: flex; align-items: center; gap: 12px; }
   .socio-card__back-header img { height: 34px; }
-  .socio-card__back-header .club-name { margin: 0; font: 700 13px 'Gotham', sans-serif; }
-  .socio-card__back-header .club-sub { margin: 2px 0 0; font: 500 11px 'Gotham', sans-serif; opacity: .65; }
+  .socio-card__back-header .club-name { margin: 0; font: 700 13px 'Montserrat', sans-serif; }
+  .socio-card__back-header .club-sub { margin: 2px 0 0; font: 500 11px 'Montserrat', sans-serif; opacity: .65; }
   .socio-card__qr-col {
     position: absolute; top: 0; bottom: 0; right: 0; width: 42%;
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
   }
   .socio-card__qr-box { background: #fff; border-radius: 14px; padding: 10px; box-shadow: 0 6px 18px rgba(0,0,0,.35); }
   .socio-card__qr-box img { display: block; width: 84px; height: 84px; }
-  .socio-card__qr-caption { margin: 0; font: 600 10px 'Gotham', sans-serif; letter-spacing: .06em; opacity: .75; text-align: center; }
+  .socio-card__qr-caption { margin: 0; font: 600 10px 'Montserrat', sans-serif; letter-spacing: .06em; opacity: .75; text-align: center; }
   .socio-card__back-info { position: absolute; left: 7%; bottom: 10%; display: flex; flex-direction: column; gap: 10px; }
-  .socio-card__back-info .label { margin: 0; font: 600 10px 'Gotham', sans-serif; letter-spacing: .08em; opacity: .55; }
+  .socio-card__back-info .label { margin: 0; font: 600 10px 'Montserrat', sans-serif; letter-spacing: .08em; opacity: .55; }
   .socio-card__back-info .value { margin: 2px 0 0; font: 700 17px/1 ui-monospace, 'SFMono-Regular', Consolas, monospace; letter-spacing: .02em; }
   .socio-card-hint { text-align: center; font-size: 11.5px; color: var(--gray-text); margin-top: 10px; }
   .socio-card__emboss {
@@ -136,13 +133,13 @@
   .socio-card__logo { position: absolute; top: 5%; left: 6%; height: 31%; width: auto; filter: drop-shadow(0 3px 6px rgba(0,0,0,.5)); }
   .socio-card__pill {
     position: absolute; top: 12%; right: 7%;
-    font: 700 11px 'Gotham', sans-serif; letter-spacing: .04em; padding: 7px 14px; border-radius: 999px; white-space: nowrap;
+    font: 700 11px 'Montserrat', sans-serif; letter-spacing: .04em; padding: 7px 14px; border-radius: 999px; white-space: nowrap;
     background: rgba(239,226,207,.16); color: #efe2cf; border: 1px solid rgba(239,226,207,.35);
   }
   .socio-card__foot { position: absolute; left: 7%; right: 7%; bottom: 9%; display: flex; align-items: flex-end; justify-content: space-between; }
-  .socio-card__socio-line { font: 500 12.5px 'Gotham', sans-serif; letter-spacing: .01em; opacity: .75; margin: 0 0 6px; }
-  .socio-card__name { font: 700 24px/1.1 'Gotham', sans-serif; margin: 0; letter-spacing: -.01em; }
-  .socio-card__wallet-link { font: 700 12px 'Gotham', sans-serif; text-decoration: none; color: #efe2cf; opacity: .85; display: flex; align-items: center; gap: 6px; }
+  .socio-card__socio-line { font: 500 12.5px 'Montserrat', sans-serif; letter-spacing: .01em; opacity: .75; margin: 0 0 6px; }
+  .socio-card__name { font: 700 24px/1.1 'Montserrat', sans-serif; margin: 0; letter-spacing: -.01em; }
+  .socio-card__wallet-link { font: 700 12px 'Montserrat', sans-serif; text-decoration: none; color: #efe2cf; opacity: .85; display: flex; align-items: center; gap: 6px; }
   .socio-card__shine { position: absolute; inset: 0; pointer-events: none; mix-blend-mode: overlay; }
   .socio-card__sweep {
     position: absolute; top: -50%; left: -60%; width: 40%; height: 200%;
@@ -157,7 +154,7 @@
   .socio-card-caption { text-align: center; font-size: 12px; color: var(--gray-text); margin-top: 12px; }
 
   .carnet-actions { display: flex; gap: 12px; margin-top: 20px; justify-content: center; }
-  .carnet-actions button { font-family: 'Gotham', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 13px 22px; border-radius: 14px; cursor: pointer; border: none; }
+  .carnet-actions button { font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase; padding: 13px 22px; border-radius: 14px; cursor: pointer; border: none; }
   .carnet-actions .primary { background: var(--gold); color: var(--brown-dark); }
   .carnet-actions .ghost { background: transparent; color: var(--brown); border: 1.5px solid #ddd; }
 
@@ -280,14 +277,39 @@
     .hero-help { display:none; }
   }
 </style>
+
+<!-- Metadatos para compartir en redes (capa del prototipo) -->
+<meta name="description" content="Ficha del socio y grupo familiar. Prototipo no oficial del Portal de Socios de Platense.">
+<link rel="canonical" href="https://portal-socios-cap.vercel.app/mis-datos">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Prototipo Portal de Socios CAP">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://portal-socios-cap.vercel.app/mis-datos">
+<meta property="og:title" content="Mis Datos — Prototipo Portal de Socios CAP">
+<meta property="og:description" content="Ficha del socio y grupo familiar. Prototipo no oficial del Portal de Socios de Platense.">
+<meta property="og:image" content="https://portal-socios-cap.vercel.app/assets/og/portal-socios-cap.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pantallas del prototipo del Portal de Socios del Club Atlético Platense">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@Camilo_Tense">
+<link rel="icon" href="assets/img/favicon-192.png">
+
+<!-- Capa del prototipo publico (no forma parte del diseno aprobado) -->
+<link rel="stylesheet" href="assets/css/componentes.css">
+<link rel="stylesheet" href="assets/css/prototipo.css">
+<script src="assets/js/prototipo.js"></script>
 </head>
 <body>
 
 <div class="utility-bar">
-  <a class="site-link" href="https://cap.org.ar">🛡 cap.org.ar</a>
+  <a class="site-link" href="https://cap.org.ar" target="_blank" rel="noopener" aria-label="Ir al sitio oficial del club (se abre en una pestaña nueva)">🛡 cap.org.ar</a>
   <div class="brand-group">
-    <img class="escudo-mini" src="assets/img/escudo-cap-oficial.png" alt="Club Atlético Platense">
-    <span class="mobile-wordmark">Socios CAP</span>
+    <a class="brand-home" href="home.html" aria-label="Ir al inicio del portal">
+      <img class="escudo-mini" src="assets/img/escudo-cap-oficial.png" alt="Club Atlético Platense">
+      <span class="mobile-wordmark">Socios CAP</span>
+    </a>
   </div>
   <div class="right">
     <div class="profile-wrap">
@@ -331,18 +353,18 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 21h8M12 17v4M17 4H7v6a5 5 0 0 0 10 0V4Z"/><path d="M7 6H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4M17 6h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"/></svg>
     Sumate a Zona Calamar
   </button>
-  <a class="drawer-site-link" href="https://cap.org.ar">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 5v6h6"/></svg>
+  <a class="drawer-site-link" href="https://cap.org.ar" target="_blank" rel="noopener" aria-label="Ir al sitio oficial del club (se abre en una pestaña nueva)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
     cap.org.ar
   </a>
 </nav>
 <nav class="section-nav">
   <div class="section-nav-inner">
-  <span class="brand">Socios CAP</span>
+  <a class="brand brand-home" href="home.html">Socios CAP</a>
   <div class="links">
-    <a href="home.html">Inicio</a>
-    <a href="mis-datos.html" class="active">Mi perfil</a>
-    <a href="beneficios.html">Beneficios</a>
+    <a href="home.html" data-label="Inicio">Inicio</a>
+    <a href="mis-datos.html" class="active" data-label="Mi perfil">Mi perfil</a>
+    <a href="beneficios.html" data-label="Beneficios">Beneficios</a>
   </div>
   </div>
 </nav>
@@ -551,10 +573,10 @@
   </div>
   <div class="footer-divider"></div>
   <div class="footer-bottom-row">
-    <span>Club Atlético Platense © 2026. Todos los derechos reservados.</span>
+    <span>Prototipo no oficial · Proyecto independiente de un socio del club.</span>
     <div class="legal-links">
-      <a href="#">Aviso legal</a><span class="dot">·</span>
-      <a href="#">Política de privacidad</a><span class="dot">·</span>
+      <a href="aviso-legal.html">Aviso legal</a><span class="dot">·</span>
+      <a href="aviso-legal.html#privacidad">Política de privacidad</a><span class="dot">·</span>
       <a href="mailto:sociosweb@cap.org.ar">sociosweb@cap.org.ar</a><span class="dot">·</span>
       <a href="https://cap.org.ar">cap.org.ar</a>
     </div>

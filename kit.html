@@ -3,27 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Kit de Marca — Club Atlético Platense (ingeniería inversa 2026)</title>
+<link rel="stylesheet" href="assets/css/tipografias.css">
 <style>
-  @font-face {
-    font-family: 'Gotham';
-    src: url('assets/fonts/gotham_light.otf') format('opentype');
-    font-weight: 300;
-  }
-  @font-face {
-    font-family: 'Gotham';
-    src: url('assets/fonts/gotham_medium.otf') format('opentype');
-    font-weight: 400;
-  }
-  @font-face {
-    font-family: 'Gotham';
-    src: url('assets/fonts/gotham_black.otf') format('opentype');
-    font-weight: 700;
-  }
-  @font-face {
-    font-family: 'Calamar';
-    src: url('assets/fonts/AwesomeSerifItalic-MediumTall.otf') format('opentype');
-    font-style: italic;
-  }
 
   :root {
     --brown-primary: #4a2e15;
@@ -38,7 +19,7 @@
   * { box-sizing: border-box; }
   body {
     margin: 0;
-    font-family: 'Gotham', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     background: var(--cream);
     color: var(--brown-secondary);
@@ -53,7 +34,7 @@
   }
   header img { width: 90px; }
   header h1 {
-    font-family: 'Gotham', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     font-size: 28px;
     margin: 0 0 6px 0;
@@ -133,6 +114,29 @@
     padding: 32px;
   }
 </style>
+
+<!-- Metadatos para compartir en redes (capa del prototipo) -->
+<meta name="description" content="Paleta, tipografías y componentes usados en el prototipo del Portal de Socios.">
+<link rel="canonical" href="https://portal-socios-cap.vercel.app/kit">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Prototipo Portal de Socios CAP">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://portal-socios-cap.vercel.app/kit">
+<meta property="og:title" content="Kit de marca — Prototipo Portal de Socios CAP">
+<meta property="og:description" content="Paleta, tipografías y componentes usados en el prototipo del Portal de Socios.">
+<meta property="og:image" content="https://portal-socios-cap.vercel.app/assets/og/portal-socios-cap.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pantallas del prototipo del Portal de Socios del Club Atlético Platense">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@Camilo_Tense">
+<link rel="icon" href="assets/img/favicon-192.png">
+
+<!-- Capa del prototipo publico (no forma parte del diseno aprobado) -->
+<link rel="stylesheet" href="assets/css/componentes.css">
+<link rel="stylesheet" href="assets/css/prototipo.css">
+<script src="assets/js/prototipo.js"></script>
 </head>
 <body>
 
@@ -151,7 +155,7 @@
     <div class="note">
       El manual de marca oficial que existe (<b>PLA-Marca-.pdf, 2013</b>) sigue siendo válido como estructura y como reglas de uso,
       pero el escudo, la tipografía real y los colores exactos cambiaron con la web nueva. Este kit toma la <b>estructura del manual 2013</b>
-      y reemplaza los assets por los que están corriendo hoy en <b>cap.org.ar</b>: el escudo vectorial con estrella, la tipografía Gotham real
+      y reemplaza los assets por los que están corriendo hoy en <b>cap.org.ar</b>: el escudo vectorial con estrella, la tipografía institucional
       (el manual la llamaba "Ghotam", probablemente un error de tipeo) y la fuente Calamar como itálica de destaque.
     </div>
   </section>
@@ -196,7 +200,7 @@
     </div>
     <div class="note" style="margin-top:20px;">
       Fuente: <code>cap.org.ar/wp-content/uploads/2026/05/cap.svg</code> — usado junto al escudo en el footer del sitio ("titulo-club").
-      Es el reemplazo directo del "logotipo" del manual 2013 (que antes era el texto "Club Atlético Platense" en Gotham).
+      Es el reemplazo directo del "logotipo" del manual 2013 (que antes era el texto "Club Atlético Platense" en la tipografía institucional).
     </div>
   </section>
 
@@ -267,15 +271,15 @@
   <section>
     <h2>Tipografía</h2>
     <div class="type-sample">
-      <div class="label">Gotham Light — texto corrido</div>
+      <div class="label">Montserrat 300 — texto corrido</div>
       <div class="gotham-light">Club Atlético Platense</div>
     </div>
     <div class="type-sample">
-      <div class="label">Gotham Medium — subtítulos</div>
+      <div class="label">Montserrat 500 — subtítulos</div>
       <div class="gotham-medium">Club Atlético Platense</div>
     </div>
     <div class="type-sample">
-      <div class="label">Gotham Black — títulos destacados</div>
+      <div class="label">Montserrat 800 — títulos destacados</div>
       <div class="gotham-black">CLUB ATLÉTICO PLATENSE</div>
     </div>
     <div class="type-sample">
@@ -291,7 +295,8 @@
         <li>No añadir elementos dentro del contorno del escudo.</li>
         <li>No distorsionar el escudo ni el texto.</li>
         <li>No engrosar el trazado del escudo.</li>
-        <li>No utilizar otra tipografía fuera de Gotham / Calamar.</li>
+        <li>No utilizar otra tipografía fuera de Montserrat / Calamar.</li>
+        <li>El diseño original especifica Gotham. El prototipo público usa Montserrat (SIL OFL) porque Gotham es comercial y no puede servirse desde un servidor abierto — ver <a href="aviso-legal.html">aviso legal</a>.</li>
         <li>No utilizar otros colores fuera de la paleta marrón/dorado/blanco.</li>
         <li>No ocultar el escudo superponiéndole elementos.</li>
         <li>Medida mínima del escudo en indumentaria: 7 cm de alto.</li>

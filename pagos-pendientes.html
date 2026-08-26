@@ -4,10 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mis Pagos Pendientes — Portal de Socios CAP</title>
+<link rel="stylesheet" href="assets/css/tipografias.css">
 <style>
-  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_light.otf') format('opentype'); font-weight: 300; }
-  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_medium.otf') format('opentype'); font-weight: 400; }
-  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_black.otf') format('opentype'); font-weight: 700; }
 
   :root {
     --brown: #4a2e15; --brown-dark: #2a1a0d; --gold: #bea15e; --gold-light: #d9c58f;
@@ -15,7 +13,7 @@
   }
   * { box-sizing: border-box; min-width: 0; }
   html, body { max-width: 100%; overflow-x: hidden; }
-  body { margin: 0; font-family: 'Gotham', sans-serif; font-weight: 300; background: var(--white); color: var(--ink); }
+  body { margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 300; background: var(--white); color: var(--ink); }
   a { color: inherit; text-decoration: none; }
 
   .utility-bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 12px 32px; font-size: 14px; color: var(--gray-text); border-bottom: 1px solid #eee; }
@@ -155,17 +153,42 @@
     .hero-help { display:none; }
   }
 </style>
+
+<!-- Metadatos para compartir en redes (capa del prototipo) -->
+<meta name="description" content="Cuotas por vencer y pago en línea. Prototipo no oficial del Portal de Socios de Platense.">
+<link rel="canonical" href="https://portal-socios-cap.vercel.app/pagos-pendientes">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Prototipo Portal de Socios CAP">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://portal-socios-cap.vercel.app/pagos-pendientes">
+<meta property="og:title" content="Mis Pagos Pendientes — Prototipo Portal de Socios CAP">
+<meta property="og:description" content="Cuotas por vencer y pago en línea. Prototipo no oficial del Portal de Socios de Platense.">
+<meta property="og:image" content="https://portal-socios-cap.vercel.app/assets/og/portal-socios-cap.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pantallas del prototipo del Portal de Socios del Club Atlético Platense">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@Camilo_Tense">
+<link rel="icon" href="assets/img/favicon-192.png">
+
+<!-- Capa del prototipo publico (no forma parte del diseno aprobado) -->
+<link rel="stylesheet" href="assets/css/componentes.css">
+<link rel="stylesheet" href="assets/css/prototipo.css">
+<script src="assets/js/prototipo.js"></script>
 </head>
 <body>
 
 <div class="utility-bar">
-  <a class="site-link" href="https://cap.org.ar">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 5v6h6"/></svg>
+  <a class="site-link" href="https://cap.org.ar" target="_blank" rel="noopener" aria-label="Ir al sitio oficial del club (se abre en una pestaña nueva)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
     cap.org.ar
   </a>
   <div class="brand-group">
-    <img class="escudo-mini" src="assets/img/escudo-cap-oficial.png" alt="Club Atlético Platense">
-    <span class="mobile-wordmark">Socios CAP</span>
+    <a class="brand-home" href="home.html" aria-label="Ir al inicio del portal">
+      <img class="escudo-mini" src="assets/img/escudo-cap-oficial.png" alt="Club Atlético Platense">
+      <span class="mobile-wordmark">Socios CAP</span>
+    </a>
   </div>
   <div class="right">
     <div class="profile-wrap">
@@ -209,18 +232,18 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 21h8M12 17v4M17 4H7v6a5 5 0 0 0 10 0V4Z"/><path d="M7 6H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4M17 6h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"/></svg>
     Sumate a Zona Calamar
   </button>
-  <a class="drawer-site-link" href="https://cap.org.ar">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 5v6h6"/></svg>
+  <a class="drawer-site-link" href="https://cap.org.ar" target="_blank" rel="noopener" aria-label="Ir al sitio oficial del club (se abre en una pestaña nueva)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
     cap.org.ar
   </a>
 </nav>
 <nav class="section-nav">
   <div class="section-nav-inner">
-  <span class="brand">Socios CAP</span>
+  <a class="brand brand-home" href="home.html">Socios CAP</a>
   <div class="links">
-    <a href="home.html">Inicio</a>
-    <a href="mis-datos.html">Mi perfil</a>
-    <a href="beneficios.html">Beneficios</a>
+    <a href="home.html" data-label="Inicio">Inicio</a>
+    <a href="mis-datos.html" data-label="Mi perfil">Mi perfil</a>
+    <a href="beneficios.html" data-label="Beneficios">Beneficios</a>
   </div>
   </div>
 </nav>
@@ -259,7 +282,7 @@
   <div class="totales">
     <span class="label">Total seleccionado:</span>
     <span class="amount" id="total">$ 0,00</span>
-    <button class="btn-fill-sm" id="payBtn" disabled onclick="alert('Simulación — acá se abriría el checkout de pago.')">Pagar seleccionados</button>
+    <button class="btn-fill-sm" id="payBtn" disabled onclick="abrirCheckout()">Pagar seleccionados</button>
   </div>
 
   <div class="note-card">
@@ -271,6 +294,75 @@
     </ul>
   </div>
 </main>
+
+<!-- Checkout simulado. En CleverSoft este paso deriva al proveedor de
+     pagos real; aca solo se representa el recorrido del socio. -->
+<div class="checkout" id="checkout" hidden>
+  <div class="checkout__backdrop" onclick="cerrarCheckout()"></div>
+  <div class="checkout__panel" role="dialog" aria-modal="true" aria-labelledby="checkoutTitulo">
+
+    <div class="checkout__step" id="checkoutPaso1">
+      <div class="checkout__head">
+        <h2 id="checkoutTitulo">Confirmá tu pago</h2>
+        <button type="button" class="checkout__close" onclick="cerrarCheckout()" aria-label="Cerrar">&times;</button>
+      </div>
+
+      <ul class="checkout__items" id="checkoutItems"></ul>
+
+      <div class="checkout__total">
+        <span>Total a pagar</span>
+        <strong id="checkoutTotal">$ 0,00</strong>
+      </div>
+
+      <p class="checkout__label">Medio de pago</p>
+      <div class="checkout__medios">
+        <label class="checkout__medio">
+          <input type="radio" name="medio" value="mercadopago" checked>
+          <span class="checkout__medio-box">
+            <strong>Mercado Pago</strong>
+            <small>Dinero en cuenta, tarjeta o transferencia</small>
+          </span>
+        </label>
+        <label class="checkout__medio">
+          <input type="radio" name="medio" value="tarjeta">
+          <span class="checkout__medio-box">
+            <strong>Tarjeta de crédito o débito</strong>
+            <small>Visa, Mastercard, Amex</small>
+          </span>
+        </label>
+        <label class="checkout__medio">
+          <input type="radio" name="medio" value="debito">
+          <span class="checkout__medio-box">
+            <strong>Adherir al débito automático</strong>
+            <small>No lo pagues más a mano todos los meses</small>
+          </span>
+        </label>
+      </div>
+
+      <button type="button" class="checkout__pay" id="checkoutPay" onclick="confirmarPago()">Pagar</button>
+      <p class="checkout__sim">Prototipo — no se procesa ningún pago real</p>
+    </div>
+
+    <div class="checkout__step checkout__step--ok" id="checkoutPaso2" hidden>
+      <div class="checkout__tick" aria-hidden="true">
+        <svg viewBox="0 0 52 52"><circle class="checkout__tick-ring" cx="26" cy="26" r="24"/><path class="checkout__tick-path" d="M14 27l8 8 16-17"/></svg>
+      </div>
+      <h2>Pago acreditado</h2>
+      <p class="checkout__ok-sub">Te enviamos el comprobante por correo.</p>
+      <div class="checkout__recibo">
+        <div><span>Comprobante</span><strong id="checkoutRecibo">—</strong></div>
+        <div><span>Importe</span><strong id="checkoutOkTotal">—</strong></div>
+        <div><span>Medio</span><strong id="checkoutOkMedio">—</strong></div>
+      </div>
+      <div class="checkout__ok-actions">
+        <a class="checkout__ok-primary" href="pagos-realizados.html">Ver mis pagos realizados</a>
+        <button type="button" class="checkout__ok-sec" onclick="cerrarCheckout()">Cerrar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 
 <footer class="bottom">
   <div class="footer-top">
@@ -284,10 +376,10 @@
   </div>
   <div class="footer-divider"></div>
   <div class="footer-bottom-row">
-    <span>Club Atlético Platense © 2026. Todos los derechos reservados.</span>
+    <span>Prototipo no oficial · Proyecto independiente de un socio del club.</span>
     <div class="legal-links">
-      <a href="#">Aviso legal</a><span class="dot">·</span>
-      <a href="#">Política de privacidad</a><span class="dot">·</span>
+      <a href="aviso-legal.html">Aviso legal</a><span class="dot">·</span>
+      <a href="aviso-legal.html#privacidad">Política de privacidad</a><span class="dot">·</span>
       <a href="mailto:sociosweb@cap.org.ar">sociosweb@cap.org.ar</a><span class="dot">·</span>
       <a href="https://cap.org.ar">cap.org.ar</a>
     </div>
@@ -295,6 +387,80 @@
 </footer>
 
 <script>
+/* --- Checkout simulado ---------------------------------------------
+   Reemplaza el alert() anterior. No procesa ningun pago: representa el
+   recorrido para que la demo tenga un final. En CleverSoft este paso
+   deriva al proveedor real. */
+
+const MEDIOS = {
+  mercadopago: 'Mercado Pago',
+  tarjeta: 'Tarjeta de crédito o débito',
+  debito: 'Débito automático'
+};
+
+let focoPrevio = null;
+
+const pesos = (n) =>
+  '$ ' + n.toLocaleString('es-AR', { minimumFractionDigits: 2 });
+
+function cuotasSeleccionadas() {
+  return [...document.querySelectorAll('.row-check')]
+    .filter((c) => c.checked)
+    .map((c) => {
+      const fila = c.closest('tr');
+      return {
+        desc: fila.querySelector('.desc').textContent.trim(),
+        monto: parseFloat(fila.dataset.amount)
+      };
+    });
+}
+
+function abrirCheckout() {
+  const cuotas = cuotasSeleccionadas();
+  if (!cuotas.length) return;
+
+  const total = cuotas.reduce((acc, c) => acc + c.monto, 0);
+  document.getElementById('checkoutItems').innerHTML = cuotas
+    .map((c) => `<li><span>${c.desc}</span><strong>${pesos(c.monto)}</strong></li>`)
+    .join('');
+  document.getElementById('checkoutTotal').textContent = pesos(total);
+
+  document.getElementById('checkoutPaso1').hidden = false;
+  document.getElementById('checkoutPaso2').hidden = true;
+
+  focoPrevio = document.activeElement;
+  const modal = document.getElementById('checkout');
+  modal.hidden = false;
+  document.body.style.overflow = 'hidden';
+  document.getElementById('checkoutPay').focus();
+}
+
+function cerrarCheckout() {
+  document.getElementById('checkout').hidden = true;
+  document.body.style.overflow = '';
+  if (focoPrevio) focoPrevio.focus();
+}
+
+function confirmarPago() {
+  const cuotas = cuotasSeleccionadas();
+  const total = cuotas.reduce((acc, c) => acc + c.monto, 0);
+  const medio = document.querySelector('input[name="medio"]:checked').value;
+  const nro = String(Math.floor(Math.random() * 900000) + 100000);
+
+  document.getElementById('checkoutRecibo').textContent = 'N° ' + nro;
+  document.getElementById('checkoutOkTotal').textContent = pesos(total);
+  document.getElementById('checkoutOkMedio').textContent = MEDIOS[medio];
+
+  document.getElementById('checkoutPaso1').hidden = true;
+  document.getElementById('checkoutPaso2').hidden = false;
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  if (document.getElementById('checkout').hidden) return;
+  cerrarCheckout();
+});
+
 function recalc() {
   const checks = document.querySelectorAll('.row-check');
   let total = 0, anyChecked = false;

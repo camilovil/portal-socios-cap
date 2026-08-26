@@ -1,0 +1,866 @@
+/* ------------------------------------------------------------------
+   componentes.css
+   Componentes compartidos que se agregan sobre el diseno aprobado.
+   Se carga despues de los <style> inline de cada pagina, asi una sola
+   regla alcanza para las 8 paginas que tienen barra de utilidades.
+   ------------------------------------------------------------------ */
+
+/* --- Boton al sitio oficial del club -------------------------------
+   Antes era un texto suelto que se confundia con el resto de la barra.
+   Como el prototipo NO es el sitio oficial, la salida al sitio real
+   tiene que leerse como una accion clara y separada. */
+
+.site-link,
+.drawer-site-link {
+  gap: 7px;
+  padding: 6px 14px;
+  border: 1px solid rgba(190, 161, 94, 0.55);
+  border-radius: 999px;
+  font-weight: 400;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 200ms ease, border-color 200ms ease,
+              color 200ms ease;
+}
+
+.site-link:hover,
+.site-link:focus-visible,
+.drawer-site-link:hover,
+.drawer-site-link:focus-visible {
+  background: rgba(190, 161, 94, 0.14);
+  border-color: var(--gold, #bea15e);
+  text-decoration: none;
+}
+
+.site-link:focus-visible,
+.drawer-site-link:focus-visible {
+  outline: 2px solid var(--gold, #bea15e);
+  outline-offset: 2px;
+}
+
+.drawer-site-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-link,
+  .drawer-site-link { transition: none; }
+}
+
+/* --- Panel de ingreso con codigo por email -------------------------- */
+
+.code-hint {
+  margin: 0 0 14px;
+  padding: 11px 14px;
+  border-radius: 10px;
+  background: rgba(190, 161, 94, 0.12);
+  border: 1px solid rgba(190, 161, 94, 0.35);
+  color: var(--brown, #4a2e15);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+[role="tabpanel"][hidden] { display: none; }
+
+/* --- Buzon simulado del codigo de acceso ---------------------------
+   No hay envio real de mail: el prototipo muestra en pantalla el
+   correo que en el portal real llegaria a la casilla del socio. Se
+   rotula como simulado para que nadie quede esperando un mail. */
+
+.inbox-sim { margin: 0 0 16px; }
+
+.inbox-sim__tag {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  color: var(--gray-text, #8a8378);
+}
+
+.inbox-sim__mail {
+  border: 1px solid rgba(190, 161, 94, 0.4);
+  border-radius: 12px;
+  background: var(--cream, #f5f2ec);
+  padding: 14px 16px;
+  animation: inbox-sim-in 260ms ease both;
+}
+
+.inbox-sim__from {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(74, 46, 21, 0.12);
+}
+
+.inbox-sim__from img { height: 26px; width: auto; }
+.inbox-sim__from div { display: flex; flex-direction: column; line-height: 1.3; }
+.inbox-sim__from strong { font-size: 13px; color: var(--ink, #2a1a0d); }
+.inbox-sim__from span { font-size: 11.5px; color: var(--gray-text, #8a8378); }
+
+.inbox-sim__subject {
+  margin: 10px 0 6px;
+  font-size: 13px;
+  color: var(--ink, #2a1a0d);
+}
+
+.inbox-sim__code {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: 7px;
+  color: var(--brown, #4a2e15);
+  font-variant-numeric: tabular-nums;
+}
+
+.inbox-sim__use {
+  margin-top: 10px;
+  padding: 7px 14px;
+  border: 1px solid rgba(74, 46, 21, 0.25);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--brown, #4a2e15);
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.inbox-sim__use:hover,
+.inbox-sim__use:focus-visible {
+  background: rgba(190, 161, 94, 0.18);
+  border-color: var(--gold, #bea15e);
+}
+
+@keyframes inbox-sim-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* --- Entrada directa a la demo -------------------------------------- */
+
+.demo-skip { margin: 14px 0 0; text-align: center; }
+
+.demo-skip a {
+  color: var(--gray-text, #8a8378);
+  font-size: 12.5px;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(190, 161, 94, 0.5);
+  padding-bottom: 1px;
+  transition: color 200ms ease;
+}
+
+.demo-skip a:hover,
+.demo-skip a:focus-visible { color: var(--brown, #4a2e15); }
+
+@media (prefers-reduced-motion: reduce) {
+  .inbox-sim__mail { animation: none; }
+  .inbox-sim__use { transition: none; }
+}
+
+/* --- Boton de volver ------------------------------------------------
+   Antes era texto suelto de 12px que se perdia arriba del titulo.
+   Pasa a leerse como accion, con el mismo lenguaje de pastilla que
+   usan los demas botones del portal. La flecha acompana en hover. */
+
+.back-link {
+  align-self: flex-start;
+  gap: 8px;
+  padding: 8px 16px 8px 13px;
+  border: 1px solid rgba(74, 46, 21, 0.18);
+  border-radius: 999px;
+  background: var(--white, #fff);
+  color: var(--brown, #4a2e15);
+  font-size: 13px;
+  font-weight: 400;
+  text-decoration: none;
+  transition: background-color 200ms ease, border-color 200ms ease,
+              color 200ms ease;
+}
+
+.back-link:hover,
+.back-link:focus-visible {
+  background: var(--cream, #f5f2ec);
+  border-color: var(--gold, #bea15e);
+  color: var(--ink, #2a1a0d);
+  text-decoration: none;
+}
+
+.back-link:focus-visible {
+  outline: 2px solid var(--gold, #bea15e);
+  outline-offset: 2px;
+}
+
+/* --- Volver del aviso legal (cabecera oscura) ----------------------- */
+
+.legal-head a {
+  padding: 7px 15px;
+  border: 1px solid rgba(190, 161, 94, 0.45);
+  border-radius: 999px;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+
+.legal-head a:hover,
+.legal-head a:focus-visible {
+  background: rgba(190, 161, 94, 0.16);
+  border-color: var(--gold, #bea15e);
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-link,
+  .legal-head a { transition: none; }
+}
+
+/* --- Checkout simulado ----------------------------------------------
+   Cierra el recorrido del socio: antes "Pagar seleccionados" terminaba
+   en un alert() del navegador. No procesa ningun pago real. */
+
+.checkout[hidden] { display: none; }
+
+.checkout {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.checkout__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(42, 26, 13, 0.55);
+  backdrop-filter: blur(2px);
+  animation: checkout-fade 200ms ease both;
+}
+
+.checkout__panel {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  max-width: 460px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 26px 28px 24px;
+  border-radius: 18px;
+  background: var(--white, #fff);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.3);
+  animation: checkout-in 240ms cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+.checkout__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.checkout__panel h2 {
+  margin: 0 0 4px;
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--ink, #2a1a0d);
+}
+
+.checkout__close {
+  border: none;
+  background: none;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--gray-text, #8a8378);
+  cursor: pointer;
+  padding: 0 4px;
+  border-radius: 8px;
+}
+
+.checkout__close:hover,
+.checkout__close:focus-visible { color: var(--ink, #2a1a0d); }
+
+.checkout__items {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+}
+
+.checkout__items li {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(74, 46, 21, 0.1);
+  font-size: 13px;
+  color: var(--gray-text, #8a8378);
+}
+
+.checkout__items li span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.checkout__items strong {
+  color: var(--ink, #2a1a0d);
+  white-space: nowrap;
+}
+
+.checkout__total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 16px 0 22px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--cream, #f5f2ec);
+  font-size: 13px;
+  color: var(--gray-text, #8a8378);
+}
+
+.checkout__total strong {
+  font-size: 23px;
+  font-weight: 700;
+  color: var(--brown, #4a2e15);
+}
+
+.checkout__label {
+  margin: 0 0 10px;
+  font-size: 11px;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--gray-text, #8a8378);
+}
+
+.checkout__medios {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin-bottom: 22px;
+}
+
+.checkout__medio { display: block; cursor: pointer; }
+.checkout__medio input { position: absolute; opacity: 0; pointer-events: none; }
+
+.checkout__medio-box {
+  display: block;
+  padding: 12px 15px;
+  border: 1px solid rgba(74, 46, 21, 0.18);
+  border-radius: 12px;
+  transition: border-color 200ms ease, background-color 200ms ease;
+}
+
+.checkout__medio-box strong {
+  display: block;
+  font-size: 13.5px;
+  color: var(--ink, #2a1a0d);
+}
+
+.checkout__medio-box small {
+  font-size: 11.5px;
+  color: var(--gray-text, #8a8378);
+}
+
+.checkout__medio input:checked + .checkout__medio-box {
+  border-color: var(--gold, #bea15e);
+  background: rgba(190, 161, 94, 0.1);
+}
+
+.checkout__medio input:focus-visible + .checkout__medio-box {
+  outline: 2px solid var(--gold, #bea15e);
+  outline-offset: 2px;
+}
+
+.checkout__pay {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 999px;
+  background: var(--gold, #bea15e);
+  color: var(--brown-dark, #2a1a0d);
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 13.5px;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: filter 200ms ease;
+}
+
+.checkout__pay:hover,
+.checkout__pay:focus-visible { filter: brightness(1.06); }
+
+.checkout__sim {
+  margin: 12px 0 0;
+  text-align: center;
+  font-size: 11px;
+  color: var(--gray-text, #8a8378);
+}
+
+/* --- Estado de exito ------------------------------------------------ */
+
+.checkout__step--ok { text-align: center; }
+
+.checkout__tick { margin: 6px auto 14px; width: 62px; height: 62px; }
+.checkout__tick svg { width: 100%; height: 100%; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+.checkout__tick-ring {
+  stroke: var(--gold, #bea15e);
+  stroke-width: 2.5;
+  stroke-dasharray: 151;
+  animation: tick-ring 500ms ease-out both;
+}
+
+.checkout__tick-path {
+  stroke: var(--brown, #4a2e15);
+  stroke-width: 3.5;
+  stroke-dasharray: 40;
+  animation: tick-path 300ms 380ms ease-out both;
+}
+
+.checkout__ok-sub {
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: var(--gray-text, #8a8378);
+}
+
+.checkout__recibo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px;
+  margin-bottom: 22px;
+  border-radius: 12px;
+  background: var(--cream, #f5f2ec);
+  text-align: left;
+}
+
+.checkout__recibo div { display: flex; justify-content: space-between; gap: 14px; }
+.checkout__recibo span { font-size: 12.5px; color: var(--gray-text, #8a8378); }
+.checkout__recibo strong { font-size: 13px; color: var(--ink, #2a1a0d); }
+
+.checkout__ok-actions { display: flex; flex-direction: column; gap: 9px; }
+
+.checkout__ok-primary {
+  padding: 13px;
+  border-radius: 999px;
+  background: var(--brown, #4a2e15);
+  color: var(--white, #fff);
+  font-size: 13px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.checkout__ok-primary:hover,
+.checkout__ok-primary:focus-visible { color: #fff; text-decoration: none; filter: brightness(1.12); }
+
+.checkout__ok-sec {
+  padding: 11px;
+  border: 1px solid rgba(74, 46, 21, 0.2);
+  border-radius: 999px;
+  background: none;
+  color: var(--brown, #4a2e15);
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+@keyframes checkout-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes checkout-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes tick-ring { from { stroke-dashoffset: 151; } to { stroke-dashoffset: 0; } }
+@keyframes tick-path { from { stroke-dashoffset: 40; } to { stroke-dashoffset: 0; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .checkout__backdrop,
+  .checkout__panel,
+  .checkout__tick-ring,
+  .checkout__tick-path { animation: none; }
+  .checkout__tick-ring,
+  .checkout__tick-path { stroke-dashoffset: 0; }
+  .checkout__medio-box,
+  .checkout__pay { transition: none; }
+}
+
+/* --- Notificaciones --------------------------------------------------
+   El portal no tenia forma de avisarle nada al socio. Sigue el mismo
+   patron de dropdown que el menu de perfil de la barra de utilidades. */
+
+.notif-wrap { position: relative; display: flex; }
+
+.notif-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.notif-trigger svg { width: 19px; height: 19px; }
+
+.notif-trigger:hover,
+.notif-trigger:focus-visible { background: rgba(190, 161, 94, 0.18); }
+
+.notif-trigger:focus-visible {
+  outline: 2px solid var(--gold, #bea15e);
+  outline-offset: 2px;
+}
+
+.notification-dot {
+  position: absolute;
+  top: 1px;
+  right: 0;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #c0392b;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: center;
+}
+
+.notif-dropdown {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  z-index: 80;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  border: 1.5px solid var(--brown, #4a2e15);
+  border-radius: 14px;
+  background: var(--white, #fff);
+  box-shadow: 0 14px 34px rgba(42, 26, 13, 0.18);
+  display: none;
+  overflow: hidden;
+  text-align: left;
+}
+
+.notif-dropdown.open {
+  display: block;
+  animation: notif-in 200ms ease both;
+}
+
+.notif-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(74, 46, 21, 0.12);
+}
+
+.notif-head strong { font-size: 14px; color: var(--ink, #2a1a0d); }
+
+.notif-clear {
+  border: none;
+  background: none;
+  padding: 0;
+  color: var(--gray-text, #8a8378);
+  font-family: inherit;
+  font-size: 11.5px;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.notif-clear:hover,
+.notif-clear:focus-visible { color: var(--brown, #4a2e15); }
+
+.notif-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+.notif-item {
+  display: flex;
+  gap: 11px;
+  padding: 13px 16px;
+  border-bottom: 1px solid rgba(74, 46, 21, 0.08);
+}
+
+.notif-item:last-child { border-bottom: none; }
+
+.notif-item--unread { background: rgba(190, 161, 94, 0.09); }
+
+.notif-ico {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--cream, #f5f2ec);
+  color: var(--brown, #4a2e15);
+}
+
+.notif-ico svg { width: 16px; height: 16px; }
+.notif-ico--pago    { background: rgba(192, 57, 43, 0.12); color: #a5342a; }
+.notif-ico--calamar { background: rgba(190, 161, 94, 0.22); }
+
+.notif-body { flex: 1 1 auto; min-width: 0; }
+
+.notif-title {
+  margin: 0 0 2px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink, #2a1a0d);
+  line-height: 1.35;
+}
+
+.notif-text {
+  margin: 0;
+  font-size: 12px;
+  color: var(--gray-text, #8a8378);
+  line-height: 1.45;
+}
+
+.notif-cta {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brown, #4a2e15);
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold, #bea15e);
+}
+
+.notif-cta:hover,
+.notif-cta:focus-visible { color: var(--ink, #2a1a0d); text-decoration: none; }
+
+.notif-time {
+  flex: 0 0 auto;
+  font-size: 10.5px;
+  color: var(--gray-text, #8a8378);
+  white-space: nowrap;
+}
+
+@keyframes notif-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notif-dropdown.open { animation: none; }
+  .notif-trigger { transition: none; }
+}
+
+/* --- Zona Calamar en el home ----------------------------------------
+   Es uno de los tres pilares del Portal (DECISION-006) y solo se
+   llegaba por el menu lateral. Esta seccion la pone en el recorrido. */
+
+.zc-promo {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin: 48px 0 52px;
+  padding: 42px 44px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--brown-dark, #2a1a0d), var(--brown, #4a2e15));
+  color: var(--white, #fff);
+}
+
+.zc-promo__logo {
+  display: block;
+  height: 46px;
+  width: auto;
+  margin-bottom: 22px;
+}
+
+.zc-promo__titulo {
+  margin: 0 0 14px;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.3px;
+}
+
+.zc-promo__bajada {
+  margin: 0 0 28px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(245, 242, 236, 0.82);
+  max-width: 46ch;
+}
+
+.zc-promo__cta {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: var(--gold, #bea15e);
+  color: var(--brown-dark, #2a1a0d);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  text-decoration: none;
+  transition: filter 200ms ease, transform 200ms ease;
+}
+
+.zc-promo__cta:hover,
+.zc-promo__cta:focus-visible {
+  color: var(--brown-dark, #2a1a0d);
+  text-decoration: none;
+  filter: brightness(1.07);
+  transform: translateY(-1px);
+}
+
+.zc-promo__placas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.zc-promo__placas li {
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  aspect-ratio: 1;
+}
+
+.zc-promo__placas img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 260ms ease;
+}
+
+.zc-promo__placas li:hover img { transform: scale(1.04); }
+
+@media (max-width: 900px) {
+  .zc-promo {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin: 36px 0 40px;
+    padding: 32px 26px;
+  }
+  .zc-promo__logo { height: 40px; margin-bottom: 18px; }
+  .zc-promo__titulo { font-size: 22px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .zc-promo__cta,
+  .zc-promo__placas img { transition: none; }
+}
+
+/* --- Checkout en pantallas chicas ----------------------------------- */
+
+@media (max-width: 480px) {
+  .checkout { padding: 12px; align-items: flex-end; }
+
+  .checkout__panel {
+    padding: 22px 18px 18px;
+    max-height: 92vh;
+    border-radius: 18px 18px 14px 14px;
+  }
+
+  .checkout__panel h2 { font-size: 19px; }
+  .checkout__total strong { font-size: 20px; }
+}
+
+/* --- Escudo y marca como vuelta al inicio ---------------------------
+   Convencion basica que faltaba: tocar el escudo o "Socios CAP" vuelve
+   al home. Se conserva la apariencia exacta que tenian como texto e
+   imagen sueltos; lo unico que cambia es que ahora son navegables. */
+
+.brand-home {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: opacity 200ms ease;
+}
+
+.brand-home:hover,
+.brand-home:focus-visible {
+  color: inherit;
+  text-decoration: none;
+  opacity: 0.82;
+}
+
+.brand-home:focus-visible {
+  outline: 2px solid var(--gold, #bea15e);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-home { transition: none; }
+}
+
+/* --- Barra superior en celular --------------------------------------
+   La campana de notificaciones sumo un elemento a una barra que ya
+   venia justa, y "Socios CAP" y "Hola, Camilo" empezaban a partirse en
+   dos lineas. En celular el saludo y el acceso al perfil ya viven en el
+   cajon lateral ("Hola, Camilo" / "Tu perfil" / "Cerrar sesion"), asi
+   que se quitan de la barra y queda: marca | notificaciones | menu. */
+
+@media (max-width: 760px) {
+  .utility-bar .profile-wrap { display: none; }
+
+  .brand-home .mobile-wordmark { white-space: nowrap; }
+
+  .utility-bar .right { gap: 10px; }
+
+  .notif-dropdown {
+    position: fixed;
+    top: 64px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+    max-width: none;
+  }
+}
+
+/* --- Barra de secciones: ancho estable ------------------------------
+   Cada pagina definia el max-width de .section-nav-inner igual al ancho
+   de su propio contenido (1180 / 1080 / 1000 / 900 px), asi que la barra
+   y sus opciones se corrian hasta 140 px al pasar de una seccion a otra.
+   La barra es chrome del sitio: tiene que quedarse quieta. Se unifica al
+   ancho mayor ya en uso, que es el de la home. El ancho de <main> de
+   cada pagina no se toca: eso es el layout aprobado. */
+
+.section-nav-inner { max-width: 1180px; }
+
+/* El item activo va en negrita, y la negrita es mas ancha: al cambiar de
+   seccion los links que venian despues se corrian unos pixeles. Cada
+   link reserva de antemano el ancho de su version en negrita mediante un
+   duplicado invisible de altura cero, asi el ancho no depende del estado. */
+
+nav.section-nav .links a {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+nav.section-nav .links a::after {
+  content: attr(data-label);
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  font-weight: 700;
+  pointer-events: none;
+}
