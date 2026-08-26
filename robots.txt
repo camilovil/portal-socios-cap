@@ -1,0 +1,30 @@
+# Prototipo del Portal de Socios CAP — no es el sitio oficial del club.
+#
+# Fuera de los buscadores: que ningun socio que googlee "portal socios
+# platense" caiga aca creyendo que es el portal real de CleverSoft.
+# Pero SI se permiten los crawlers de redes sociales, para que al
+# compartir el link se renderice la preview con imagen y titulo.
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+User-agent: Slackbot-LinkExpanding
+Allow: /
+
+User-agent: *
+Disallow: /
