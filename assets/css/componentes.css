@@ -1228,3 +1228,17 @@ body.con-menu-abierto .instalar-app {
   opacity: 0;
   pointer-events: none;
 }
+
+/* --- Barra superior sin sesion ---------------------------------------
+   Sin menu de socio no hay hamburguesa, y en celular ese lugar quedaba
+   vacio porque el enlace de ayuda estaba oculto justamente para dejarle
+   sitio. Sin la hamburguesa, el enlace vuelve. */
+
+@media (max-width: 760px) {
+  body.sin-sesion .utility-bar .right > a {
+    display: inline-flex;
+    align-items: center;
+    font-size: 12.5px;
+    white-space: nowrap;
+  }
+}

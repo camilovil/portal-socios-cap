@@ -18,7 +18,7 @@
    Al publicar cambios que deban aplicarse de inmediato, subir VERSION.
    ------------------------------------------------------------------ */
 
-const VERSION = 'v1';
+const VERSION = 'v2';
 const CACHE = `cap-socios-${VERSION}`;
 
 /* Lo minimo para que la credencial se abra sin conexion. */

@@ -145,8 +145,25 @@
 
   /* --- Montaje -------------------------------------------------------- */
 
+  /* Paginas sin sesion: el menu de socio no debe existir. Antes el
+     login mostraba "Camilo / SOCIO 955" y toda la navegacion privada
+     antes de que nadie ingresara. */
+  const SIN_SESION = ['login.html', 'index.html', ''];
+
   const drawer = document.getElementById('navDrawer');
   if (!drawer) return;
+
+  if (SIN_SESION.indexOf(paginaActual()) !== -1) {
+    document.body.classList.add('sin-sesion');
+    drawer.remove();
+    const fondo = document.getElementById('navBackdrop');
+    if (fondo) fondo.remove();
+    document.querySelectorAll('.hamburger-btn').forEach((b) => b.remove());
+    /* toggleNav() de la plantilla ya no tiene sobre que actuar: se
+       neutraliza para que un llamado suelto no tire un error. */
+    window.toggleNav = function () {};
+    return;
+  }
 
   drawer.classList.add('ms-panel');
   drawer.setAttribute('aria-label', 'Menú de socio');
