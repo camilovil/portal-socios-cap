@@ -4,10 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mis Inscripciones — Portal de Socios CAP</title>
+<link rel="stylesheet" href="assets/css/tipografias.css">
 <style>
-  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_light.otf') format('opentype'); font-weight: 300; }
-  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_medium.otf') format('opentype'); font-weight: 400; }
-  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_black.otf') format('opentype'); font-weight: 700; }
 
   :root {
     --brown: #4a2e15; --brown-dark: #2a1a0d; --gold: #bea15e; --gold-light: #d9c58f;
@@ -15,7 +13,7 @@
   }
   * { box-sizing: border-box; min-width: 0; }
   html, body { max-width: 100%; overflow-x: hidden; }
-  body { margin: 0; font-family: 'Gotham', sans-serif; font-weight: 300; background: var(--white); color: var(--ink); }
+  body { margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 300; background: var(--white); color: var(--ink); }
   a { color: inherit; text-decoration: none; }
 
   .utility-bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 12px 32px; font-size: 14px; color: var(--gray-text); border-bottom: 1px solid #eee; }
@@ -151,17 +149,55 @@
     .hero-help { display:none; }
   }
 </style>
+
+<!-- Metadatos para compartir en redes (capa del prototipo) -->
+<meta name="description" content="Alta de actividades y débito automático. Prototipo no oficial del Portal de Socios de Platense.">
+<link rel="canonical" href="https://portal-socios-cap.vercel.app/inscripciones">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Prototipo Portal de Socios CAP">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://portal-socios-cap.vercel.app/inscripciones">
+<meta property="og:title" content="Inscripciones y débito automático — Prototipo Portal CAP">
+<meta property="og:description" content="Alta de actividades y débito automático. Prototipo no oficial del Portal de Socios de Platense.">
+<meta property="og:image" content="https://portal-socios-cap.vercel.app/assets/og/portal-socios-cap.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pantallas del prototipo del Portal de Socios del Club Atlético Platense">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@Camilo_Tense">
+<link rel="icon" href="assets/img/favicon-192.png">
+
+<!-- Capa del prototipo publico (no forma parte del diseno aprobado) -->
+<link rel="stylesheet" href="assets/css/componentes.css">
+<link rel="stylesheet" href="assets/css/animaciones.css">
+<link rel="stylesheet" href="assets/css/prototipo.css">
+<script src="assets/js/prototipo.js"></script>
+
+<!-- App instalable (PWA) -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4a2e15">
+<link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Socios CAP">
+<meta name="mobile-web-app-capable" content="yes">
+<script src="/assets/js/pwa.js" defer></script>
+<script src="/assets/js/menu-socios.js" defer></script>
+<script src="/assets/js/notificaciones.js" defer></script>
 </head>
 <body>
 
 <div class="utility-bar">
-  <a class="site-link" href="https://cap.org.ar">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 5v6h6"/></svg>
+  <a class="site-link" href="https://cap.org.ar" target="_blank" rel="noopener" aria-label="Ir al sitio oficial del club (se abre en una pestaña nueva)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
     cap.org.ar
   </a>
   <div class="brand-group">
-    <img class="escudo-mini" src="assets/img/escudo-cap-oficial.png" alt="Club Atlético Platense">
-    <span class="mobile-wordmark">Socios CAP</span>
+    <a class="brand-home" href="home.html" aria-label="Ir al inicio del portal">
+      <img class="escudo-mini" src="assets/img/escudo-cap-oficial.png" alt="Club Atlético Platense">
+      <span class="mobile-wordmark">Socios CAP</span>
+    </a>
   </div>
   <div class="right">
     <div class="profile-wrap">
@@ -205,18 +241,18 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 21h8M12 17v4M17 4H7v6a5 5 0 0 0 10 0V4Z"/><path d="M7 6H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4M17 6h3a1 1 0 0 1 1 1v1a4 4 0 0 1-4 4"/></svg>
     Sumate a Zona Calamar
   </button>
-  <a class="drawer-site-link" href="https://cap.org.ar">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 5v6h6"/></svg>
+  <a class="drawer-site-link" href="https://cap.org.ar" target="_blank" rel="noopener" aria-label="Ir al sitio oficial del club (se abre en una pestaña nueva)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
     cap.org.ar
   </a>
 </nav>
 <nav class="section-nav">
   <div class="section-nav-inner">
-  <span class="brand">Socios CAP</span>
+  <a class="brand brand-home" href="home.html">Socios CAP</a>
   <div class="links">
-    <a href="home.html">Inicio</a>
-    <a href="mis-datos.html">Mi perfil</a>
-    <a href="beneficios.html">Beneficios</a>
+    <a href="home.html" data-label="Inicio">Inicio</a>
+    <a href="mis-datos.html" data-label="Mi perfil">Mi perfil</a>
+    <a href="beneficios.html" data-label="Beneficios">Beneficios</a>
   </div>
   </div>
 </nav>
@@ -267,10 +303,10 @@
   </div>
   <div class="footer-divider"></div>
   <div class="footer-bottom-row">
-    <span>Club Atlético Platense © 2026. Todos los derechos reservados.</span>
+    <span>Prototipo no oficial · Proyecto independiente de un socio del club.</span>
     <div class="legal-links">
-      <a href="#">Aviso legal</a><span class="dot">·</span>
-      <a href="#">Política de privacidad</a><span class="dot">·</span>
+      <a href="aviso-legal.html">Aviso legal</a><span class="dot">·</span>
+      <a href="aviso-legal.html#privacidad">Política de privacidad</a><span class="dot">·</span>
       <a href="mailto:sociosweb@cap.org.ar">sociosweb@cap.org.ar</a><span class="dot">·</span>
       <a href="https://cap.org.ar">cap.org.ar</a>
     </div>

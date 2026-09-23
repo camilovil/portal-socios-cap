@@ -1,0 +1,132 @@
+/* ------------------------------------------------------------------
+   splash.css — Pantalla de carga de la app instalada
+
+   Solo se ve cuando el Portal se abre desde el icono del telefono, y
+   una sola vez por arranque (ver splash.js). En el navegador no existe.
+
+   Continuidad con la imagen fija de iOS (apple-touch-startup-image):
+   esas imagenes tienen el escudo centrado en un cuadrado de 56vw sobre
+   --splash-fondo. Aca el escudo arranca exactamente en ese lugar, asi el
+   paso de la imagen fija a la animacion no se nota. Si se cambia
+   --splash-escudo, hay que regenerar las imagenes de
+   assets/img/pwa/splash/ con la misma proporcion.
+
+   Excepcion a la guia de 200-300 ms: una pantalla de arranque necesita
+   ~1,5 s para leerse. El socio puede tocar para saltearla y la pagina
+   carga por detras mientras tanto (ver DECISION-014).
+   ------------------------------------------------------------------ */
+
+:root {
+  --splash-fondo: #2a1a0d;
+  --splash-texto: #ffffff;
+  --splash-dorado: #bea15e;
+  --splash-escudo: min(56vw, 300px);
+  --splash-subida: -8vh;
+  --splash-z: 10050;
+}
+
+/* Antes de que exista el <body>: fondo y escudo en el lienzo, en el
+   mismo lugar que la imagen fija de iOS. Evita un marron vacio entre
+   la imagen del sistema y la animacion. */
+html.cap-splash-activo {
+  background: var(--splash-fondo) url('../img/escudo-cap-oficial.png')
+              no-repeat center / var(--splash-escudo) fixed;
+}
+
+html.cap-splash-activo body {
+  visibility: hidden;
+}
+
+.cap-splash {
+  position: fixed;
+  inset: 0;
+  z-index: var(--splash-z);
+  visibility: visible;
+  background: var(--splash-fondo);
+  cursor: pointer;
+  transition: opacity 300ms ease;
+}
+
+.cap-splash--saliendo {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cap-splash__escudo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--splash-escudo);
+  height: var(--splash-escudo);
+  margin: calc(var(--splash-escudo) / -2) 0 0 calc(var(--splash-escudo) / -2);
+  animation: cap-splash-escudo 550ms cubic-bezier(0.22, 1, 0.36, 1) 150ms both;
+}
+
+/* Debajo del escudo ya reubicado: la parte visible del escudo ocupa el
+   87 % del alto del cuadrado, y queda al 90 % de escala. */
+.cap-splash__marca {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(50% + var(--splash-escudo) * 0.39 + var(--splash-subida) + 18px);
+  margin: 0;
+  color: var(--splash-texto);
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: clamp(22px, 7vw, 34px);
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  line-height: 1;
+  text-align: center;
+  text-indent: 0.3em; /* compensa el espaciado final para centrar optico */
+  animation: cap-splash-marca 400ms ease-out 450ms both;
+}
+
+.cap-splash__cap {
+  color: var(--splash-dorado);
+}
+
+.cap-splash__marca::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin: 16px auto 0;
+  background: var(--splash-dorado);
+  transform-origin: center;
+  animation: cap-splash-linea 350ms ease-out 700ms both;
+}
+
+@keyframes cap-splash-escudo {
+  to { transform: translateY(var(--splash-subida)) scale(0.9); }
+}
+
+@keyframes cap-splash-marca {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes cap-splash-linea {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+/* Sin movimiento: el escudo queda donde estaba y el texto solo aparece. */
+@media (prefers-reduced-motion: reduce) {
+  :root { --splash-subida: 0px; }
+
+  .cap-splash__escudo,
+  .cap-splash__marca::after {
+    animation: none;
+  }
+
+  .cap-splash__marca {
+    top: calc(50% + var(--splash-escudo) * 0.44 + 18px);
+    animation-name: cap-splash-aparece;
+    animation-delay: 100ms;
+  }
+
+  @keyframes cap-splash-aparece {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+}

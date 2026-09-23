@@ -1,0 +1,207 @@
+/* ------------------------------------------------------------------
+   animaciones.css — Microinteracciones del Portal
+
+   Se carga despues de componentes.css. Solo agrega movimiento: no
+   cambia colores, tamaños ni posiciones de reposo del diseño aprobado.
+
+   - Presion: los botones se hunden apenas al tocarlos (en celular no
+     hay hover, es la unica confirmacion de que el toque se registro).
+   - Menu lateral: entrada con desaceleracion, salida mas rapida, y
+     el fondo se oscurece con un leve desenfoque.
+   - Paneles (bot, perfil): aparecen deslizando desde su origen.
+
+   Duraciones dentro de 150-320 ms. Todo se apaga con
+   prefers-reduced-motion.
+   ------------------------------------------------------------------ */
+
+:root {
+  --anim-presion: 0.97;
+  --anim-rapida: 150ms;
+  --anim-media: 240ms;
+  --anim-entrada: cubic-bezier(0.22, 1, 0.36, 1);
+  --anim-salida: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* --- Presion en botones ---------------------------------------------
+   Se usa la propiedad `scale` y no `transform`, asi no pisa los
+   transform que algunos componentes ya usan (hover de las tarjetas,
+   giro de la credencial).
+
+   :where() deja la regla general sin especificidad: los componentes
+   que ya declaran su propia transicion se listan abajo con la suya
+   sumada. */
+
+:where(button, [role="button"], [class*="btn"], .tile, .drawer-cta) {
+  transition: scale var(--anim-rapida) ease;
+}
+
+:where(button, [role="button"], [class*="btn"], .tile, .drawer-cta):not(:disabled):active {
+  scale: var(--anim-presion);
+}
+
+.btn-pill {
+  transition: scale var(--anim-rapida) ease, filter 200ms ease,
+              box-shadow 200ms ease, background-color 200ms ease;
+}
+
+.tile {
+  transition: transform .15s, box-shadow .15s, border-color .15s,
+              scale var(--anim-rapida) ease;
+}
+
+.ms-cta,
+.checkout__pay,
+.instalar-app__ok {
+  transition: filter 200ms ease, scale var(--anim-rapida) ease;
+}
+
+.instalar-app__cerrar {
+  transition: background-color 200ms ease, border-color 200ms ease,
+              scale var(--anim-rapida) ease;
+}
+
+.ms-cta:active,
+.zc-promo__cta:active,
+.back-link:active,
+.ms-pendiente:active {
+  scale: var(--anim-presion);
+}
+
+.zc-promo__cta {
+  transition: filter 200ms ease, transform 200ms ease, scale var(--anim-rapida) ease;
+}
+
+.back-link {
+  transition: background-color 200ms ease, border-color 200ms ease,
+              color 200ms ease, scale var(--anim-rapida) ease;
+}
+
+.ms-pendiente {
+  transition: filter 200ms ease, scale var(--anim-rapida) ease;
+}
+
+/* Botones redondos de icono: el toque deja un halo dorado en vez del
+   destello gris/azul del sistema. */
+.hamburger-btn,
+.notif-trigger,
+.ms-head__cerrar {
+  border-radius: 50%;
+  transition: background-color 200ms ease, scale var(--anim-rapida) ease;
+}
+
+.hamburger-btn:active,
+.notif-trigger:active {
+  background-color: rgba(190, 161, 94, 0.18);
+  scale: 0.92;
+}
+
+.ms-head__cerrar:active { scale: 0.9; }
+
+/* Las tres lineas se abren un poco al tocar, anticipando el menu. */
+.hamburger-btn svg path {
+  transition: transform var(--anim-media) var(--anim-entrada);
+  transform-origin: center;
+}
+
+.hamburger-btn:active svg path { transform: scaleX(0.82); }
+
+.bot-fab {
+  transition: scale var(--anim-rapida) ease, box-shadow 200ms ease;
+}
+
+.bot-fab:active { scale: 0.92; }
+
+/* Filas del menu: se sombrean en gris apenas se tocan (sin demora, para
+   que se vean aunque el toque sea corto) y el gris se desvanece al
+   soltar. */
+.ms-row,
+.ms-salir,
+.ms-sitio {
+  transition: background-color 200ms ease, color 200ms ease;
+}
+
+.ms-row:active {
+  background-color: rgba(28, 17, 8, 0.09);
+  transition-duration: 0s;
+}
+
+.ms-row[aria-current="page"]:active { background-color: #e8e2d6; }
+
+.ms-pendiente:active { filter: brightness(0.96); }
+
+.ms-salir:active,
+.ms-sitio:active {
+  color: var(--ink, #2a1a0d);
+  transition-duration: 0s;
+}
+
+/* --- Menu lateral ----------------------------------------------------- */
+
+.nav-drawer {
+  transition: transform 220ms var(--anim-salida), box-shadow 220ms ease;
+}
+
+.nav-drawer.open {
+  transition: transform 320ms var(--anim-entrada), box-shadow 320ms ease;
+  box-shadow: -18px 0 48px rgba(28, 17, 8, 0.22);
+}
+
+/* Mientras se arrastra con el dedo el panel sigue al dedo sin demora. */
+.nav-drawer.ms-panel[data-arrastrando="true"] { transition: none; }
+
+.nav-backdrop {
+  transition: opacity var(--anim-media) ease,
+              -webkit-backdrop-filter var(--anim-media) ease,
+              backdrop-filter var(--anim-media) ease;
+}
+
+.nav-backdrop.open {
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+/* --- Paneles que se abren --------------------------------------------- */
+
+.bot-panel.open {
+  transform-origin: bottom right;
+  animation: anim-panel-sube var(--anim-media) var(--anim-entrada) both;
+}
+
+.profile-dropdown.open {
+  transform-origin: top right;
+  animation: anim-panel-baja 200ms var(--anim-entrada) both;
+}
+
+@keyframes anim-panel-sube {
+  from { opacity: 0; transform: translateY(12px) scale(0.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes anim-panel-baja {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* --- Sin movimiento ---------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scale: none !important;
+  }
+
+  .nav-drawer,
+  .nav-drawer.open,
+  .nav-backdrop,
+  .hamburger-btn svg path {
+    transition: none;
+  }
+
+  .hamburger-btn:active svg path { transform: none; }
+
+  .bot-panel.open,
+  .profile-dropdown.open {
+    animation: none;
+  }
+}

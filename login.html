@@ -4,11 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ingresá a tu área de socio — Club Atlético Platense</title>
+<link rel="stylesheet" href="assets/css/tipografias.css">
 <style>
-  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_light.otf') format('opentype'); font-weight: 300; }
-  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_medium.otf') format('opentype'); font-weight: 400; }
-  @font-face { font-family: 'Gotham'; src: url('assets/fonts/gotham_black.otf') format('opentype'); font-weight: 700; }
-  @font-face { font-family: 'Calamar'; src: url('assets/fonts/AwesomeSerifItalic-MediumTall.otf') format('opentype'); font-style: italic; }
 
   :root {
     --brown: #4a2e15;
@@ -23,7 +20,7 @@
   }
   * { box-sizing: border-box; min-width: 0; }
   html, body { max-width: 100%; overflow-x: hidden; }
-  body { margin: 0; font-family: 'Gotham', sans-serif; font-weight: 300; background: var(--white); color: var(--ink); }
+  body { margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 300; background: var(--white); color: var(--ink); }
   a { color: inherit; }
 
   .utility-bar {
@@ -86,7 +83,7 @@
   }
   .tabs { display: flex; gap: 22px; margin-bottom: 24px; border-bottom: 1px solid #eee; }
   .tabs button {
-    border: none; background: none; padding: 0 0 12px; font-family: 'Gotham', sans-serif;
+    border: none; background: none; padding: 0 0 12px; font-family: 'Montserrat', sans-serif;
     font-weight: 400; font-size: 13px; color: var(--gray-text); cursor: pointer; border-bottom: 2px solid transparent;
   }
   .tabs button.active { color: var(--brown); font-weight: 700; border-bottom-color: var(--gold); }
@@ -95,7 +92,7 @@
   .field { margin-bottom: 16px; position: relative; }
   .field input {
     width: 100%; padding: 14px 16px; border: none; border-radius: 10px;
-    font-family: 'Gotham', sans-serif; font-weight: 300; font-size: 14px;
+    font-family: 'Montserrat', sans-serif; font-weight: 300; font-size: 14px;
     color: var(--ink); background: var(--gray-fill); outline: none;
   }
   .field input:focus { box-shadow: 0 0 0 2px var(--gold); }
@@ -116,7 +113,7 @@
   .login-error { display: none; background: #fdecea; color: #b3261e; font-size: 12px; border-radius: 8px; padding: 10px 14px; margin: -6px 0 16px; }
   .login-error.show { display: block; }
 
-  .btn { width: 100%; padding: 16px; border-radius: 14px; border: none; font-family: 'Gotham', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.8px; text-transform: uppercase; cursor: pointer; margin-bottom: 12px; }
+  .btn { width: 100%; padding: 16px; border-radius: 14px; border: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.8px; text-transform: uppercase; cursor: pointer; margin-bottom: 12px; }
   .btn-primary { background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 55%, #8f7a44 100%); color: var(--brown-dark); box-shadow: 0 8px 20px rgba(190,161,94,0.35); }
   .btn-primary:hover { filter: brightness(1.05); box-shadow: 0 10px 26px rgba(190,161,94,0.45); }
   .btn-secondary { background: transparent; color: var(--brown); border: 2px solid var(--brown); }
@@ -196,7 +193,7 @@
   .bot-input-row { display: flex; gap: 8px; padding: 12px; border-top: 1px solid #eee; }
   .bot-input-row input {
     flex: 1; border: none; background: var(--gray-fill); border-radius: 999px;
-    padding: 10px 14px; font-family: 'Gotham', sans-serif; font-size: 13px; outline: none;
+    padding: 10px 14px; font-family: 'Montserrat', sans-serif; font-size: 13px; outline: none;
   }
   .bot-input-row button { width: 38px; height: 38px; border-radius: 50%; border: none; background: var(--gold); color: var(--brown-dark); font-weight: 700; cursor: pointer; }
 
@@ -244,12 +241,48 @@
     .hero-help { display:none; }
   }
 </style>
+
+<!-- Metadatos para compartir en redes (capa del prototipo) -->
+<meta name="description" content="Prototipo no oficial del Portal de Socios del Club Atlético Platense: nuevo login, credencial digital y sección de pagos. Hecho por un socio.">
+<link rel="canonical" href="https://portal-socios-cap.vercel.app/login">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Prototipo Portal de Socios CAP">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://portal-socios-cap.vercel.app/login">
+<meta property="og:title" content="Ingresá a tu área de socio — Prototipo Portal CAP">
+<meta property="og:description" content="Prototipo no oficial del Portal de Socios del Club Atlético Platense: nuevo login, credencial digital y sección de pagos. Hecho por un socio.">
+<meta property="og:image" content="https://portal-socios-cap.vercel.app/assets/og/portal-socios-cap.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pantallas del prototipo del Portal de Socios del Club Atlético Platense">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@Camilo_Tense">
+<link rel="icon" href="assets/img/favicon-192.png">
+
+<!-- Capa del prototipo publico (no forma parte del diseno aprobado) -->
+<link rel="stylesheet" href="assets/css/componentes.css">
+<link rel="stylesheet" href="assets/css/animaciones.css">
+<link rel="stylesheet" href="assets/css/prototipo.css">
+<script src="assets/js/prototipo.js"></script>
+
+<!-- App instalable (PWA) -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4a2e15">
+<link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Socios CAP">
+<meta name="mobile-web-app-capable" content="yes">
+<script src="/assets/js/pwa.js" defer></script>
+<script src="/assets/js/menu-socios.js" defer></script>
+<script src="/assets/js/notificaciones.js" defer></script>
 </head>
 <body>
 
 <div class="utility-bar">
-  <a class="site-link" href="https://cap.org.ar">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 1 0 9-9"/><path d="M3 5v6h6"/></svg>
+  <a class="site-link" href="https://cap.org.ar" target="_blank" rel="noopener" aria-label="Ir al sitio oficial del club (se abre en una pestaña nueva)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
     cap.org.ar
   </a>
   <div class="brand-group">
@@ -315,16 +348,20 @@
 
 <main>
   <div class="card">
-    <div class="tabs">
-      <button class="active">Usuario y contraseña</button>
-      <button>Ingresar con email</button>
+    <div class="tabs" role="tablist" aria-label="Forma de ingreso">
+      <button type="button" class="active" id="tab-sesion-password" role="tab"
+              aria-selected="true" aria-controls="contentSessionPassword">Usuario y contraseña</button>
+      <button type="button" id="tab-sesion-email" role="tab"
+              aria-selected="false" tabindex="-1" aria-controls="contentSessionEmail">Ingresar con email</button>
     </div>
+
+    <div id="contentSessionPassword" role="tabpanel" aria-labelledby="tab-sesion-password">
     <form id="loginForm" onsubmit="return doLogin(event)">
       <div class="field"><label>Correo electrónico</label><input id="loginEmail" type="email" placeholder="Ingresá tu correo"></div>
       <div class="field">
         <label>Contraseña</label>
         <input id="loginPass" type="password" placeholder="Ingresá tu contraseña">
-        <span class="toggle-eye">👁</span>
+        <span class="toggle-eye" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
       </div>
 
       <!-- En CleverSoft el captcha es de imagen: la sirve $.post("", {action: "getCaptcha"})
@@ -344,7 +381,48 @@
       <button class="btn btn-primary">Ingresá</button>
       <button class="btn btn-secondary" type="button">Quiero ser socio</button>
       <div class="link-row"><a href="#">Ya soy socio, activar mi cuenta</a></div>
+      <p class="demo-skip"><a href="home.html">Entrar a la demo sin credenciales →</a></p>
     </form>
+    </div>
+
+    <!-- En CleverSoft este flujo postea $.post("", {action: "enviarCodigoLogin"})
+         y luego {action: "validateCodigo"}. Se conservan los mismos IDs para que
+         al integrar solo haya que conectar las dos llamadas. -->
+    <div id="contentSessionEmail" role="tabpanel" aria-labelledby="tab-sesion-email" hidden>
+      <form id="emailCodeForm" onsubmit="return doEmailCode(event)">
+        <div class="field">
+          <label for="loginEmailCode">Correo electrónico</label>
+          <input id="loginEmailCode" type="email" placeholder="Ingresá tu correo" autocomplete="email">
+        </div>
+
+        <div class="inbox-sim" id="codeSentMsg" role="status" hidden>
+          <p class="inbox-sim__tag">Correo simulado — en el portal real este mail llega a tu casilla</p>
+          <div class="inbox-sim__mail">
+            <div class="inbox-sim__from">
+              <img src="assets/img/escudo-cap-oficial.png" alt="">
+              <div>
+                <strong>Club Atlético Platense</strong>
+                <span>sociosweb@cap.org.ar</span>
+              </div>
+            </div>
+            <p class="inbox-sim__subject">Tu código de acceso al Portal de Socios</p>
+            <p class="inbox-sim__code" id="codigoGenerado">------</p>
+            <button type="button" class="inbox-sim__use" id="btnUsarCodigo">Usar este código</button>
+          </div>
+        </div>
+
+        <div class="field" id="codeField" hidden>
+          <label for="loginCodigo">Código de acceso</label>
+          <input id="loginCodigo" type="text" inputmode="numeric" maxlength="6"
+                 placeholder="6 dígitos" autocomplete="one-time-code">
+        </div>
+
+        <p class="login-error" id="emailError" role="alert">Ingresá un correo válido.</p>
+
+        <button class="btn btn-primary" id="btnEnviarCodigo">Enviarme un código de acceso</button>
+        <div class="link-row"><a href="#">No recibí el código</a></div>
+      </form>
+    </div>
   </div>
 </main>
 
@@ -360,10 +438,10 @@
   </div>
   <div class="footer-divider"></div>
   <div class="footer-bottom-row">
-    <span>Club Atlético Platense © 2026. Todos los derechos reservados.</span>
+    <span>Prototipo no oficial · Proyecto independiente de un socio del club.</span>
     <div class="legal-links">
-      <a href="#">Aviso legal</a><span class="dot">·</span>
-      <a href="#">Política de privacidad</a><span class="dot">·</span>
+      <a href="aviso-legal.html">Aviso legal</a><span class="dot">·</span>
+      <a href="aviso-legal.html#privacidad">Política de privacidad</a><span class="dot">·</span>
       <a href="mailto:sociosweb@cap.org.ar">sociosweb@cap.org.ar</a><span class="dot">·</span>
       <a href="https://cap.org.ar">cap.org.ar</a>
     </div>
@@ -385,7 +463,7 @@
     <button class="close-bot" onclick="toggleBot()">✕</button>
   </div>
   <div class="bot-messages" id="botMessages">
-    <div class="bot-msg bot">¡Hola! Soy el Bot Calamar 🦑 ¿Ya sos socio o querés asociarte? Puedo ayudarte a ingresar o guiarte para registrarte.</div>
+    <div class="bot-msg bot">¡Hola! Soy el Bot Calamar. ¿Ya sos socio o querés asociarte? Puedo ayudarte a ingresar o guiarte para registrarte.</div>
   </div>
   <div class="bot-quick" id="botQuick">
     <button onclick="botAsk('¿Cómo me registro?')">¿Cómo me registro?</button>
@@ -405,8 +483,6 @@ function toggleNav(open) {
   document.getElementById('navBackdrop').classList.toggle('open', open);
 }
 
-const DEMO_EMAIL = 'camilo@cap.org.ar';
-const DEMO_PASS = 'calamar2026';
 
 function showLoginError(message) {
   const error = document.getElementById('loginError');
@@ -414,23 +490,97 @@ function showLoginError(message) {
   error.classList.add('show');
 }
 
-function doLogin(e) {
-  e.preventDefault();
-  const email = document.getElementById('loginEmail').value.trim().toLowerCase();
-  const pass = document.getElementById('loginPass').value;
-  const noSoyRobot = document.getElementById('not-robot');
+/* --- Tabs de ingreso ------------------------------------------------
+   Replica el comportamiento de #tab-sesion-password / #tab-sesion-email
+   de CleverSoft. Al integrar, esta funcion se reemplaza por el JS real. */
+const loginTabs = [
+  { tab: 'tab-sesion-password', panel: 'contentSessionPassword' },
+  { tab: 'tab-sesion-email',    panel: 'contentSessionEmail' }
+];
 
-  if (!noSoyRobot.checked) {
-    showLoginError('Marcá "No soy un robot" para continuar.');
-    noSoyRobot.focus();
+function activarTab(idTab) {
+  loginTabs.forEach(({ tab, panel }) => {
+    const esActivo = tab === idTab;
+    const btn = document.getElementById(tab);
+    btn.classList.toggle('active', esActivo);
+    btn.setAttribute('aria-selected', String(esActivo));
+    btn.tabIndex = esActivo ? 0 : -1;
+    document.getElementById(panel).hidden = !esActivo;
+  });
+}
+
+loginTabs.forEach(({ tab }, i) => {
+  const btn = document.getElementById(tab);
+  btn.addEventListener('click', () => activarTab(tab));
+  btn.addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    const destino = loginTabs[(i + 1) % loginTabs.length];
+    activarTab(destino.tab);
+    document.getElementById(destino.tab).focus();
+  });
+});
+
+/* --- Ingreso con codigo por email -----------------------------------
+   En la demo cualquier correo valido recibe el codigo y cualquier
+   codigo de 6 digitos entra: es la puerta de entrada para quien
+   llega al prototipo sin credenciales. */
+let codigoEnviado = false;
+
+/** Codigo de 6 digitos para el buzon simulado. */
+const generarCodigo = () =>
+  String(Math.floor(Math.random() * 900000) + 100000);
+
+function doEmailCode(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmailCode');
+  const error = document.getElementById('emailError');
+  const boton = document.getElementById('btnEnviarCodigo');
+
+  if (!codigoEnviado) {
+    if (!email.checkValidity() || !email.value.trim()) {
+      error.textContent = 'Ingresá un correo válido para recibir el código.';
+      error.style.display = 'block';
+      email.focus();
+      return false;
+    }
+    error.style.display = 'none';
+    codigoEnviado = true;
+
+    document.getElementById('codigoGenerado').textContent = generarCodigo();
+    document.getElementById('codeSentMsg').hidden = false;
+    document.getElementById('codeField').hidden = false;
+    boton.textContent = 'Validar y entrar';
+    document.getElementById('loginCodigo').focus();
     return false;
   }
 
-  if (email === DEMO_EMAIL && pass === DEMO_PASS) {
-    location.href = 'home.html';
-  } else {
-    showLoginError('Email o contraseña incorrectos. Revisá los datos e intentá de nuevo.');
+  // Prototipo: cualquier codigo de 6 digitos entra, para que nadie
+  // quede afuera de la demo por un error de tipeo.
+  const codigo = document.getElementById('loginCodigo').value.trim();
+  if (codigo.length < 4) {
+    error.textContent = 'El código tiene 6 dígitos. Copialo del correo de arriba.';
+    error.style.display = 'block';
+    return false;
   }
+  location.href = 'home.html';
+  return false;
+}
+
+document.getElementById('btnUsarCodigo').addEventListener('click', () => {
+  const input = document.getElementById('loginCodigo');
+  input.value = document.getElementById('codigoGenerado').textContent.trim();
+  document.getElementById('emailError').style.display = 'none';
+  input.focus();
+});
+
+function doLogin(e) {
+  e.preventDefault();
+  // Prototipo publico: la pantalla se muestra tal como fue disenada,
+  // pero no pide credenciales, para que nadie quede afuera de la demo.
+  // En CleverSoft la validacion la hace el servidor y el captcha se
+  // resuelve con $.post("", {action: "getCaptcha"}).
+  location.href = 'home.html';
   return false;
 }
 </script>

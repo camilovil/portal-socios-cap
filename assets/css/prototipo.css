@@ -1,0 +1,121 @@
+/* ------------------------------------------------------------------
+   prototipo.css
+   Capa exclusiva del prototipo publico: distintivo de "no oficial",
+   afordancia para enlaces todavia sin destino y ajuste de la maqueta
+   mobile en pantallas reales.
+
+   No pertenece al diseno aprobado del Portal. Si este trabajo se
+   integra a CleverSoft, este archivo se elimina completo y no queda
+   ningun rastro en las plantillas.
+   ------------------------------------------------------------------ */
+
+/* --- Distintivo de prototipo no oficial ---------------------------- */
+
+.proto-badge {
+  position: fixed;
+  left: 16px;
+  bottom: calc(16px + env(safe-area-inset-bottom, 0px));
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  max-width: calc(100vw - 32px);
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(190, 161, 94, 0.45);
+  background: rgba(42, 26, 13, 0.92);
+  color: #f5f2ec;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 11.5px;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: 0.2px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.22);
+  transition: transform 220ms ease, opacity 220ms ease;
+}
+
+.proto-badge:hover,
+.proto-badge:focus-visible {
+  color: #ffffff;
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.proto-badge:focus-visible {
+  outline: 2px solid #bea15e;
+  outline-offset: 2px;
+}
+
+.proto-badge__dot {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #bea15e;
+}
+
+.proto-badge__text strong {
+  font-weight: 700;
+}
+
+.proto-badge__text span {
+  opacity: 0.75;
+}
+
+@media (max-width: 560px) {
+  .proto-badge {
+    left: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    font-size: 10.5px;
+    padding: 6px 11px;
+  }
+  /* En pantallas chicas el boton del Bot Calamar ocupa la esquina
+     derecha: se recorta el texto para que nunca se superpongan. */
+  .proto-badge__text span {
+    display: none;
+  }
+}
+
+/* --- Enlaces sin destino en el prototipo --------------------------- */
+
+.proto-soon {
+  position: relative;
+  cursor: help;
+}
+
+.proto-soon::after {
+  content: 'Próximamente';
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translate(-50%, 4px);
+  z-index: 9998;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: #2a1a0d;
+  color: #f5f2ec;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.proto-soon:hover::after,
+.proto-soon:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+/* --- Accesibilidad ------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .proto-badge,
+  .proto-soon::after {
+    transition: none;
+  }
+}

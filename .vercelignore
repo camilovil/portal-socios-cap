@@ -1,0 +1,18 @@
+# Nada de esto debe quedar publico en el prototipo.
+
+# Capturas del sitio real del club y de CleverSoft: material de trabajo
+# interno. Republicarlo en un servidor abierto seria exactamente lo que
+# el aviso legal dice que no hacemos.
+reverse-engineering/
+
+# Propuesta institucional (.pptx / .docx): documento de negocio interno,
+# no un asset del sitio. Sin esto queda descargable por URL directa.
+presentacion/
+
+# Documentacion y configuracion del proyecto
+.claude/
+CLAUDE.md
+PROJECT_CONTEXT.md
+DECISIONS.md
+ATRIBUCIONES.md
+README.md

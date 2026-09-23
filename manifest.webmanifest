@@ -1,0 +1,50 @@
+{
+  "name": "Socios CAP — Club Atlético Platense",
+  "short_name": "Socios CAP",
+  "description": "Tu Área Calamar: credencial digital, cuota, turnos y beneficios del Club Atlético Platense.",
+  "lang": "es-AR",
+  "dir": "ltr",
+  "start_url": "/home",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#4a2e15",
+  "background_color": "#2a1a0d",
+  "categories": ["sports", "lifestyle"],
+  "icons": [
+    {
+      "src": "/assets/img/pwa/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/img/pwa/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/img/pwa/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Mi credencial",
+      "short_name": "Credencial",
+      "description": "Mostrá tu carnet digital en el acceso",
+      "url": "/home?ver=credencial",
+      "icons": [{ "src": "/assets/img/pwa/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Pagar la cuota",
+      "short_name": "Pagar",
+      "description": "Tus cuotas pendientes",
+      "url": "/pagos-pendientes",
+      "icons": [{ "src": "/assets/img/pwa/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

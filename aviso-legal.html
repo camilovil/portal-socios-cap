@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aviso legal — Prototipo Portal de Socios</title>
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="assets/css/tipografias.css">
+<style>
+
+  :root {
+    --brown: #4a2e15;
+    --brown-dark: #2a1a0d;
+    --gold: #bea15e;
+    --cream: #f5f2ec;
+    --white: #ffffff;
+    --gray-text: #8a8378;
+    --ink: #2a1a0d;
+    --radius: 14px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; font-family: 'Montserrat', sans-serif; font-weight: 300;
+    background: var(--cream); color: var(--ink); line-height: 1.65;
+  }
+  .legal-head {
+    background: var(--brown-dark); color: var(--white);
+    padding: 28px 24px; display: flex; align-items: center; gap: 14px;
+  }
+  .legal-head img { height: 40px; }
+  .legal-head a { color: var(--gold); text-decoration: none; font-size: 13px; margin-left: auto; }
+  .legal-head a:hover, .legal-head a:focus-visible { text-decoration: underline; }
+  .legal-wrap { max-width: 760px; margin: 0 auto; padding: 40px 24px 72px; }
+  .legal-wrap h1 { font-weight: 700; font-size: 30px; margin: 0 0 6px; }
+  .legal-wrap .sub { color: var(--gray-text); font-size: 14px; margin: 0 0 34px; }
+  .legal-wrap h2 {
+    font-weight: 700; font-size: 16px; margin: 34px 0 10px;
+    padding-top: 20px; border-top: 1px solid #e0dbd1;
+  }
+  .legal-wrap p, .legal-wrap li { font-size: 15px; }
+  .legal-wrap ul { padding-left: 20px; }
+  .legal-wrap a { color: var(--brown); }
+  .callout {
+    background: var(--white); border-left: 4px solid var(--gold);
+    border-radius: var(--radius); padding: 18px 20px; margin: 26px 0;
+  }
+  .callout strong { font-weight: 700; }
+</style>
+
+<!-- Metadatos para compartir en redes (capa del prototipo) -->
+<meta name="description" content="Aviso legal del prototipo no oficial del Portal de Socios del Club Atlético Platense.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://portal-socios-cap.vercel.app/aviso-legal">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Prototipo Portal de Socios CAP">
+<meta property="og:locale" content="es_AR">
+<meta property="og:url" content="https://portal-socios-cap.vercel.app/aviso-legal">
+<meta property="og:title" content="Aviso legal — Prototipo Portal de Socios CAP">
+<meta property="og:description" content="Aviso legal del prototipo no oficial del Portal de Socios del Club Atlético Platense.">
+<meta property="og:image" content="https://portal-socios-cap.vercel.app/assets/og/portal-socios-cap.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Pantallas del prototipo del Portal de Socios del Club Atlético Platense">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@Camilo_Tense">
+<link rel="icon" href="assets/img/favicon-192.png">
+
+<!-- Capa del prototipo publico (no forma parte del diseno aprobado) -->
+<link rel="stylesheet" href="assets/css/componentes.css">
+<link rel="stylesheet" href="assets/css/animaciones.css">
+<link rel="stylesheet" href="assets/css/prototipo.css">
+<script src="assets/js/prototipo.js"></script>
+
+<!-- App instalable (PWA) -->
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#4a2e15">
+<link rel="apple-touch-icon" href="/assets/img/pwa/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Socios CAP">
+<meta name="mobile-web-app-capable" content="yes">
+<script src="/assets/js/pwa.js" defer></script>
+</head>
+<body>
+
+<header class="legal-head">
+  <img src="assets/img/escudo-cap-oficial.png" alt="Escudo del Club Atlético Platense">
+  <a href="login.html">&larr; Volver al prototipo</a>
+</header>
+
+<main class="legal-wrap">
+  <h1>Aviso legal</h1>
+  <p class="sub">Última actualización: 26 de agosto de 2026</p>
+
+  <div class="callout">
+    <strong>Esto no es el sitio oficial del Club Atlético Platense.</strong> Es un prototipo
+    de diseño, sin fines comerciales, hecho por un socio del club por iniciativa propia.
+    No tiene relación con la administración del club, con su Comisión Directiva ni con
+    CleverSoft / MiClub, el sistema que hoy opera el portal real.
+  </div>
+
+  <h2>Qué es este sitio</h2>
+  <p>
+    Una maqueta navegable que explora cómo podría verse el Portal de Socios si adoptara
+    una estética alineada a la web institucional del club. Existe únicamente como propuesta
+    visual: no gestiona cuotas, no procesa pagos, no emite credenciales y no está conectado
+    a ningún sistema del club.
+  </p>
+
+  <h2 id="privacidad">Datos y privacidad</h2>
+  <p>
+    Este prototipo <strong>no recolecta ningún dato</strong>. No tiene analítica, no usa
+    cookies, no guarda nada en tu navegador y no envía información a ningún servidor.
+    El formulario de ingreso es decorativo: no valida credenciales ni transmite lo que
+    escribas. Toda la información que se muestra (cuotas, turnos, pagos, credencial) es
+    de ejemplo y no corresponde a datos reales de ningún socio.
+  </p>
+
+  <h2>Marcas, escudo y nombre del club</h2>
+  <p>
+    El escudo, el nombre y los signos distintivos del Club Atlético Platense son propiedad
+    exclusiva del club. Aparecen acá de forma ilustrativa, en un contexto no comercial y
+    claramente identificado como no oficial, al solo efecto de mostrar cómo se vería una
+    propuesta de diseño para el club. No se reivindica ninguna titularidad sobre ellos ni
+    se sugiere aprobación, patrocinio o vínculo con el club.
+  </p>
+
+  <h2>Contenidos de terceros</h2>
+  <p>
+    Las imágenes y logos de comercios adheridos que aparecen en la sección de beneficios
+    pertenecen a sus respectivos titulares. Se muestran de forma ilustrativa para
+    representar el contenido de la sección, sin implicar que esos comercios participen
+    de este prototipo ni lo respalden.
+  </p>
+
+  <h2>Tipografías</h2>
+  <p>
+    Las tipografías utilizadas se emplean bajo sus respectivas licencias. Si detectás un
+    uso indebido de una tipografía, escribinos y lo corregimos de inmediato.
+  </p>
+
+  <h2>Retiro de contenido</h2>
+  <p>
+    Si representás al Club Atlético Platense, a CleverSoft o a cualquier tercero cuyo
+    material aparezca en este prototipo, y querés que se modifique o se dé de baja
+    total o parcialmente, alcanza con pedirlo: se hace sin discusión y sin demora.
+  </p>
+  <p>
+    Contacto: <a href="https://x.com/Camilo_Tense" rel="noopener">@Camilo_Tense</a>
+  </p>
+</main>
+
+</body>
+</html>
