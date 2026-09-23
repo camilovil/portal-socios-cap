@@ -31,6 +31,13 @@
     try { localStorage.setItem(RECHAZADO, '1'); } catch (e) { /* modo privado */ }
   };
 
+  /* --- Estado de toque en iPhone ------------------------------------
+     Safari de iOS no aplica :active al tocar si la pagina no escucha
+     toques. Sin esto no se ve ninguna respuesta al presionar (sombreado
+     del menu, hundido de botones de animaciones.css). */
+
+  document.addEventListener('touchstart', () => {}, { passive: true });
+
   /* --- Service worker ---------------------------------------------- */
 
   if ('serviceWorker' in navigator) {

@@ -67,7 +67,8 @@
     chevron: 'M9 5l7 7-7 7',
     close: 'M6 6l12 12M18 6L6 18',
     logout: 'M14 5H7v14h7M11 12h9M17 9l3 3-3 3',
-    trophy: 'M8 4h8v4a4 4 0 0 1-8 0zM12 12v4M9 20h6'
+    trophy: 'M8 4h8v4a4 4 0 0 1-8 0zM12 12v4M9 20h6',
+    externo: 'M7 17 17 7M9 7h8v8'
   };
 
   const icono = (nombre, ancho) =>
@@ -135,7 +136,7 @@
           '<a class="ms-salir" href="login.html">' +
             icono('logout', 1.7) + ' Cerrar sesión</a>' +
           '<a class="ms-sitio" href="https://cap.org.ar" target="_blank" rel="noopener">' +
-            'cap.org.ar ↗</a>' +
+            'cap.org.ar ' + icono('externo', 1.8) + '</a>' +
         '</div>' +
       '</div>';
 
@@ -167,6 +168,7 @@
 
   drawer.classList.add('ms-panel');
   drawer.setAttribute('aria-label', 'Menú de socio');
+  drawer.setAttribute('tabindex', '-1');
   drawer.innerHTML = construir();
 
   /* Sugerencias todavia no tiene pantalla: se rotula como pendiente en
@@ -194,8 +196,10 @@
     if (abierto()) {
       scrollPrevio = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
-      const primero = drawer.querySelector('a, button');
-      if (primero) primero.focus({ preventScroll: true });
+      /* El foco va al panel y no al boton de cerrar: iOS le dibujaba su
+         anillo azul del sistema apenas se abria el menu. Con teclado,
+         el primer Tab ya entra a las opciones. */
+      drawer.focus({ preventScroll: true });
     } else {
       document.body.style.overflow = scrollPrevio;
     }

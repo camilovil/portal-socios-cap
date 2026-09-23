@@ -396,6 +396,7 @@
 
 <!-- Capa del prototipo publico (no forma parte del diseno aprobado) -->
 <link rel="stylesheet" href="assets/css/componentes.css">
+<link rel="stylesheet" href="assets/css/animaciones.css">
 <link rel="stylesheet" href="assets/css/prototipo.css">
 <script src="assets/js/prototipo.js"></script>
 
@@ -407,8 +408,28 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Socios CAP">
 <meta name="mobile-web-app-capable" content="yes">
+
+<!-- Pantalla de carga: solo al abrir desde el icono instalado.
+     El script va sincronico para decidir antes de pintar la pagina. -->
+<link rel="stylesheet" href="/assets/css/splash.css">
+<script src="/assets/js/splash.js"></script>
+<!-- Imagen fija de iOS mientras arranca la app (una por tamano de iPhone) -->
+<link rel="apple-touch-startup-image" media="(device-width: 440px) and (device-height: 956px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/assets/img/pwa/splash/splash-1320x2868.png">
+<link rel="apple-touch-startup-image" media="(device-width: 402px) and (device-height: 874px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/assets/img/pwa/splash/splash-1206x2622.png">
+<link rel="apple-touch-startup-image" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/assets/img/pwa/splash/splash-1290x2796.png">
+<link rel="apple-touch-startup-image" media="(device-width: 420px) and (device-height: 912px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/assets/img/pwa/splash/splash-1260x2736.png">
+<link rel="apple-touch-startup-image" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/assets/img/pwa/splash/splash-1179x2556.png">
+<link rel="apple-touch-startup-image" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/assets/img/pwa/splash/splash-1284x2778.png">
+<link rel="apple-touch-startup-image" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/assets/img/pwa/splash/splash-1170x2532.png">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/assets/img/pwa/splash/splash-1125x2436.png">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/assets/img/pwa/splash/splash-1242x2688.png">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/assets/img/pwa/splash/splash-828x1792.png">
+<link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)" href="/assets/img/pwa/splash/splash-1242x2208.png">
+<link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/assets/img/pwa/splash/splash-750x1334.png">
+<link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" href="/assets/img/pwa/splash/splash-640x1136.png">
 <script src="/assets/js/pwa.js" defer></script>
 <script src="/assets/js/menu-socios.js" defer></script>
+<script src="/assets/js/notificaciones.js" defer></script>
 </head>
 <body>
 
@@ -424,65 +445,6 @@
     </a>
   </div>
   <div class="right">
-    <div class="notif-wrap">
-      <button class="notif-trigger" id="notification-icon" onclick="toggleNotifs(event)"
-              aria-label="Notificaciones" aria-expanded="false" aria-controls="notifDropdown">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
-        <span class="notification-dot" id="notifDot" aria-hidden="true">3</span>
-      </button>
-      <div class="notif-dropdown" id="notifDropdown" onclick="event.stopPropagation()" role="region" aria-label="Tus notificaciones">
-        <div class="notif-head">
-          <strong>Notificaciones</strong>
-          <button type="button" class="notif-clear" onclick="marcarLeidas(event)">Marcar todas como leídas</button>
-        </div>
-        <ul class="notif-list" id="notifList">
-          <li class="notif-item notif-item--unread">
-            <span class="notif-ico notif-ico--pago" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
-            </span>
-            <div class="notif-body">
-              <p class="notif-title">Tu cuota de julio vence el 10</p>
-              <p class="notif-text">Pagala antes del vencimiento y evitá el recargo.</p>
-              <a class="notif-cta" href="pagos-pendientes.html">Pagar ahora</a>
-            </div>
-            <span class="notif-time">hace 2 h</span>
-          </li>
-          <li class="notif-item notif-item--unread">
-            <span class="notif-ico notif-ico--turno" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-            </span>
-            <div class="notif-body">
-              <p class="notif-title">Turno confirmado: Pileta, sábado 14 h</p>
-              <p class="notif-text">Presentá tu carnet digital en el acceso.</p>
-              <a class="notif-cta" href="turnos.html">Ver mis turnos</a>
-            </div>
-            <span class="notif-time">ayer</span>
-          </li>
-          <li class="notif-item notif-item--unread">
-            <span class="notif-ico notif-ico--calamar" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12V8H6a2 2 0 0 1 0-4h12v4"/><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"/><path d="M18 12a2 2 0 0 0 0 4h4v-4Z"/></svg>
-            </span>
-            <div class="notif-body">
-              <p class="notif-title">Nuevo beneficio en Zona Calamar</p>
-              <p class="notif-text">30% de descuento en gastronomía del barrio.</p>
-              <a class="notif-cta" href="beneficios.html">Ver beneficios</a>
-            </div>
-            <span class="notif-time">hace 3 d</span>
-          </li>
-          <li class="notif-item">
-            <span class="notif-ico notif-ico--info" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M6 15h4"/></svg>
-            </span>
-            <div class="notif-body">
-              <p class="notif-title">Se abrió la inscripción a Fútbol Infantil</p>
-              <p class="notif-text">Cupos limitados por categoría.</p>
-              <a class="notif-cta" href="inscripciones.html">Inscribirme</a>
-            </div>
-            <span class="notif-time">hace 1 sem</span>
-          </li>
-        </ul>
-      </div>
-    </div>
     <div class="profile-wrap">
       <button class="profile-trigger" onclick="toggleProfileMenu(event)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
@@ -718,7 +680,7 @@
     <button class="close-bot" onclick="toggleBot()">✕</button>
   </div>
   <div class="bot-messages" id="botMessages">
-    <div class="bot-msg bot">¡Hola Camilo! Soy el Bot Calamar 🦑 ¿En qué te ayudo? Puedo orientarte con pagos, turnos, tu carnet o llevarte a la sección que necesites.</div>
+    <div class="bot-msg bot">¡Hola Camilo! Soy el Bot Calamar. ¿En qué te ayudo? Puedo orientarte con pagos, turnos, tu carnet o llevarte a la sección que necesites.</div>
   </div>
   <div class="bot-quick" id="botQuick">
     <button onclick="botAsk('¿Cómo pago mi cuota?')">¿Cómo pago mi cuota?</button>
@@ -751,36 +713,9 @@ function toggleProfileMenu(e) {
   e.stopPropagation();
   document.getElementById('profileDropdown').classList.toggle('open');
 }
-function toggleNotifs(e) {
-  e.stopPropagation();
-  var dd = document.getElementById('notifDropdown');
-  var abierto = dd.classList.toggle('open');
-  document.getElementById('notification-icon').setAttribute('aria-expanded', String(abierto));
-  document.getElementById('profileDropdown').classList.remove('open');
-}
-
-function marcarLeidas(e) {
-  e.stopPropagation();
-  document.querySelectorAll('.notif-item--unread')
-    .forEach(function (el) { el.classList.remove('notif-item--unread'); });
-  var dot = document.getElementById('notifDot');
-  if (dot) dot.remove();
-}
-
 document.addEventListener('click', function () {
   var dd = document.getElementById('profileDropdown');
   if (dd) dd.classList.remove('open');
-  var nd = document.getElementById('notifDropdown');
-  if (nd) {
-    nd.classList.remove('open');
-    document.getElementById('notification-icon').setAttribute('aria-expanded', 'false');
-  }
-});
-
-document.addEventListener('keydown', function (e) {
-  if (e.key !== 'Escape') return;
-  var nd = document.getElementById('notifDropdown');
-  if (nd) nd.classList.remove('open');
 });
 </script>
 

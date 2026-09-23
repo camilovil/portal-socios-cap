@@ -195,6 +195,7 @@
 
 <!-- Capa del prototipo publico (no forma parte del diseno aprobado) -->
 <link rel="stylesheet" href="assets/css/componentes.css">
+<link rel="stylesheet" href="assets/css/animaciones.css">
 <link rel="stylesheet" href="assets/css/prototipo.css">
 <script src="assets/js/prototipo.js"></script>
 
@@ -208,11 +209,15 @@
 <meta name="mobile-web-app-capable" content="yes">
 <script src="/assets/js/pwa.js" defer></script>
 <script src="/assets/js/menu-socios.js" defer></script>
+<script src="/assets/js/notificaciones.js" defer></script>
 </head>
 <body>
 
 <div class="utility-bar">
-  <a class="site-link" href="https://cap.org.ar" target="_blank" rel="noopener" aria-label="Ir al sitio oficial del club (se abre en una pestaña nueva)">🛡 cap.org.ar</a>
+  <a class="site-link" href="https://cap.org.ar" target="_blank" rel="noopener" aria-label="Ir al sitio oficial del club (se abre en una pestaña nueva)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M14 3h7v7"/><path d="M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+    cap.org.ar
+  </a>
   <div class="brand-group">
     <a class="brand-home" href="home.html" aria-label="Ir al inicio del portal">
       <img class="escudo-mini" src="assets/img/escudo-cap-oficial.png" alt="Club Atlético Platense">
@@ -294,7 +299,7 @@
       <img class="zc-logo" src="assets/img/zona-calamar/logo-horizontal.webp" alt="Zona Calamar">
       <h2 id="zcHeading" style="position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0);">Comercios adheridos</h2>
       <p>Zona Calamar es la comunidad de beneficios de Platense: comercios y marcas amigas que ofrecen descuentos exclusivos a los socios del club.</p>
-      <p><a class="zc-official-link" href="https://zonacalamar.info/beneficios/" target="_blank" rel="noopener">Ver el detalle de cada beneficio en zonacalamar.info ↗</a></p>
+      <p><a class="zc-official-link" href="https://zonacalamar.info/beneficios/" target="_blank" rel="noopener">Ver el detalle de cada beneficio en zonacalamar.info <svg class="zc-official-link__ico" viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg></a></p>
     </div>
 
     <div class="zc-grid">

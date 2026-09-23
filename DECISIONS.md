@@ -200,3 +200,25 @@ recuperarla.
 **Estado:** Aceptada
 
 ---
+
+## DECISION-014
+
+**Fecha:** 2026-09-23
+
+La app instalada tiene **pantalla de carga** con el escudo y "SOCIOS CAP"
+(`assets/css/splash.css`, `assets/js/splash.js`). Se ve solo al abrir
+desde el icono del teléfono y una vez por arranque; en el navegador no
+existe.
+
+**Dos capas:** iOS no permite animar su pantalla de arranque, solo una
+imagen fija por tamaño de iPhone (`assets/img/pwa/splash/`). La animación
+HTML arranca con el escudo en el mismo lugar que esa imagen, así el paso
+de una a otra no se nota.
+
+**Excepción a la guía de 200–300 ms:** dura ~1,6 s. La página carga por
+detrás, el socio puede tocar para saltearla y con "Reducir movimiento"
+se acorta a ~0,9 s sin desplazamientos.
+
+**Prueba sin instalar:** `?splash=1` en la URL la fuerza en el navegador.
+
+**Estado:** A prueba

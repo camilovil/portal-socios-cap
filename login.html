@@ -262,6 +262,7 @@
 
 <!-- Capa del prototipo publico (no forma parte del diseno aprobado) -->
 <link rel="stylesheet" href="assets/css/componentes.css">
+<link rel="stylesheet" href="assets/css/animaciones.css">
 <link rel="stylesheet" href="assets/css/prototipo.css">
 <script src="assets/js/prototipo.js"></script>
 
@@ -275,6 +276,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <script src="/assets/js/pwa.js" defer></script>
 <script src="/assets/js/menu-socios.js" defer></script>
+<script src="/assets/js/notificaciones.js" defer></script>
 </head>
 <body>
 
@@ -359,7 +361,7 @@
       <div class="field">
         <label>Contraseña</label>
         <input id="loginPass" type="password" placeholder="Ingresá tu contraseña">
-        <span class="toggle-eye">👁</span>
+        <span class="toggle-eye" aria-hidden="true"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span>
       </div>
 
       <!-- En CleverSoft el captcha es de imagen: la sirve $.post("", {action: "getCaptcha"})
@@ -461,7 +463,7 @@
     <button class="close-bot" onclick="toggleBot()">✕</button>
   </div>
   <div class="bot-messages" id="botMessages">
-    <div class="bot-msg bot">¡Hola! Soy el Bot Calamar 🦑 ¿Ya sos socio o querés asociarte? Puedo ayudarte a ingresar o guiarte para registrarte.</div>
+    <div class="bot-msg bot">¡Hola! Soy el Bot Calamar. ¿Ya sos socio o querés asociarte? Puedo ayudarte a ingresar o guiarte para registrarte.</div>
   </div>
   <div class="bot-quick" id="botQuick">
     <button onclick="botAsk('¿Cómo me registro?')">¿Cómo me registro?</button>

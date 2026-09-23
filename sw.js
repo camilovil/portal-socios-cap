@@ -18,7 +18,7 @@
    Al publicar cambios que deban aplicarse de inmediato, subir VERSION.
    ------------------------------------------------------------------ */
 
-const VERSION = 'v2';
+const VERSION = 'v5';
 const CACHE = `cap-socios-${VERSION}`;
 
 /* Lo minimo para que la credencial se abra sin conexion. */
@@ -28,6 +28,11 @@ const SHELL = [
   '/assets/css/componentes.css',
   '/assets/css/prototipo.css',
   '/assets/js/prototipo.js',
+  '/assets/css/splash.css',
+  '/assets/js/splash.js',
+  '/assets/css/animaciones.css',
+  '/assets/js/menu-socios.js',
+  '/assets/js/notificaciones.js',
   '/assets/fonts/montserrat-300-latin.woff2',
   '/assets/fonts/montserrat-500-latin.woff2',
   '/assets/fonts/montserrat-800-latin.woff2',
