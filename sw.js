@@ -18,7 +18,7 @@
    Al publicar cambios que deban aplicarse de inmediato, subir VERSION.
    ------------------------------------------------------------------ */
 
-const VERSION = 'v5';
+const VERSION = 'v7';
 const CACHE = `cap-socios-${VERSION}`;
 
 /* Lo minimo para que la credencial se abra sin conexion. */
@@ -40,7 +40,7 @@ const SHELL = [
   '/assets/img/escudo-cap-oficial.png',
   '/assets/img/carnet/logo-clasico.webp',
   '/assets/img/carnet/qr-code.png',
-  '/assets/img/carnet/tentaculos-lateral.png',
+  '/assets/img/carnet/tentaculos-dorado.webp',
   '/assets/img/calamar-icon.png'
 ];
 
